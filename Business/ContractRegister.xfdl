@@ -1,0 +1,345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.4">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="ContractRegister" classname="ContractRegister" inheritanceid="" position="absolute 0 0 1250 680" titletext="New Form" onload="ContractRegister_onload">
+    <Layouts>
+      <Layout>
+        <GroupBox id="GroupBox00" text="수주 등록" position2="absolute l:10 w:1190 t:20 h:644" positiontype="position2" style="background:transparent;border:3px solid lightsteelblue ;color:black;font:함초롬돋움,16,bold antialias;"/>
+        <Calendar id="c_startDate" taborder="1" visible="false" position2="absolute l:222 w:143 t:58 h:27" positiontype="position2" style="color:#f24a00ff;align:center middle;font:함초롬돋움,11,bold antialias;"/>
+        <Calendar id="c_endDate" taborder="1" visible="false" position2="absolute l:390 w:143 t:58 h:27" positiontype="position2" style="color:#f24a00ff;align:center middle;font:함초롬돋움,11,bold antialias;"/>
+        <Button id="Button00" taborder="1" text="수주가능 견적조회" onclick="btn_searchAvailableContract" position2="absolute l:543 w:160 t:59 h:29" positiontype="position2" style="background:@gradation;border:1px solid transparent ;color:#f24a00ff;font:함초롬돋움,9,bold;"/>
+        <Grid id="grid_estimate" taborder="1" binddataset="gds_contract" useinputpanel="false" selecttype="cell" autofittype="col" selectchangetype="up" oncellclick="grid_estimate_oncell" onheadclick="grid_estimate_onheadclick" onenterdown="grid_contract_cellEnter" position2="absolute l:30 w:1150 t:108 h:220" positiontype="position2" style="align:center middle;font:함초롬돋움,9,antialias;">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="69"/>
+                <Column size="154"/>
+                <Column size="93"/>
+                <Column size="99"/>
+                <Column size="119"/>
+                <Column size="111"/>
+                <Column size="80"/>
+                <Column size="95"/>
+                <Column size="84"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head" style="background:@gradation;">
+                <Cell displaytype="checkbox" edittype="normal"/>
+                <Cell col="1" displaytype="normal" text="견적일련번호"/>
+                <Cell col="2" displaytype="normal" text="수주유형분류"/>
+                <Cell col="3" displaytype="normal" text="거래처코드"/>
+                <Cell col="4" displaytype="normal" text="견적일자"/>
+                <Cell col="5" displaytype="normal" text="수주요청자"/>
+                <Cell col="6" displaytype="normal" text="유효일자"/>
+                <Cell col="7" displaytype="normal" text="견적 담당자 코드"/>
+                <Cell col="8" displaytype="normal" text="비고"/>
+              </Band>
+              <Band id="body" style="background:white;">
+                <Cell displaytype="checkbox" edittype="checkbox" text="bind:CHECKED"/>
+                <Cell col="1" displaytype="normal" text="bind:ESTIMATE_NO"/>
+                <Cell col="2" displaytype="normal" text="bind:CONTRACT_TYPE"/>
+                <Cell col="3" displaytype="normal" text="bind:CUSTOMER_CODE"/>
+                <Cell col="4" displaytype="normal" text="expr:gds_estimate.getColumn(gds_estimate.findRow(&quot;ESTIMATE_NO&quot;,ESTIMATE_NO),&quot;ESTIMATE_DATE&quot;)"/>
+                <Cell col="5" displaytype="normal" edittype="text" text="bind:CONTRACT_REQUESTER"/>
+                <Cell col="6" displaytype="normal" text="expr:gds_estimate.getColumn(gds_estimate.findRow(&quot;ESTIMATE_NO&quot;,ESTIMATE_NO),&quot;EFFECTIVE_DATE&quot;)"/>
+                <Cell col="7" displaytype="normal" text="bind:PERSON_CODE_IN_CHARGE"/>
+                <Cell col="8" displaytype="normal" text="bind:DESCRIPTION"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="grid_estimateDetail" taborder="1" binddataset="gds_estimateDetail" useinputpanel="false" autofittype="col" position2="absolute l:30 w:1152 t:345 h:309" positiontype="position2" style="align:center middle;font:함초롬돋움,9,antialias;">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="127"/>
+                <Column size="84"/>
+                <Column size="150"/>
+                <Column size="60"/>
+                <Column size="95"/>
+                <Column size="90"/>
+                <Column size="92"/>
+                <Column size="132"/>
+                <Column size="117"/>
+                <Column size="0"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head" style="background:@gradation;">
+                <Cell displaytype="normal" text="견적상세일련번호"/>
+                <Cell col="1" displaytype="normal" text="품목코드"/>
+                <Cell col="2" displaytype="normal" text="품목명"/>
+                <Cell col="3" displaytype="normal" text="단위"/>
+                <Cell col="4" displaytype="normal" text="납기일"/>
+                <Cell col="5" displaytype="normal" text="견적수량"/>
+                <Cell col="6" displaytype="normal" text="견적단가"/>
+                <Cell col="7" displaytype="normal" text="합계액"/>
+                <Cell col="8" displaytype="normal" text="비고"/>
+                <Cell col="9" text="견적번호"/>
+              </Band>
+              <Band id="body" style="background:white;">
+                <Cell displaytype="normal" text="bind:ESTIMATE_DETAIL_NO"/>
+                <Cell col="1" displaytype="normal" text="bind:ITEM_CODE"/>
+                <Cell col="2" displaytype="normal" text="bind:ITEM_NAME"/>
+                <Cell col="3" displaytype="normal" text="bind:UNIT_OF_ESTIMATE"/>
+                <Cell col="4" displaytype="normal" text="bind:DUE_DATE_OF_ESTIMATE"/>
+                <Cell col="5" displaytype="normal" text="bind:ESTIMATE_AMOUNT"/>
+                <Cell col="6" displaytype="normal" text="bind:UNIT_PRICE_OF_ESTIMATE"/>
+                <Cell col="7" displaytype="normal" text="bind:SUM_PRICE_OF_ESTIMATE"/>
+                <Cell col="8" displaytype="normal" text="bind:DESCRIPTION"/>
+                <Cell col="9" text="bind:ESTIMATE_NO"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Calendar id="c_date" taborder="1" visible="false" position2="absolute l:260 w:217 t:59 h:26" positiontype="position2" style="color:#f24a00ff;font:함초롬돋움,11,bold antialias;"/>
+        <Button id="registerContract" taborder="1" text="수주등록" onclick="btn_registerContract" position2="absolute l:757 w:104 t:59 h:33" positiontype="position2" style="background:@gradation;border:1px solid transparent ;color:#f24a00ff;font:함초롬돋움,9,bold;"/>
+        <Button id="Button02" taborder="1" text="견적취소" onclick="btn_cancelEstimate" position2="absolute l:877 w:104 t:59 h:33" positiontype="position2" style="background:@gradation;border:1px solid transparent ;color:#f24a00ff;font:함초롬돋움,9,bold;"/>
+        <GroupBox id="GroupBox01" text="수주 가능한 견적 검색조건" position2="absolute l:29 w:180 t:40 h:54" positiontype="position2" style="titlealign:topcenter;background:@gradation;border:2 solid lightsteelblue ;color:black;font:함초롬돋움,10,bold antialias;"/>
+        <Combo id="c_register_contractAvailable" taborder="1" innerdataset="ds_register_contractAvailable" codecolumn="data" datacolumn="id" onitemchanged="cfn_searchByDateRadio" position2="absolute l:41 w:154 t:59 h:29" positiontype="position2" style="color:#f24a00ff;align:center middle;font:함초롬돋움,9,bold antialias;"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_register_contractAvailable" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="id" type="STRING" size="256"/>
+          <Column id="data" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="id">일자 검색</Col>
+            <Col id="data">searchByDate</Col>
+          </Row>
+          <Row>
+            <Col id="id">기간 검색</Col>
+            <Col id="data">searchByPeriod</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="Dataset00" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false"/>
+    </Objects>
+    <Script type="xscript4.0"><![CDATA[
+function ContractRegister_onload(obj:Form, e:LoadEventInfo)
+{
+	gds_contract.clearData();
+	gds_estimateDetail.clearData();
+	var searchCondition;
+}
+
+//콤보가 변한 후 일어나는 이벤트
+function cfn_searchByDateRadio(obj:Combo, e:ItemChangeEventInfo)
+{
+	searchCondition=ds_register_contractAvailable.getColumn(c_register_contractAvailable.index,"data");
+	if(searchCondition=="searchByDate"){
+	 c_date.visible=true;
+	 c_startDate.visible=false;
+	 c_endDate.visible=false;
+	 }
+	 
+	if(searchCondition=="searchByPeriod") {
+	 c_date.visible=false;
+	 c_startDate.visible=true;
+	 c_endDate.visible=true;
+	}
+}
+
+//수주가능 견적조회 버튼
+function btn_searchAvailableContract(obj:Button,  e:ClickEventInfo)
+{
+	// index: 콤보에서 드롭다운리스트의 아이템중
+// 현재 선택된 아이템의 인덱스를 지정하는 속성입니다.
+//값이 -1로 설정되는 경우는
+//아이템이 선택되어 있지 않거나 선택된 아이템이 드롭다운리스트에 없는 경우입니다.
+	if(c_register_contractAvailable.index==-1) {
+		alert("수주 가능 검색 조건을 선택해주세요");
+		return;
+	}
+	
+	// 기간 검색(ds_register_contractAvailable.data = searchByPeriod)
+	if(searchCondition=="searchByPeriod"){
+	
+		var startDate=c_startDate.value;
+		var endDate=c_endDate.value;
+		//trace("startDate: "+startDate);
+		//trace("endDate: "+endDate);
+		
+	// 일자 검색(ds_register_contractAvailable.data = searchByDate)
+	} else if(searchCondition=="searchByDate"){
+		var startDate=c_date.value;
+		var endDate=c_date.value;
+	}
+
+		if(startDate==null || endDate==null){
+			alert("검색기간을 입력해주세요");
+			return;
+		}
+
+		transaction(
+				"searchAvailableContract"
+				,"svcBusiness::searchEstimateInContractAvailable.do",
+				"",
+				"gds_estimate=gds_estimate gds_estimateDetail=gds_estimateDetail",
+				//"searchCondition="+searchCondition+
+				" startDate="+startDate+
+				" endDate="+endDate,
+				"fn_callBack"
+				);
+}
+
+//********************** 체크박스 전체 클릭 **********************
+var gv_IsGridCheckAll = 0;
+function grid_estimate_onheadclick(obj:Grid, e:GridClickEventInfo)
+{
+	
+   var dsObj = eval(obj.binddataset);
+   trace("dsObj"+dsObj);
+   var v_Colid = obj.getCellProperty("body", e.cell, "text").replace("bind:", "");
+ trace("v_Colid"+v_Colid);
+   gv_IsGridCheckAll = (gv_IsGridCheckAll ? 0 : 1);
+ 
+   dsObj.enableevent = false;
+   
+   for (var i=0; i<dsObj.getRowCount(); i++) {
+      dsObj.setColumn(i, v_Colid, gv_IsGridCheckAll);
+   }
+   obj.setCellProperty( "Head", 0, "expr", gv_IsGridCheckAll);
+   dsObj.enableevent = true;
+
+}
+
+
+
+/* 수주 가능 견적 조회(트랜젝션) 콜백 함수 */
+function fn_callBack(trId, errCD, errMsg){
+	//grid_estimateDetail.visible=false;
+	// 기간 검색 선택할 때
+	if(trId=="searchAvailableContract") {
+		// clearData: 데이터셋의 column 정보를 제외한 모든 행(row)을 제거하는 메소드;
+		gds_contract.clearData();
+		
+		// 바인딩한 gds_estimate의 행 개수
+		var es_rowSize=gds_estimate.rowcount;		
+		if(es_rowSize ==null){
+			return;
+		}
+		
+		for(var index=0; index<es_rowSize; index++){
+			var nRow=gds_contract.addRow();
+			// nRow: 값을 변경하려는 행의 위치; strColID: 값을 변경하려는 열의 ID; // varVal: 변경하려는 값;
+			gds_contract.setColumn(nRow, "ESTIMATE_NO", gds_estimate.getColumn(index,"ESTIMATE_NO"));
+			gds_contract.setColumn(nRow, "DESCRIPTION", gds_estimate.getColumn(index,"DESCRIPTION"));
+			gds_contract.setColumn(nRow, "CUSTOMER_CODE", gds_estimate.getColumn(index,"CUSTOMER_CODE"));
+			gds_contract.setColumn(nRow, "PERSON_CODE_IN_CHARGE", gds_estimate.getColumn(index,"PERSON_CODE_IN_CHARGE"));
+		}
+	}
+}
+
+
+
+//********************** 수주 그리드 셀 클릭 했을 때 **********************
+function grid_estimate_oncell(obj:Grid, e:GridClickEventInfo)
+{
+	/*				체크박스 한 개만 선택하는 if				*/
+	if(e.col == grid_estimate.getBindCellIndex("body", "CHECKED")) {
+
+		for(var i = 0; i<this.grid_estimate.rowcount; i++) {
+			if(e.row == i) {
+				// blank
+			} else{
+				gds_contract.setColumn(i,"CHECKED","0");
+			}
+		}
+	}
+
+	/*		수주 그리드 클릭한 것만 견적 상세 리스트 보기(filter)			*/
+	/////////////// 1번 셀과 4번셀 클릭하지 않았을 때 if 문 만들기
+	var gridRow = e.row;
+	var eNo = gds_contract.getColumn(e.row,"ESTIMATE_NO");
+	// 선택한 행의 ESTIMATE_NO와 gds_estimateDetail ESTIMATE_NO가 같은 상세 행만 볼꺼다.
+	gds_estimateDetail.filter("ESTIMATE_NO=='"+eNo+"'");
+
+		
+	/*		수주유형분류 클릭할 때 모달 다이얼로그 창 띄우기		*/
+	var estimateNo=obj.getCellValue(obj.currentrow,0);
+	var CONTRACT_TYPE=obj.getCellValue(e.row,0);
+	trace("obj.currentrow"+obj.currentrow);
+	trace("e.row"+e.row);
+	
+	// 클릭한 cell의 위치 index
+	var cellIndex=e.cell;
+	trace("cellIndex"+cellIndex);
+	//trace("cellIndex:  "+cellIndex);
+	
+	//클릭한 셀의 HEAD(=ColumnName)
+	var conTractType=obj.getCellText(-1, cellIndex);
+	trace("conTractType: "+conTractType);
+	
+	if(conTractType=="수주유형분류"){
+		g_divisionCode="CT";
+		
+		dialog(
+				"CustomerCode",	// 생성될 ChildFrame의 이름
+				"Base::CommonDialog.xfdl",	// 로딩한 폼의 URL
+				"ContractRegister",	// ParentFrame
+				{divisionCode:"CT"},	// ChildFrame에 추가될 변수 리스트 {변수명:변수값, 변수명:변수값}
+				"",	// ChildFrame에 설정할 속성 리스트 a=b b='c' 
+				650,	// ChildFrame의 position 중 left 값
+				350	// ChildFrame의 position 중 top 값
+		);
+		gds_contract.setColumn(e.row,"CONTRACT_TYPE",g_customerCode);
+	}
+}
+function grid_contract_cellEnter(obj:Grid, e:GridEditEventInfo)
+{
+	var contractRequester=e.value;
+}
+
+//********************** 수주등록 버튼 클릭시 **********************
+function btn_registerContract(obj:Button,  e:ClickEventInfo)
+{
+	// 오늘 날짜
+	var now=new Date();
+	var today = now.getFullYear() + "-" +('0' + (now.getMonth() +1 )).slice(-2) + "-" + ('0' + now.getDate()).slice(-2);
+
+	//grid_estimate의 현재 행 위치: 0,1,2 ...
+	var gRow=grid_estimate.currentrow;
+	// 현재 행에 있는 Dataset Column의 value
+	var checkedRowId= gds_contract.getColumn(gRow, "CHECKED");
+	var estimateNo=gds_contract.getColumn(gRow, "ESTIMATE_NO");
+	
+	if(checkedRowId == undefined || checkedRowId != 1){
+	
+		alert("수주 등록할 견적을 선택하세요");
+		return;
+		
+	} else{
+	
+		var confirmMsg = "견적번호 " +  estimateNo + " 을 수주 등록합니다. \r\n"
+			+ "계속하겠습니까?";
+			
+		if(confirm(confirmMsg)){
+		
+			alert("confirm 성공");
+			transaction(
+						"addNewContract",
+						"svcBusiness::addNewContract.do",
+						"gds_contract=gds_contract:u gds_contractDetail=gds_contractDetail:u",
+						"gds_contract=gds_contract gds_contractDetail=gds_contractDetail",
+						"contractDate="+today+" personCodeInCharge='"+g_empCode+"'",
+						"fn_callBack",
+						false
+			);
+			
+		}
+	gds_contract.filter("");
+	
+	}
+}
+]]></Script>
+  </Form>
+</FDL>

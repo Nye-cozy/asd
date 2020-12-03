@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.4">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="frmLeft" classname="frmLeft" inheritanceid="" position="absolute 0 0 200 800" titletext="New Form" style="background:white;" onload="frmLeft_onload" onclick="frmLeft_onclick" oninit="frmLeft_oninit">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" text="직원정보" position2="absolute l:1 w:181 t:4 h:52" positiontype="position2" style="align:center;font:HY헤드라인M,18,bold;"/>
+        <Static id="Static03" text="부서명" position2="absolute l:2 w:60 t:120 h:32" positiontype="position2" style="align:center;"/>
+        <Static id="Static04" text="직급" position2="absolute l:2 w:60 t:163 h:32" positiontype="position2" style="align:center;" onclick="Static04_onclick"/>
+        <Static id="Static05" text="사원명" position2="absolute l:2 w:60 t:206 h:32" positiontype="position2" style="align:center;"/>
+        <Edit id="ed_positionName" taborder="1" position2="absolute l:72 w:92 t:163 h:32" positiontype="position2" style="align:center;" readonly="true"/>
+        <Edit id="ed_empName" taborder="1" position2="absolute l:72 w:92 t:206 h:32" positiontype="position2" style="align:center;" readonly="true"/>
+        <Edit id="ed_deptName" taborder="1" position2="absolute l:72 w:92 t:120 h:32" positiontype="position2" style="align:center;" oneditclick="ed_deptName_oneditclick" readonly="true"/>
+        <Static id="Static02" text="회사명" onclick="Static04_onclick" position2="absolute l:2 w:60 t:75 h:32" positiontype="position2" style="align:center;"/>
+        <Edit id="ed_workplaceName" taborder="1" readonly="true" position2="absolute l:72 w:93 t:75 h:32" positiontype="position2" style="align:center;"/>
+        <Button id="btn_logout" taborder="1" text="로그아웃" onclick="exitBtn_onclick" position2="absolute l:24 w:64 t:264 h:42" positiontype="position2" style="font:함초롬돋움,9,bold;"/>
+        <Button id="btn_logout00" taborder="1" text="종료" position2="absolute l:115 w:64 t:264 h:42" positiontype="position2" style="font:함초롬돋움,9,bold;" onclick="btn_logout00_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript4.0"><![CDATA[
+function exitBtn_onclick(obj:Button,  e:ClickEventInfo)
+{
+	application.mainframe.visible = false;
+	// LoginForm 부터 실행
+	oLoginFormDialog("Loginform","LoginForm","Base::LoginForm.xfdl");
+	
+	var leftForm=application.mainframe.VFrameSet0.HFrameSet0.LeftFrame.form;
+
+	leftForm.ed_deptName.value=g_deptName;
+	leftForm.ed_positionName.value=g_positionName;
+	leftForm.ed_empName.value=g_empName;
+	leftForm.ed_workplaceName.value=g_companyName;
+}
+
+function btn_logout00_onclick(obj:Button,  e:ClickEventInfo)
+{
+	application.exit();
+}
+]]></Script>
+  </Form>
+</FDL>

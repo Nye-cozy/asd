@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.4">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="EmpRegister" classname="EmpRegister" inheritanceid="" position="absolute 0 0 1038 600" titletext="New Form" onload="EmpRegister_onload">
+    <Layouts>
+      <Layout>
+        <GroupBox id="GroupBox00" text="직원정보" position2="absolute l:24 w:996 t:24 h:570" positiontype="position2" style="background:@gradation;border:3 solid #ccccddff ;color:darkslategray;font:함초롬돋움,24,bold;"/>
+        <Grid id="grd_emp" taborder="1" binddataset="gds_employee" useinputpanel="false" autofittype="col" oncellclick="grd_emp_oncellclick" position2="absolute l:31 w:500 t:130 h:454" positiontype="position2" style="color:#5f5f5fff;font:함초롬돋움,11;">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="79"/>
+                <Column size="80"/>
+                <Column size="180"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="25"/>
+              </Rows>
+              <Band id="head" style="background:@gradation;">
+                <Cell displaytype="normal" style="font:돋움,11,bold;" text="사원코드"/>
+                <Cell col="1" displaytype="normal" style="font:돋움,11,bold;" text="사원명"/>
+                <Cell col="2" displaytype="normal" style="font:돋움,11,bold;" text="부서명"/>
+                <Cell col="3" displaytype="normal" style="font:돋움,11,bold;" text="직급"/>
+                <Cell col="4" displaytype="normal" style="font:돋움,11,bold;" text="이메일"/>
+              </Band>
+              <Band id="body" style="background:white;">
+                <Cell displaytype="normal" style="background:transparent;background2:transparent;font:돋움,11;selectfont:돋움,11,bold;" text="bind:EMP_CODE"/>
+                <Cell col="1" displaytype="normal" style="background:transparent;background2:transparent;font:돋움,11;selectfont:돋움,11,bold;" text="bind:EMP_NAME"/>
+                <Cell col="2" displaytype="normal" style="background:transparent;background2:transparent;font:돋움,11;selectfont:돋움,11,bold;" text="bind:DEPT_NAME"/>
+                <Cell col="3" displaytype="normal" style="background:transparent;background2:transparent;font:돋움,11;selectfont:돋움,11,bold;" text="bind:POSITION_NAME"/>
+                <Cell col="4" displaytype="normal" style="background:transparent;background2:transparent;font:돋움,11;selectfont:돋움,11,bold;" text="bind:EMAIL"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_addEmp" taborder="1" text="추가" onclick="btn_addEmp_onclick" position2="absolute l:316 w:66 t:81 h:39" positiontype="position2" style="background:@gradation stretch left middle;color:#f24a00ff;font:함초롬돋움,11,bold;"/>
+        <Button id="btn_delEmp" taborder="1" text="삭제" onclick="btn_deleteInfo_onclick" position2="absolute l:389 w:66 t:81 h:39" positiontype="position2" style="background:@gradation stretch left middle;color:#f24a00ff;font:함초롬돋움,11,bold;"/>
+        <GroupBox id="GroupBox01" text="사원 사진" position2="absolute l:823 w:172 t:58 h:272" positiontype="position2" style="color:black;font:함초롬돋움,13, bold;"/>
+        <Static id="Static00" text="사원코드" position2="absolute l:544 w:120 t:64 h:39" positiontype="position2" style="border:3px solid #b1b5b9b3 ;color:black;align:center middle;font:함초롬돋움,11, bold;"/>
+        <Static id="Static01" text="사원명" position2="absolute l:544 w:120 t:107 h:39" positiontype="position2" style="border:3px solid #b1b5b9b3 ;color:black;align:center middle;font:함초롬돋움,11, bold;"/>
+        <Static id="Static02" text="사업장" position2="absolute l:544 w:120 t:150 h:39" positiontype="position2" style="border:3px solid #b1b5b9b3 ;color:black;align:center middle;font:함초롬돋움,11, bold;"/>
+        <Static id="Static03" text="부서명" position2="absolute l:544 w:120 t:193 h:39" positiontype="position2" style="border:3px solid #b1b5b9b3 ;color:black;align:center middle;font:함초롬돋움,11, bold;"/>
+        <Static id="Static04" text="직급" position2="absolute l:544 w:120 t:236 h:39" positiontype="position2" style="border:3px solid #b1b5b9b3 ;color:black;align:center middle;font:함초롬돋움,11, bold;"/>
+        <Static id="Static05" text="비밀번호" position2="absolute l:544 w:120 t:279 h:39" positiontype="position2" style="border:3px solid #b1b5b9b3 ;color:black;align:center middle;font:함초롬돋움,11, bold;"/>
+        <Static id="Static06" text="생년월일" position2="absolute l:544 w:120 t:322 h:39" positiontype="position2" style="border:3px solid #b1b5b9b3 ;color:black;align:center middle;font:함초롬돋움,11, bold;"/>
+        <Static id="Static07" text="휴대폰번호" position2="absolute l:544 w:120 t:365 h:39" positiontype="position2" style="border:3px solid #b1b5b9b3 ;color:black;align:center middle;font:함초롬돋움,11, bold;"/>
+        <Static id="Static08" text="주민등록번호" position2="absolute l:544 w:120 t:408 h:39" positiontype="position2" style="border:3px solid #b1b5b9b3 ;color:black;align:center middle;font:함초롬돋움,11, bold;"/>
+        <Static id="Static09" text="우편번호" position2="absolute l:544 w:120 t:451 h:39" positiontype="position2" style="border:3px solid #b1b5b9b3 ;color:black;align:center middle;font:함초롬돋움,11, bold;"/>
+        <Static id="Static10" text="기본주소" position2="absolute l:544 w:120 t:494 h:39" positiontype="position2" style="border:3px solid #b1b5b9b3 ;color:black;align:center middle;font:함초롬돋움,11, bold;"/>
+        <Static id="Static11" text="상세주소" position2="absolute l:544 w:120 t:537 h:39" positiontype="position2" style="border:3px solid #b1b5b9b3 ;color:black;align:center middle;font:함초롬돋움,11, bold;"/>
+        <Edit id="Edit00" taborder="1" readonly="true" position2="absolute l:669 w:150 t:64 h:39" positiontype="position2" style="background:transparent;font:함초롬돋움,11; :focused {font:돋움,10;}" height="500" width="800"/>
+        <Edit id="Edit01" taborder="1" readonly="true" position2="absolute l:669 w:150 t:107 h:39" positiontype="position2" style="background:transparent;font:함초롬돋움,11; :focused {font:돋움,10;}"/>
+        <Edit id="Edit05" taborder="1" oneditclick="Edit05_oneditclick" position2="absolute l:669 w:150 t:279 h:39" positiontype="position2" style="background:transparent;font:함초롬돋움,11; :focused {font:돋움,10;}"/>
+        <Edit id="Edit06" taborder="1" position2="absolute l:669 w:150 t:322 h:39" positiontype="position2" style="background:transparent;font:함초롬돋움,11; :focused {font:돋움,10;}"/>
+        <Edit id="Edit07" taborder="1" position2="absolute l:669 w:150 t:365 h:39" positiontype="position2" style="background:transparent;font:함초롬돋움,11; :focused {font:돋움,10;}"/>
+        <Edit id="Edit08" taborder="1" readonly="true" position2="absolute l:669 w:323 t:408 h:39" positiontype="position2" style="background:transparent;font:함초롬돋움,11; :focused {font:돋움,10;}"/>
+        <Edit id="edt_zipCode" taborder="1" readonly="true" position2="absolute l:669 w:323 t:451 h:39" positiontype="position2" style="background:transparent;font:함초롬돋움,11; :focused {font:돋움,10;}"/>
+        <Edit id="edt_basicAddress" taborder="1" readonly="true" position2="absolute l:669 w:323 t:494 h:39" positiontype="position2" style="background:transparent;font:함초롬돋움,11; :focused {font:돋움,10;}"/>
+        <Edit id="Edit11" taborder="1" position2="absolute l:669 w:323 t:537 h:39" positiontype="position2" style="background:transparent;font:함초롬돋움,11; :focused {font:돋움,10;}"/>
+        <Button id="btn_batchEmp" taborder="1" text="저장" onclick="btn_batchInfo_onclick" position2="absolute l:462 w:66 t:81 h:39" positiontype="position2" style="background:@gradation stretch left middle;color:#f24a00ff;font:함초롬돋움,11,bold;"/>
+        <Button id="btn_selectImg" taborder="1" text="사진찾기" onclick="btn_searchImg_onclick" position2="absolute l:833 w:67 t:333 h:39" positiontype="position2" style="background:@gradation stretch left middle;color:#f24a00ff;font:함초롬돋움,11,bold;"/>
+        <ImageViewer id="empImg" taborder="1" position2="absolute l:832 w:148 t:73 h:247" positiontype="position2" style="font:함초롬돋움,9,antialias;"/>
+        <Button id="btn_searchEmp" taborder="1" text="조회" onclick="btn_searchInfo_onclick" position2="absolute l:243 w:66 t:81 h:39" positiontype="position2" style="background:@gradation stretch left middle;color:#f24a00ff;font:함초롬돋움,11,bold;"/>
+        <Combo id="searchType" taborder="1" innerdataset="@ds_dType" codecolumn="VALUE" datacolumn="TYPE" onitemchanged="cfn_searchByDateRadio" position2="absolute l:34 w:178 t:82 h:36" positiontype="position2" style="color:#f24a00ff;align:center middle;font:함초롬돋움,9,bold antialias;" displaynulltext="전체"/>
+        <Button id="btn_registerImg00" taborder="1" text="사진저장" onclick="btn_registerInfo_onclick" position2="absolute l:921 w:67 t:333 h:39" positiontype="position2" style="background:@gradation stretch left middle;color:#f24a00ff;font:함초롬돋움,11,bold;"/>
+        <Edit id="Edit03" taborder="1" readonly="true" position2="absolute l:669 w:150 t:193 h:39" positiontype="position2" style="background:transparent;font:함초롬돋움,11; :focused {font:돋움,10;}"/>
+        <Edit id="Edit04" taborder="1" readonly="true" position2="absolute l:669 w:150 t:236 h:39" positiontype="position2" style="background:transparent;font:함초롬돋움,11; :focused {font:돋움,10;}"/>
+        <Edit id="Edit02" taborder="1" readonly="true" position2="absolute l:669 w:150 t:150 h:39" positiontype="position2" style="background:transparent;font:함초롬돋움,11; :focused {font:돋움,10;}"/>
+        <Button id="btn_findAddress" taborder="1" text="우편번호 검색" onclick="btn_registerInfo_onclick" position2="absolute l:879 w:113 t:451 h:39" positiontype="position2" style="background:@gradation stretch left middle;color:#f24a00ff;font:함초롬돋움,11,bold;"/>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item0" compid="Edit00" propid="value" datasetid="gds_employeeBasic" columnid="EMP_CODE"/>
+      <BindItem id="item1" compid="Edit01" propid="value" datasetid="gds_employeeBasic" columnid="EMP_NAME"/>
+      <BindItem id="item5" compid="Edit05" propid="value" datasetid="gds_employeeSecret" columnid="USER_PASSWORD"/>
+      <BindItem id="item6" compid="Edit06" propid="value" datasetid="gds_employeeBasic" columnid="BIRTH_DATE"/>
+      <BindItem id="item7" compid="Edit07" propid="value" datasetid="gds_employeeDetail" columnid="PHONE_NUMBER"/>
+      <BindItem id="item8" compid="Edit08" propid="value" datasetid="gds_employeeBasic" columnid="SOCIAL_SECURITY_NUMBER"/>
+      <BindItem id="item2" compid="edt_zipCode" propid="value" datasetid="gds_employeeDetail" columnid="ZIP_CODE"/>
+      <BindItem id="item10" compid="edt_basicAddress" propid="value" datasetid="gds_employeeDetail" columnid="BASIC_ADDRESS"/>
+      <BindItem id="item11" compid="Edit11" propid="value" datasetid="gds_employeeDetail" columnid="DETAIL_ADDRESS"/>
+    </Bind>
+    <Objects>
+      <Dataset id="ds_dType" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="TYPE" type="STRING" size="256"/>
+          <Column id="VALUE" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="TYPE">전체</Col>
+            <Col id="VALUE">ALL</Col>
+          </Row>
+          <Row>
+            <Col id="TYPE">사업장</Col>
+            <Col id="VALUE">WORKPLACE</Col>
+          </Row>
+          <Row>
+            <Col id="TYPE">부서</Col>
+          </Row>
+          <Row>
+            <Col id="TYPE">퇴직</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript4.0"><![CDATA[
+function EmpRegister_onload(obj:Form, e:LoadEventInfo)
+{
+	gds_employee.clearData();
+}
+
+
+//사원 조회
+function btn_searchInfo_onclick(obj:Button,  e:ClickEventInfo)
+{	
+	var searchCondition=searchType.value;
+	
+	if(searchType.value==undefined){
+		searchCondition="ALL";
+	}
+	
+	if(searchCondition=="ALL"){
+	
+	transaction(
+				"empInfo" //controller method's name
+				,"svcHr::searchAllEmpList.do", // url
+				"", // inData
+				"gds_employee=gds_employee", // outData
+				"searchCondition="+searchCondition+
+				" companyCode="+g_companyCode+
+				" workplaceCode= deptCode= ",
+				"fn_callBack"
+				,false
+				);
+	
+	}
+}
+
+function grd_emp_oncellclick(obj:Grid, e:GridClickEventInfo)
+{
+	var companyCode = gds_employee.getColumn(obj.currentrow,"COMPANY_CODE");
+	empCode = gds_employee.getColumn(obj.currentrow,"EMP_CODE");
+	
+	transaction(
+				"searchEmpInfo",
+				"svcHr::searchEmpInfo.do",
+				"",
+				"gds_employeeBasic=gds_employeeBasic gds_employeeDetail=gds_employeeDetail gds_employeeSecret=gds_employeeSecret",
+				"companyCode='"+companyCode+"' empCode="+empCode,
+				"fn_callback",
+				false
+	);
+
+	Edit02.value = gds_workplace.getColumn(obj.currentrow,"WORKPLACE_NAME");
+	Edit03.value = gds_employee.getColumn(obj.currentrow,"DEPT_NAME");
+	Edit04.value = gds_employee.getColumn(obj.currentrow,"POSITION_NAME");
+		
+	var empImgName = gds_employeeDetail.getColumn(obj.currentrow, "IMAGE");
+	if(empImgName != null){
+		empImg.image ="url(http://localhost/"+empImgName+")";
+		empImg.stretch = "fit";
+	}else{
+		empImg.image = "url('http://localhost/noImage.png')";
+		empImg.stretch = "fit";
+	}
+}
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.4">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="MrpSimulation" classname="MrpSimulation" inheritanceid="" position="absolute 0 0 1085 521" titletext="New Form" onload="MrpSimulation_onload">
+    <Layouts>
+      <Layout>
+        <GroupBox id="GroupBox00" text="소요량전개(MRP) 등록 일자" position2="absolute l:34 w:238 t:25 h:80" positiontype="position2" style="background:@gradation;border:2 solid lightsteelblue ;color:black;font:함초롬돋움,10,bold antialias;"/>
+        <GroupBox id="GroupBox01" text="소요량전개(MRP) 등록" position2="absolute l:554 w:319 t:25 h:80" positiontype="position2" style="border:2 solid lightsteelblue ;color:black;font:함초롬돋움,10,bold antialias;"/>
+        <Calendar id="c_date" taborder="1" dateformat="yyyy-MM-dd" onchanged="fn_date_onchanged" visible="false" position2="absolute l:307 w:229 t:49 h:43" positiontype="position2" style="border:1px solid lightsteelblue ;color:#f24a00ff;font:함초롬돋움,12,bold antialias;"/>
+        <Button id="btn_mrpRegister" taborder="1" text="현재 전개된 결과를 MRP에 등록" onclick="btn_mrpRegister_onclick" position2="absolute l:584 w:262 t:54 h:36" positiontype="position2" style="background:@gradation;border:1px solid transparent ;color:#f24a00ff;font:함초롬돋움,11,bold;"/>
+        <Grid id="grd_mrp" taborder="1" binddataset="gds_mrpOpenTemp" locale="ko_KR" useinputpanel="false" position2="absolute l:37 w:1025 t:133 h:363" positiontype="position2" style="border:1px solid lightsteelblue ;align:center middle;font:함초롬돋움,9,antialias;">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="112"/>
+                <Column size="104"/>
+                <Column size="71"/>
+                <Column size="91"/>
+                <Column size="182"/>
+                <Column size="120"/>
+                <Column size="142"/>
+                <Column size="82"/>
+                <Column size="80"/>
+                <Column size="105"/>
+                <Column size="80"/>
+                <Column size="58"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head" style="background:@gradation;">
+                <Cell displaytype="normal" text="주생산계획번호"/>
+                <Cell col="1" displaytype="normal" text="BOM 번호"/>
+                <Cell col="2" displaytype="normal" text="품목구분"/>
+                <Cell col="3" displaytype="normal" text="품목코드"/>
+                <Cell col="4" displaytype="normal" text="품목명"/>
+                <Cell col="5" displaytype="normal" text="발주/작업지시기한"/>
+                <Cell col="6" displaytype="normal" text="발주/작업지시완료기한"/>
+                <Cell col="7" displaytype="normal" text="계획수량"/>
+                <Cell col="8" displaytype="normal" text="누적손실률"/>
+                <Cell col="9" displaytype="normal" text="계산수량"/>
+                <Cell col="10" displaytype="normal" text="필요수량"/>
+                <Cell col="11" displaytype="normal" text="단위"/>
+              </Band>
+              <Band id="body" style="border:1 solid transparent ;cellbackground:white;cellbackground2:white;">
+                <Cell displaytype="normal" text="bind:MPS_NO"/>
+                <Cell col="1" displaytype="normal" text="bind:BOM_NO"/>
+                <Cell col="2" displaytype="normal" text="bind:ITEM_CLASSIFICATION"/>
+                <Cell col="3" displaytype="normal" text="bind:ITEM_CODE"/>
+                <Cell col="4" displaytype="normal" style="align:left middle;" text="bind:ITEM_NAME"/>
+                <Cell col="5" displaytype="normal" text="bind:ORDER_DATE"/>
+                <Cell col="6" displaytype="normal" text="bind:REQUIRED_DATE"/>
+                <Cell col="7" displaytype="normal" text="bind:PLAN_AMOUNT"/>
+                <Cell col="8" displaytype="normal" text="bind:TOTAL_LOSS_RATE"/>
+                <Cell col="9" displaytype="normal" text="bind:CACULATED_AMOUNT"/>
+                <Cell col="10" displaytype="normal" text="bind:REQUIRED_AMOUNT"/>
+                <Cell col="11" displaytype="normal" text="bind:UNIT_OF_MRP"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Radio id="Radio00" taborder="1" position2="absolute l:54 w:202 t:48 h:45" positiontype="position2" innerdataset="@ds_mrpSimulDivision" codecolumn="data" datacolumn="id" onitemchanged="Radio00_canitemchange" columncount="2" style="font:함초롬돋움,12,bold;"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_mrpSimulDivision" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="id" type="STRING" size="256"/>
+          <Column id="data" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="id">현재일자</Col>
+            <Col id="data">todayAsMrpDate</Col>
+          </Row>
+          <Row>
+            <Col id="id">직접입력</Col>
+            <Col id="data">userInputAsMrpDate</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript4.0"><![CDATA[var day;
+
+function MrpSimulation_onload(obj:Form, e:LoadEventInfo)
+{
+	obj.titletext="모의전개";
+	
+// 	var size = gds_mrpOpenTemp.rowcount;
+// 	for(var i=0; i<size; i++){
+// 		var oDate = gds_mrpOpenTemp.getColumn(i,"ORDER_DATE");
+// 	
+// 		var rDate = gds_mrpOpenTemp.getColumn(i,"REQUIRED_DATE");
+// 		gds_mrpOpenTemp.setColumn(i,"ORDER_DATE",fn_dateForm2(oDate));
+// 		gds_mrpOpenTemp.setColumn(i,"REQUIRED_DATE",fn_dateForm2(rDate));
+// 		
+// 		
+// 	}
+// 	trace(gds_mrpOpenTemp.getColumn(0,"ORDER_DATE"));
+	
+}
+//콜백함수
+function fn_callback(trId, ErrorCode, ErrorMsg){
+
+}
+
+
+//라디오 이벤트 함수
+function Radio00_canitemchange(obj:Radio, e:ItemChangeEventInfo)
+{
+	if(obj.value=="todayAsMrpDate"){
+	trace(obj.value);
+		c_date.visible=false;
+		var date=new Date();
+		day=date.getYear()+""+date.getMonth()+""+date.getDate();
+		trace("#date:  "+date);
+		trace("#day:  "+day);
+	}else{
+		c_date.visible=true;
+	}
+
+}
+
+//날짜 입력하면 값 변하게 하기
+function fn_date_onchanged(obj:Calendar, e:ChangeEventInfo)
+{
+	day=obj.value;
+	trace("day"+day);
+}
+
+
+
+//mrp등록 버튼
+function btn_mrpRegister_onclick(obj:Button,  e:ClickEventInfo)
+{
+	trace("day:"+day);
+	if(day==undefined){
+		alert("등록 일자를 선택하시오");
+		return;
+	}
+	
+	if(confirm("mrp 등록")){
+	transaction("MrpSimualtion"
+				,"svcProduction::registerMrp.do"
+				,"gds_mrp=gds_mrpOpenTemp"
+				,""
+				,"mrpRegisterDate="+day
+				,fn_callback,false
+				);
+	close("true");
+	}
+	
+}
+]]></Script>
+  </Form>
+</FDL>

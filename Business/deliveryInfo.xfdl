@@ -1,0 +1,410 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.4">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="deliveryInfo" classname="deliveryInfo" inheritanceid="" position="absolute 0 0 1250 680" titletext="New Form" onload="deliveryInfo_onload">
+    <Layouts>
+      <Layout>
+        <Tab id="Tab00" taborder="0" position2="absolute l:5 w:1234 t:8 h:588" positiontype="position2" tabindex="0" scrollbars="autoboth" style="background:@gradation;color:black;font:함초롬돋움,10,bold antialias;">
+          <Tabpages>
+            <Tabpage id="tabpage1" text="납품" style="anchor:default;background:@gradation;">
+              <Layouts>
+                <Layout width="1119" height="801">
+                  <Button id="Button00" taborder="1" text="납품가능수주조회" onclick="Tab00_tabpage1_Button00_onclick" position2="absolute l:666 w:168 t:19 h:37" positiontype="position2" style="background:@gradation;border:1px solid transparent ;color:#f24a00ff;font:함초롬돋움,13, bold antialias;"/>
+                  <Button id="Button01" taborder="1" text="납품" onclick="Tab00_tabpage1_Button01_onclick" position2="absolute l:868 w:113 t:19 h:38" positiontype="position2" style="background:@gradation;border:1px solid transparent ;color:#f24a00ff;font:함초롬돋움,13, bold antialias;"/>
+                  <Grid id="Grid00" taborder="1" binddataset="gds_contractInfo" useinputpanel="false" autofittype="col" oncellclick="Tab00_tabpage1_Grid00_oncellclick" position2="absolute l:38 w:1122 t:84 h:211" positiontype="position2" style="border:1px solid #697070b3 ;align:center middle;font:함초롬돋움,9,antialias;">
+                    <Formats>
+                      <Format id="default">
+                        <Columns>
+                          <Column size="125"/>
+                          <Column size="132"/>
+                          <Column size="86"/>
+                          <Column size="137"/>
+                          <Column size="102"/>
+                          <Column size="104"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                        </Columns>
+                        <Rows>
+                          <Row size="35" band="head"/>
+                          <Row size="30" band="head"/>
+                          <Row size="30"/>
+                        </Rows>
+                        <Band id="head" style="background:@gradation;">
+                          <Cell colspan="9" style="background:silver;font:돋움,12, antialias;" text="납품가능 수주 리스트"/>
+                          <Cell row="1" displaytype="normal" style="font:돋움,10, antialias;" text="수주일련번호"/>
+                          <Cell row="1" col="1" displaytype="normal" style="font:돋움,10, antialias;" text="견적일련번호"/>
+                          <Cell row="1" col="2" displaytype="normal" style="font:돋움,10, antialias;" text="수주유형분류"/>
+                          <Cell row="1" col="3" displaytype="normal" style="font:돋움,10, antialias;" text="거래처명"/>
+                          <Cell row="1" col="4" displaytype="normal" style="font:돋움,10, antialias;" text="견적일자"/>
+                          <Cell row="1" col="5" displaytype="normal" style="font:돋움,10, antialias;" text="수주일자"/>
+                          <Cell row="1" col="6" displaytype="normal" style="font:돋움,10, antialias;" text="수주요청자"/>
+                          <Cell row="1" col="7" displaytype="normal" style="font:돋움,10, antialias;" text="수주담당자명"/>
+                          <Cell row="1" col="8" displaytype="normal" style="font:돋움,10, antialias;" text="비고"/>
+                        </Band>
+                        <Band id="body" style="border:1 solid lightsteelblue ;background:white;cellbackground:white;cellbackground2:white;">
+                          <Cell displaytype="normal" text="bind:CONTRACT_NO"/>
+                          <Cell col="1" displaytype="normal" text="bind:ESTIMATE_NO"/>
+                          <Cell col="2" displaytype="normal" text="bind:CONTRACT_TYPE"/>
+                          <Cell col="3" displaytype="normal" text="bind:CUSTOMER_NAME"/>
+                          <Cell col="4" displaytype="normal" text="bind:ESTIMATE_DATE"/>
+                          <Cell col="5" displaytype="normal" text="bind:CONTRACT_DATE"/>
+                          <Cell col="6" displaytype="normal" text="bind:CONTRACT_REQUESTER"/>
+                          <Cell col="7" displaytype="normal" text="bind:EMP_NAME_IN_CHARGE"/>
+                          <Cell col="8" displaytype="normal" text="bind:DESCRIPTION"/>
+                        </Band>
+                      </Format>
+                    </Formats>
+                  </Grid>
+                  <Grid id="Grid01" taborder="1" binddataset="gds_contractDetail" useinputpanel="false" autofittype="col" oncellclick="Tab00_tabpage1_Grid01_oncellclick" position2="absolute l:6 w:1188 t:311 h:219" positiontype="position2" style="border:1px solid #697070b3 ;align:center middle;font:함초롬돋움,9,antialias;">
+                    <Formats>
+                      <Format id="default">
+                        <Columns>
+                          <Column size="33"/>
+                          <Column size="136"/>
+                          <Column size="102"/>
+                          <Column size="64"/>
+                          <Column size="115"/>
+                          <Column size="36"/>
+                          <Column size="87"/>
+                          <Column size="65"/>
+                          <Column size="69"/>
+                          <Column size="84"/>
+                          <Column size="87"/>
+                          <Column size="118"/>
+                          <Column size="57"/>
+                          <Column size="79"/>
+                          <Column size="78"/>
+                          <Column size="41"/>
+                        </Columns>
+                        <Rows>
+                          <Row size="35" band="head"/>
+                          <Row size="30" band="head"/>
+                          <Row size="30"/>
+                        </Rows>
+                        <Band id="head" style="background:@gradation;">
+                          <Cell colspan="16" style="background:silver;font:돋움,12, antialias;" text="납품가능 수주리스트상세" taborder="undefined"/>
+                          <Cell row="1" style="font:돋움,9, antialias;" text="선택"/>
+                          <Cell row="1" col="1" displaytype="normal" style="font:돋움,9, antialias;" text="수주상세일련번호"/>
+                          <Cell row="1" col="2" displaytype="normal" style="font:돋움,9, antialias;" text="수주일련번호"/>
+                          <Cell row="1" col="3" displaytype="normal" style="font:돋움,9, antialias;" text="품목코드"/>
+                          <Cell row="1" col="4" displaytype="normal" style="font:돋움,9, antialias;" text="품목명"/>
+                          <Cell row="1" col="5" displaytype="normal" style="font:돋움,9, antialias;" text="단위"/>
+                          <Cell row="1" col="6" displaytype="normal" style="font:돋움,9, antialias;" text="납기일"/>
+                          <Cell row="1" col="7" displaytype="normal" style="font:돋움,9, antialias;" text="견적수량"/>
+                          <Cell row="1" col="8" displaytype="normal" style="font:돋움,9, antialias;" text="재고사용량"/>
+                          <Cell row="1" col="9" displaytype="normal" style="font:돋움,9, antialias;" text="필요제작수량"/>
+                          <Cell row="1" col="10" displaytype="normal" style="font:돋움,9, antialias;" text="단가"/>
+                          <Cell row="1" col="11" displaytype="normal" style="font:돋움,9, antialias;" text="합계액"/>
+                          <Cell row="1" col="12" displaytype="normal" style="font:돋움,9, antialias;" text="처리상태"/>
+                          <Cell row="1" col="13" displaytype="normal" style="font:돋움,9, antialias;" text="작업완료여부"/>
+                          <Cell row="1" col="14" displaytype="normal" style="font:돋움,9, antialias;" text="납품완료여부"/>
+                          <Cell row="1" col="15" displaytype="normal" style="font:돋움,9, antialias;" text="비고"/>
+                        </Band>
+                        <Band id="body" style="border:1 solid lightsteelblue ;background:white;cellbackground:white;cellbackground2:white;">
+                          <Cell displaytype="checkbox" style="controlbordertype:round 30 30 ;" text="bind:CHECKED"/>
+                          <Cell col="1" displaytype="normal" text="bind:CONTRACT_DETAIL_NO"/>
+                          <Cell col="2" displaytype="normal" text="bind:CONTRACT_NO"/>
+                          <Cell col="3" displaytype="normal" text="bind:ITEM_CODE"/>
+                          <Cell col="4" displaytype="normal" text="bind:ITEM_NAME"/>
+                          <Cell col="5" displaytype="normal" text="bind:UNIT_OF_CONTRACT"/>
+                          <Cell col="6" displaytype="normal" text="bind:DUE_DATE_OF_CONTRACT"/>
+                          <Cell col="7" displaytype="normal" text="bind:ESTIMATE_AMOUNT"/>
+                          <Cell col="8" displaytype="normal" text="bind:STOCK_AMOUNT_USE"/>
+                          <Cell col="9" displaytype="normal" text="bind:PRODUCTION_REQUIREMENT"/>
+                          <Cell col="10" displaytype="normal" text="bind:UNIT_PRICE_OF_CONTRACT"/>
+                          <Cell col="11" displaytype="normal" text="bind:SUM_PRICE_OF_CONTRACT"/>
+                          <Cell col="12" displaytype="normal" text="bind:PROCESSING_STATUS"/>
+                          <Cell col="13" displaytype="normal" text="bind:OPERATION_COMPLETED_STATUS"/>
+                          <Cell col="14" displaytype="normal" text="bind:DELIVERY_COMPLETION_STATUS"/>
+                          <Cell col="15" displaytype="normal" text="bind:DESCRIPTION"/>
+                        </Band>
+                      </Format>
+                    </Formats>
+                  </Grid>
+                  <GroupBox id="GroupBox00" text="수주검색" position2="absolute l:38 w:240 t:-1 h:75" positiontype="position2" style="background:@gradation;border:2 solid lightsteelblue ;color:black;font:함초롬돋움,13, bold antialias;"/>
+                  <Radio id="Radio00" taborder="1" columncount="0" rowcount="0" innerdataset="@ds_search_deliver" codecolumn="data" datacolumn="id" direction="vertical" onitemchanged="Tab00_tabpage1_Radio00_onitemchanged" position2="absolute l:56 w:210 t:24 h:34" positiontype="position2" style="color:#f24a00ff;font:함초롬돋움,13, bold antialias;"/>
+                  <Calendar id="Calendar00" taborder="1" visible="false" position2="absolute l:317 w:150 t:22 h:35" positiontype="position2" style="color:#f24a00ff;font:함초롬돋움,9,bold antialias;"/>
+                  <Calendar id="Calendar01" taborder="1" visible="false" position2="absolute l:477 w:150 t:22 h:35" positiontype="position2" style="color:#f24a00ff;font:함초롬돋움,9,bold antialias;"/>
+                  <Edit id="Edit00" taborder="1" readonly="true" oneditclick="Tab00_tabpage1_Edit00_oneditclick" visible="false" position2="absolute l:309 w:317 t:25 h:35" positiontype="position2" style="color:#f24a00ff;align:center middle;font:함초롬돋움,9,bold;"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="tabpage2" text="납품현황" style="anchor:default;background:white;">
+              <Layouts>
+                <Layout>
+                  <Grid id="Grid00" taborder="1" binddataset="gds_deliveryInfo" useinputpanel="false" position2="absolute l:0 w:1210 t:68 h:461" positiontype="position2" style="font:함초롬돋움,9,antialias;">
+                    <Formats>
+                      <Format id="default">
+                        <Columns>
+                          <Column size="147"/>
+                          <Column size="129"/>
+                          <Column size="138"/>
+                          <Column size="162"/>
+                          <Column size="70"/>
+                          <Column size="81"/>
+                          <Column size="70"/>
+                          <Column size="113"/>
+                          <Column size="39"/>
+                          <Column size="78"/>
+                          <Column size="73"/>
+                          <Column size="101"/>
+                          <Column size="148"/>
+                          <Column size="104"/>
+                        </Columns>
+                        <Rows>
+                          <Row size="24" band="head"/>
+                          <Row size="24"/>
+                        </Rows>
+                        <Band id="head" style="background:@gradation;">
+                          <Cell displaytype="normal" text="납품일련번호"/>
+                          <Cell col="1" displaytype="normal" text="견적일련번호"/>
+                          <Cell col="2" displaytype="normal" text="수주일련번호"/>
+                          <Cell col="3" displaytype="normal" text="수주상세일련번호"/>
+                          <Cell col="4" displaytype="normal" text="거래처코드"/>
+                          <Cell col="5" displaytype="normal" text="담당자코드"/>
+                          <Cell col="6" displaytype="normal" text="품목코드"/>
+                          <Cell col="7" displaytype="normal" text="품목명"/>
+                          <Cell col="8" displaytype="normal" text="단위"/>
+                          <Cell col="9" displaytype="normal" text="납품수량"/>
+                          <Cell col="10" displaytype="normal" text="단가"/>
+                          <Cell col="11" displaytype="normal" text="총액"/>
+                          <Cell col="12" displaytype="normal" text="납품날짜"/>
+                          <Cell col="13" displaytype="normal" text="배송지"/>
+                        </Band>
+                        <Band id="body" style="border:1 solid lightsteelblue ;background:white;">
+                          <Cell displaytype="text" text="bind:DELIVERY_NO"/>
+                          <Cell col="1" displaytype="text" text="bind:ESTIMATE_NO"/>
+                          <Cell col="2" displaytype="text" text="bind:CONTRACT_NO"/>
+                          <Cell col="3" displaytype="text" text="bind:CONTRACT_DETAIL_NO"/>
+                          <Cell col="4" displaytype="text" text="bind:CUSTOMER_CODE"/>
+                          <Cell col="5" displaytype="text" text="bind:PERSON_CODE_IN_CHARGE"/>
+                          <Cell col="6" displaytype="text" text="bind:ITEM_CODE"/>
+                          <Cell col="7" displaytype="text" text="bind:ITEM_NAME"/>
+                          <Cell col="8" displaytype="text" text="bind:UNIT_OF_DELIVERY"/>
+                          <Cell col="9" displaytype="text" text="bind:DELIVERY_AMOUNT"/>
+                          <Cell col="10" displaytype="text" text="bind:UNIT_PRICE"/>
+                          <Cell col="11" displaytype="text" text="bind:SUM_PRICE"/>
+                          <Cell col="12" displaytype="text" text="bind:DELIVERY_DATE"/>
+                          <Cell col="13" displaytype="text" text="bind:DELIVERY_PLACE_NAME"/>
+                        </Band>
+                      </Format>
+                    </Formats>
+                  </Grid>
+                  <Button id="Button00" taborder="1" text="납품현황조회" onclick="Tab00_tabpage2_Button00_onclick" position2="absolute l:7 w:153 t:19 h:37" positiontype="position2" style="background:@gradation;border:1px solid transparent ;color:#f24a00ff;font:함초롬돋움,9,bold;"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+          </Tabpages>
+        </Tab>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_search_deliver" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="id" type="STRING" size="256"/>
+          <Column id="data" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="id">기간검색</Col>
+            <Col id="data">searchByDate</Col>
+          </Row>
+          <Row>
+            <Col id="id">거래처검색</Col>
+            <Col id="data">searchByCustomer</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript4.0"><![CDATA[
+var code;
+var contractDetailNo;
+var itemName;
+var estimateAmount;
+var processingStatus;
+var operationCompletedStatus;
+var deliveryCompletionStatus;
+
+
+function deliveryInfo_onload(obj:Form, e:LoadEventInfo)
+{
+	gds_contractInfo.clearData();
+	gds_contractDetail.clearData();
+	gds_deliveryInfo.clearData();
+}
+
+
+
+function Tab00_tabpage1_Radio00_onitemchanged(obj:Radio, e:ItemChangeEventInfo)
+{
+	var searchCondition=obj.value;
+	if(searchCondition=="searchByDate"){
+	 Tab00.tabpage1.Edit00.visible=false;
+	 Tab00.tabpage1.Calendar00.visible=true;
+	 Tab00.tabpage1.Calendar01.visible=true;
+	 }
+	if(searchCondition=="searchByCustomer") {
+	 Tab00.tabpage1.Edit00.visible=true;
+	 Tab00.tabpage1.Calendar00.visible=false;
+	 Tab00.tabpage1.Calendar01.visible=false;
+	}
+}
+
+function Tab00_tabpage1_Edit00_oneditclick(obj:Edit,  e:EditClickEventInfo)
+{
+	var item=dialog(
+		"CustomerCode",
+		"Base::CommonDialog.xfdl",
+		MainFrame,
+		{divisionCode:"CL-01"},
+		"",
+		650,
+		350
+	);
+	obj.value=g_customerName;
+	code = g_customerCode;
+}
+
+function Tab00_tabpage1_Button00_onclick(obj:Button,  e:ClickEventInfo)
+{
+	var searchCondition=Tab00.tabpage1.Radio00.value; 
+	var startDate;
+	var endDate;
+	var customerCode=code;
+	
+	if(searchCondition==null) {
+		alert("검색유형을 선택해주세요~");
+		return;
+	}
+	else if(searchCondition=="searchByDate"){
+	 startDate=Tab00.tabpage1.Calendar00.value;
+	 endDate=Tab00.tabpage1.Calendar01.value;
+	 
+		if(startDate==null || endDate==null){
+			alert("검색기간을 입력해주세요");
+			return;
+		}
+	 } else if(searchCondition=="searchByCustomer") {
+		if(code==null) {
+			alert("거래처 정보를 입력해주세요");
+			return;
+		}
+	 }
+	 
+	 transaction("searchDeliverable_contract_list",
+				 "svcBusiness::searchDeliverableContractList.do",
+				 "",
+				 "gds_contractInfo=gds_contractInfo gds_contractDetail=gds_contractDetail",
+				 "searchCondition='"+searchCondition+"' startDate='"+startDate+"' endDate='"+endDate+"' customerCode='"+customerCode+"'",
+				 "callback",
+				 false);
+	
+	var checkk = gds_contractDetail.getColumn(1,1);
+	var checkk2 = gds_contractInfo.getColumn(1,1);
+	
+	//trace("checkk: "+checkk);
+	//trace("checkk2: "+checkk2);
+	
+	gds_contractDetail.filter("CONTRACT_NO == ''");
+}
+
+function Tab00_tabpage1_Grid00_oncellclick(obj:Grid, e:GridClickEventInfo)
+{
+	var contractNo=gds_contractInfo.getColumn(e.row,"CONTRACT_NO");
+	gds_contractDetail.filter("CONTRACT_NO == '"+contractNo+"'");
+}
+
+function Tab00_tabpage1_Grid01_oncellclick(obj:Grid, e:GridClickEventInfo)
+{
+	var check = gds_contractDetail.getColumn(e.row,"CHECKED");
+	var size = gds_contractDetail.getRowCount();
+	trace("@@@@1  "+check);
+	if(e.col==0){
+		if(check==undefined || check=='0'){
+			gds_contractDetail.setColumn(e.row,"CHECKED",'1');
+			trace("여기오");
+			
+		}else{
+			gds_contractDetail.setColumn(e.row,"CHECKED",'0');
+			trace("여기아니오");
+		}
+		
+		var num = gds_contractDetail.getCaseCount("CHECKED == '1'");
+		
+		if(num==2){
+			for(var i=0; i<size; i++){
+				var rowNo = gds_contractDetail.findRow("CHECKED",'1',i);
+				if(rowNo!=e.row){
+					gds_contractDetail.setColumn(rowNo,"CHECKED",'0');
+					return;
+				}
+			}
+		}
+	}
+	trace("@@@@2  "+check);
+}
+
+function Tab00_tabpage1_Button01_onclick(obj:Button,  e:ClickEventInfo)
+{
+	var rowNo = gds_contractDetail.findRow("CHECKED",'1');
+	var contractDetailNo = gds_contractDetail.getColumn(rowNo,"CONTRACT_DETAIL_NO");
+	var processingStatus = gds_contractDetail.getColumn(rowNo,"PROCESSING_STATUS");
+	var operationCompletedStatus = gds_contractDetail.getColumn(rowNo,"OPERATION_COMPLETED_STATUS");
+	var deliveryCompletionStatus = gds_contractDetail.getColumn(rowNo,"DELIVERY_COMPLETION_STATUS");
+	trace("rowNo"+rowNo);
+	trace("processingStatus"+processingStatus);
+	if(processingStatus == null){
+		alert("처리되지 않은 항목입니다. \r\n MPS계획수립부터 작업까지 완료해주세요. ");
+		return;
+	}
+	else if(operationCompletedStatus == null){
+		alert("작업이 완료되지 않은 항목입니다. \r\n 작업지시 및 작업완료까지 완료해주세요.");
+		return;
+	}
+	else if(deliveryCompletionStatus == 'Y'){
+		alert("납품이 완료된 항목입니다. ^^");
+		return;
+	}
+	else{
+		if(confirm("납품하시겠습니까")){
+		transaction(
+			"batchDeliver",
+			"svcBusiness::deliver.do",
+			"",
+			"",
+			"contractDetailNo="+contractDetailNo,
+			"callback",false
+		);
+		}
+	}
+}
+
+function Tab00_tabpage2_Button00_onclick(obj:Button,  e:ClickEventInfo)
+{
+	transaction(
+		"Search_delivery_info_list",
+		"svcBusiness::searchDeliveryInfoList.do",
+		"",
+		"gds_deliveryInfo=gds_deliveryInfo",
+		"",
+		"callback"
+	);
+}
+
+
+function callback(trid , ErrorCode, ErrorMsg){
+	if(trid.indexOf("Search")!=-1){
+		if(ErrorCode <0){
+			alert("조회 실패 : " + ErrorMsg);
+		}
+	}else if(trid.indexOf("batch")!=-1){
+		if(ErrorCode <0){
+			alert("데이터 저장 실패 : " + ErrorMsg);
+		}else{
+			alert("저장 성공!");
+		}
+	}
+}]]></Script>
+  </Form>
+</FDL>

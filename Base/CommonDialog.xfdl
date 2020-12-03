@@ -1,0 +1,378 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.4">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="CommonDialog" classname="CommonDialog" inheritanceid="" position="absolute 0 0 500 500" titletext="New Form" onload="fn_commonDialog_onload">
+    <Layouts>
+      <Layout>
+        <Grid id="grid_commonDialog" taborder="0" binddataset="gds_company" useinputpanel="false" oncellclick="grid_commonDialog_onclick" position2="absolute l:37 w:427 t:75 h:357" positiontype="position2" style="align:center;font:함초롬돋움,12,antialias;" autofittype="col" cellclickbound="cell">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="126"/>
+                <Column size="138"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="normal" style="font:함초롬돋움,11;" text="코드"/>
+                <Cell col="1" displaytype="normal" style="font:함초롬돋움,11;" text="이름"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="normal" style="font:맑은 고딕,11;"/>
+                <Cell col="1" displaytype="normal" style="font:맑은 고딕,11;"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="head" expr="g_gridName" position2="absolute l:50 w:198 t:13 h:39" positiontype="position2" style="font:맑은 고딕,14,bold;"/>
+        <Static id="title" position2="absolute l:86 w:321 t:16 h:42" positiontype="position2" style="align:center middle;font:돋움,15,bold;"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript4.0"><![CDATA[//*******************		CommonDialog.xfdl의 공통 변수		*******************
+var parentName  = null;
+var parentRow   = null;
+// gds_estimateDetail의 행 위치
+var edRposition;
+
+
+//***********		CommonDialog.xfdl onload		************
+function fn_commonDialog_onload(obj:Form, e:LoadEventInfo)
+{
+	// Dataset init
+	gds_codeDetail.clearData();
+	gds_item.clearData();
+	
+	//dialog의 1번째 value
+	parentName = obj.parent.name; //다이어로그의 부모는 프레임 -> 프레임 이름은 dialog()함수 호출하면서 보내줌
+	trace("parentName: "+parentName);
+	head.text = parentName;
+	
+	switch(parentName){
+		// "회사코드" 클릭시
+		case "CompanyCode" :
+			// Dialog Grid와 Dataset 연동
+			grid_commonDialog.binddataset=gds_company;
+			// column Name
+			var companyHead = [
+								"회사코드",
+								"회사명",
+								"회사구분",
+								"사업자번호"
+								];
+			// column Value
+			var companyBody = [
+								"bind:COMPANY_CODE",
+								"bind:COMPANY_NAME",
+								"bind:COMPANY_DIVISION",
+								"bind:BUSINESS_LICENSE_NUMBER"
+								];
+			title.text="회사 검색";
+			addColumns(companyHead, companyBody);
+			break;
+
+		// "사업장코드" 클릭시
+		case "WorkplaceCode" :
+			// Dialog Grid와 Dataset 연동
+			grid_commonDialog.binddataset=gds_workplace;
+
+			var workplaceHead = [
+								"회사코드",
+								"사업장코드",
+								"사업장명",
+								"사업장번호"
+								];
+			var workplaceBody = [
+								"bind:COMPANY_CODE",
+								"bind:WORKPLACE_CODE",
+								"bind:WORKPLACE_NAME",
+								"bind:BUSINESS_LICENSE_NUMBER"
+								];
+			title.text="사업장 검색";
+			addColumns(workplaceHead, workplaceBody);
+			break;
+//************************************************************************
+
+//*******************		수주유형분류, 거래처검색		*******************
+		case "CustomerCode" :
+			var customerHead = [
+								"상세코드번호",
+								"상세코드명",
+								"사용여부"
+								];
+			var customerBody = [
+								"bind:DETAIL_CODE",
+								"bind:DETAIL_CODE_NAME",
+								"bind:CODE_USE_CHECK"
+								];
+			// Dialog Grid와 Dataset 연동
+			grid_commonDialog.binddataset=gds_codeDetail;
+			addColumns(customerHead, customerBody);
+
+			transaction(
+						"findContractType", 
+						"svcBase::codeList.do", 
+						"", 
+						"gds_codeDetail=gds_codeDetail", 
+						"divisionCode='"+divisionCode+"'", 
+						"callback"
+						);
+			break;
+			
+// ***************	견적 - 품목코드, 품목명	***************
+		case "ICodeAndIName" :
+			grid_commonDialog.binddataset=gds_codeDetail;
+			var itemGroupHead = [
+								"품목번호",
+								"품목이름"
+								];
+			var itemGroupBody = [
+								"bind:DETAIL_CODE",
+								"bind:DETAIL_CODE_NAME"
+								];
+
+			title.text="제품 검색";
+			grid_commonDialog.binddataset=gds_codeDetail;
+			addColumns(itemGroupHead, itemGroupBody);
+			
+			transaction(
+						"findEsItem", 
+						"svcBase::codeList.do", 
+						"", 
+						"gds_codeDetail=gds_codeDetail", 
+						"divisionCode='"+divisionCode+"'", 
+						"callback"
+						);
+			break;
+
+// ***********		견적단위		*************
+		case "UnitOfEstimate" :
+			var unitHead = [
+							"상세코드번호",
+							"상세코드명",
+							"사용여부"
+							];
+			var unitBody = [
+							"bind:DETAIL_CODE",
+							"bind:DETAIL_CODE_NAME",
+							"bind:CODE_USE_CHECK"
+							];
+
+			title.text="제품 단위";
+			grid_commonDialog.binddataset=gds_codeDetail;
+			addColumns(unitHead, unitBody);
+			
+			transaction(
+						"unitOfEs", 
+						"svcBase::codeList.do", 
+						"", 
+						"gds_codeDetail=gds_codeDetail", 
+						"divisionCode='"+divisionCode+"'", 
+						"callback"
+						);
+			break;
+
+// ***********		OrderRegister.xfdl->임의발주		*************
+		case "RandomOrder" :
+			var itemHead = [
+							"상세코드번호",
+							"상세코드이름",
+							"비고"
+							];
+			var itembody = [
+							"bind:DETAIL_CODE",
+							"bind:DETAIL_CODE_NAME",
+							"bind:CODE_USE_CHECK"
+							];
+			grid_commonDialog.binddataset=gds_codeDetail;
+			addColumns(itemHead, itembody);
+			transaction(
+						"randomOrder", 
+						"svcBase::codeList.do", 
+						"", 
+						"gds_codeDetail=gds_codeDetail", 
+						"divisionCode='"+divisionCode+"'", 
+						"callback"
+						);
+			break;
+			
+// ***********		Bom.xfdl->품목코드 선택		*************		
+		case "bom" :
+			var itemHead = [
+							"품목코드번호",
+							"품목코드이름",
+							"비고"
+							];
+			var itembody = [
+							"bind:ITEM_CODE",
+							"bind:ITEM_NAME",
+							"bind:DESCRIPTION"
+							];
+			grid_commonDialog.binddataset=gds_item;
+			addColumns(itemHead, itembody);
+			transaction(
+						"bom", 
+						"svcBase::codeList.do", 
+						"", 
+						"gds_codeDetail=gds_codeDetail", 
+						"divisionCode='"+divisionCode+"'", 
+						"callback",
+						false
+						);
+						
+			var rCount=gds_codeDetail.getRowCount();
+			for(var i=0; i<rCount; i++){
+				gds_item.addRow();
+				var dc = gds_codeDetail.getColumn(i,"DETAIL_CODE");
+				var dcn = gds_codeDetail.getColumn(i,"DETAIL_CODE_NAME");
+				var cuc = gds_codeDetail.getColumn(i,"CODE_USE_CHECK");
+				
+				gds_item.setColumn(i,"ITEM_CODE", dc);
+				gds_item.setColumn(i,"ITEM_NAME", dcn);
+				gds_item.setColumn(i,"DESCRIPTION", cuc);
+			}
+			break;
+	}
+
+}
+
+
+//***********		동적 column 생성	및 값 할당	************
+function addColumns(gridHead, gridBody){
+
+	// column의 length
+	var cLength=gridHead.length;
+		trace("공통 그리드 헤더 길이: "+cLength);
+	for(var i = 0; i<cLength; i++){
+		// 기본 2개의 칼럼 있다; 2개 이상의 칼럼 필요할 때 생성;
+		if(i+2 < cLength){//  2,3 <4
+				grid_commonDialog.appendContentsCol(); // 칼럼추가
+				grid_commonDialog.setFormatColProperty(i, "size", 55);
+				grid_commonDialog.setCellProperty("Head", i, "font","함초롬돋움,11");
+		}
+		/**/
+		
+		grid_commonDialog.setCellProperty("Body", i, "color", "black");
+		// Head = commonDialog.Grid의 Head;
+		grid_commonDialog.setCellProperty("Head", i, "text", gridHead[i]);
+		// Body = commonDialog.Grid의 Body;
+		grid_commonDialog.setCellProperty("Body", i, "text", gridBody[i]);
+		
+	}
+	
+}
+
+
+//************	f_commonDialog_onload 다이얼로그의 내용을 클릭	************
+function grid_commonDialog_onclick(obj:Grid, e:GridClickEventInfo)
+{
+	switch(parentName){
+		// 회사그리드 셀 클릭할 때;
+		case "CompanyCode" :
+		//////////////trace("@@@@@@@@@@@@   click");
+			opener.edt_company.value = gds_company.getColumn(gds_company.rowposition, "COMPANY_NAME");
+			g_companyName=gds_company.getColumn(gds_company.rowposition, "COMPANY_NAME");
+			break;
+
+// ********************************************************************
+		// 사업장 그리드 셀 클릭할 때;
+		case "WorkplaceCode" :
+			opener.edt_workplace.value = gds_workplace.getColumn(gds_workplace.rowposition, "WORKPLACE_NAME");
+			break;
+
+// ********************************************************************
+
+		case "CustomerCode" :
+			edRposition= gds_estimateDetail.rowposition;
+			ednRposition= gds_codeDetail.rowposition;
+			trace("@@ edRposition: "+edRposition);
+			trace("@@ ednRposition: "+ednRposition);
+			var codeUseCheck = gds_codeDetail.getColumn(ednRposition, "CODE_USE_CHECK");
+			trace("@@codeUseCheck :"+codeUseCheck);
+			if(codeUseCheck == "N"){
+				alert("해당 단위는 사용하실 수 없습니다");
+				return;
+			}
+			gds_estimate.setColumn(0,"CUSTOMER_CODE",gds_codeDetail.getColumn(e.row, "DETAIL_CODE"));
+			g_customerName = gds_codeDetail.getColumn(e.row, "DETAIL_CODE_NAME");
+			g_customerCode = gds_codeDetail.getColumn(e.row, "DETAIL_CODE");
+			trace("g_customerCode"+g_customerCode);
+			break;
+// ********************************************************************
+
+		case "ICodeAndIName" :
+			edRposition= gds_estimateDetail.rowposition;
+			gds_estimateDetail.setColumn(edRposition, "ITEM_CODE", gds_codeDetail.getColumn(e.row, "DETAIL_CODE"));
+			gds_estimateDetail.setColumn(edRposition, "ITEM_NAME", gds_codeDetail.getColumn(e.row, "DETAIL_CODE_NAME"));	
+			break;
+		
+		case "UnitOfEstimate" :
+			// 사용여부 N이 아닐때; CODE_USE_CHECK
+			var codeUseCheck = gds_codeDetail.getColumn(e.row, "CODE_USE_CHECK");
+			if(codeUseCheck == "N"){
+				alert("해당 단위는 사용하실 수 없습니다");
+				gds_codeDetail.clearData();
+				close();
+				return;
+			} else{
+			
+			edRposition= gds_estimateDetail.rowposition;
+			gds_estimateDetail.setColumn(edRposition, "UNIT_OF_ESTIMATE", gds_codeDetail.getColumn(e.row, "DETAIL_CODE"));
+			}
+			break;
+		case "RandomOrder" :
+			// 사용여부 N이 아닐때; CODE_USE_CHECK
+			edRposition= gds_estimateDetail.rowposition;
+			var codeUseCheck = gds_codeDetail.getColumn(edRposition, "CODE_USE_CHECK");
+			if(codeUseCheck == "N"){
+				alert("해당 단위는 사용하실 수 없습니다");
+			} else{
+
+			opener.Tab00.tabpage1.Edit00.value = gds_codeDetail.getColumn(e.row, "DETAIL_CODE_NAME");
+			}
+			break;
+		case "bom" :
+			opener.Tab00.tabpage1.edit_find_code.value = gds_item.getColumn(e.row,"ITEM_CODE");
+			opener.Tab00.tabpage2.edit_find_code.value = gds_item.getColumn(e.row,"ITEM_CODE");
+			g_itemCode = gds_item.getColumn(e.row,"ITEM_CODE");
+			g_itemName = gds_item.getColumn(e.row,"ITEM_NAME");
+			break;
+   }
+   close();
+}
+
+
+//***********		callBack		***********
+function callback(trId , ErrorCode, ErrorMsg)
+{
+
+	trace("		@ Estimate.trId: "+trId);
+	trace("		@ ErrorMsg: "+ErrorMsg);
+	if(ErrorCode <0){
+		alert("조회 실패 : " + ErrorMsg);
+		return;
+    }
+    
+    switch(trId){
+		case "findContractType":
+			break;
+		
+		case "findEsItem":
+			break;
+			
+		case "unitOfEs":
+			break;
+			
+		case "randomOrder":
+			break;
+			
+		case "bom":
+			break;
+
+	}
+}
+
+]]></Script>
+  </Form>
+</FDL>

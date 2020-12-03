@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.4">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="CompanyInfo" classname="CompanyInfo" inheritanceid="" position="absolute 0 0 1250 700" onload="ClientInfo_onload">
+    <Layouts>
+      <Layout>
+        <Tab id="Tab00" taborder="1" position2="absolute l:14 w:1217 t:29 h:673" positiontype="position2" tabindex="0" scrollbars="autoboth">
+          <Tabpages>
+            <Tabpage id="tabpage1" text="일반 거래처" style="anchor:default;background:@gradation;">
+              <Layouts>
+                <Layout>
+                  <Grid id="Grid00" taborder="0" binddataset="gds_customer" useinputpanel="false" autofittype="none" position2="absolute l:4 w:1212 t:184 h:383" positiontype="position2" style="color:black;font:함초롬돋움,9,antialias;" formats="&lt;Formats&gt;&#10;  &lt;Format id=&quot;default&quot;&gt;&#10;    &lt;Columns&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;    &lt;/Columns&gt;&#10;    &lt;Rows&gt;&#10;      &lt;Row band=&quot;head&quot; size=&quot;24&quot;/&gt;&#10;      &lt;Row band=&quot;body&quot; size=&quot;24&quot;/&gt;&#10;    &lt;/Rows&gt;&#10;    &lt;Band id=&quot;head&quot;&gt;&#10;      &lt;Cell col=&quot;0&quot; disptype=&quot;normal&quot; text=&quot;CUSTOMER_CODE&quot;/&gt;&#10;      &lt;Cell col=&quot;1&quot; disptype=&quot;normal&quot; text=&quot;WORKPLACE_CODE&quot;/&gt;&#10;      &lt;Cell col=&quot;2&quot; disptype=&quot;normal&quot; text=&quot;CUSTOMER_NAME&quot;/&gt;&#10;      &lt;Cell col=&quot;3&quot; disptype=&quot;normal&quot; text=&quot;CUSTOMER_TYPE&quot;/&gt;&#10;      &lt;Cell col=&quot;4&quot; disptype=&quot;normal&quot; text=&quot;CUSTOMER_CEO&quot;/&gt;&#10;      &lt;Cell col=&quot;5&quot; disptype=&quot;normal&quot; text=&quot;BUSINESS_LICENSE_NUMBER&quot;/&gt;&#10;      &lt;Cell col=&quot;6&quot; disptype=&quot;normal&quot; text=&quot;SOCIAL_SECURITY_NUMBER&quot;/&gt;&#10;      &lt;Cell col=&quot;7&quot; disptype=&quot;normal&quot; text=&quot;CUSTOMER_BUSINESS_CONDITIONS&quot;/&gt;&#10;      &lt;Cell col=&quot;8&quot; disptype=&quot;normal&quot; text=&quot;CUSTOMER_BUSINESS_ITEMS&quot;/&gt;&#10;      &lt;Cell col=&quot;9&quot; disptype=&quot;normal&quot; text=&quot;CUSTOMER_ZIP_CODE&quot;/&gt;&#10;      &lt;Cell col=&quot;10&quot; disptype=&quot;normal&quot; text=&quot;CUSTOMER_BASIC_ADDRESS&quot;/&gt;&#10;      &lt;Cell col=&quot;11&quot; disptype=&quot;normal&quot; text=&quot;CUSTOMER_DETAIL_ADDRESS&quot;/&gt;&#10;      &lt;Cell col=&quot;12&quot; disptype=&quot;normal&quot; text=&quot;CUSTOMER_TEL_NUMBER&quot;/&gt;&#10;      &lt;Cell col=&quot;13&quot; disptype=&quot;normal&quot; text=&quot;CUSTOMER_FAX_NUMBER&quot;/&gt;&#10;      &lt;Cell col=&quot;14&quot; disptype=&quot;normal&quot; text=&quot;CUSTOMER_NOTE&quot;/&gt;&#10;    &lt;/Band&gt;&#10;    &lt;Band id=&quot;body&quot;&gt;&#10;      &lt;Cell col=&quot;0&quot; disptype=&quot;normal&quot; text=&quot;bind:CUSTOMER_CODE&quot;/&gt;&#10;      &lt;Cell col=&quot;1&quot; disptype=&quot;normal&quot; text=&quot;bind:WORKPLACE_CODE&quot;/&gt;&#10;      &lt;Cell col=&quot;2&quot; disptype=&quot;normal&quot; text=&quot;bind:CUSTOMER_NAME&quot;/&gt;&#10;      &lt;Cell col=&quot;3&quot; disptype=&quot;normal&quot; text=&quot;bind:CUSTOMER_TYPE&quot;/&gt;&#10;      &lt;Cell col=&quot;4&quot; disptype=&quot;normal&quot; text=&quot;bind:CUSTOMER_CEO&quot;/&gt;&#10;      &lt;Cell col=&quot;5&quot; disptype=&quot;normal&quot; text=&quot;bind:BUSINESS_LICENSE_NUMBER&quot;/&gt;&#10;      &lt;Cell col=&quot;6&quot; disptype=&quot;normal&quot; text=&quot;bind:SOCIAL_SECURITY_NUMBER&quot;/&gt;&#10;      &lt;Cell col=&quot;7&quot; disptype=&quot;normal&quot; text=&quot;bind:CUSTOMER_BUSINESS_CONDITIONS&quot;/&gt;&#10;      &lt;Cell col=&quot;8&quot; disptype=&quot;normal&quot; text=&quot;bind:CUSTOMER_BUSINESS_ITEMS&quot;/&gt;&#10;      &lt;Cell col=&quot;9&quot; disptype=&quot;normal&quot; text=&quot;bind:CUSTOMER_ZIP_CODE&quot;/&gt;&#10;      &lt;Cell col=&quot;10&quot; disptype=&quot;normal&quot; text=&quot;bind:CUSTOMER_BASIC_ADDRESS&quot;/&gt;&#10;      &lt;Cell col=&quot;11&quot; disptype=&quot;normal&quot; text=&quot;bind:CUSTOMER_DETAIL_ADDRESS&quot;/&gt;&#10;      &lt;Cell col=&quot;12&quot; disptype=&quot;normal&quot; text=&quot;bind:CUSTOMER_TEL_NUMBER&quot;/&gt;&#10;      &lt;Cell col=&quot;13&quot; disptype=&quot;normal&quot; text=&quot;bind:CUSTOMER_FAX_NUMBER&quot;/&gt;&#10;      &lt;Cell col=&quot;14&quot; disptype=&quot;normal&quot; text=&quot;bind:CUSTOMER_NOTE&quot;/&gt;&#10;    &lt;/Band&gt;&#10;  &lt;/Format&gt;&#10;&lt;/Formats&gt;&#10;">
+                    <Formats>
+                      <Format id="default">
+                        <Columns>
+                          <Column size="40"/>
+                          <Column size="103"/>
+                          <Column size="98"/>
+                          <Column size="105"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="107"/>
+                          <Column size="82"/>
+                          <Column size="83"/>
+                          <Column size="99"/>
+                          <Column size="290"/>
+                          <Column size="130"/>
+                          <Column size="173"/>
+                          <Column size="100"/>
+                          <Column size="80"/>
+                        </Columns>
+                        <Rows>
+                          <Row size="24" band="head"/>
+                          <Row size="24"/>
+                        </Rows>
+                        <Band id="head">
+                          <Cell text="삭제"/>
+                          <Cell col="1" text="일반거래처 코드"/>
+                          <Cell col="2" text="사업장 코드"/>
+                          <Cell col="3" text="거래처"/>
+                          <Cell col="4" text="거래처 유형"/>
+                          <Cell col="5" text="대표자"/>
+                          <Cell col="6" text="사업자 등록번호"/>
+                          <Cell col="7" text="업태"/>
+                          <Cell col="8" text="종목"/>
+                          <Cell col="9" text="거래처 우편번호"/>
+                          <Cell col="10" text="거래처 기본주소"/>
+                          <Cell col="11" text="거래처 세부주소"/>
+                          <Cell col="12" text="거래처 전화번호"/>
+                          <Cell col="13" text="거래처 팩스번호"/>
+                          <Cell col="14" text="비고"/>
+                        </Band>
+                        <Band id="body">
+                          <Cell displaytype="checkbox" edittype="checkbox" style="background:transparent;background2:transparent;"/>
+                          <Cell col="1" style="align:center;background:transparent;background2:transparent;" text="bind:CUSTOMER_CODE"/>
+                          <Cell col="2" style="align:center;background:transparent;background2:transparent;" text="bind:WORKPLACE_CODE"/>
+                          <Cell col="3" style="align:center;background:transparent;background2:transparent;" text="bind:CUSTOMER_NAME"/>
+                          <Cell col="4" style="align:center;background:transparent;background2:transparent;" text="bind:CUSTOMER_TYPE"/>
+                          <Cell col="5" style="align:center;background:transparent;background2:transparent;" text="bind:CUSTOMER_CEO"/>
+                          <Cell col="6" style="align:center;background:transparent;background2:transparent;" text="bind:BUSINESS_LICENSE_NUMBER"/>
+                          <Cell col="7" style="align:center;background:transparent;background2:transparent;" text="bind:CUSTOMER_BUSINESS_CONDITIONS"/>
+                          <Cell col="8" style="align:center;background:transparent;background2:transparent;" text="bind:CUSTOMER_BUSINESS_ITEMS"/>
+                          <Cell col="9" style="align:center;background:transparent;background2:transparent;" text="bind:CUSTOMER_ZIP_CODE"/>
+                          <Cell col="10" style="align:center;background:transparent;background2:transparent;" text="bind:CUSTOMER_BASIC_ADDRESS"/>
+                          <Cell col="11" style="align:center;background:transparent;background2:transparent;" text="bind:CUSTOMER_DETAIL_ADDRESS"/>
+                          <Cell col="12" style="align:center;background:transparent;background2:transparent;" text="bind:CUSTOMER_TEL_NUMBER"/>
+                          <Cell col="13" style="align:center;background:transparent;background2:transparent;" text="bind:CUSTOMER_FAX_NUMBER"/>
+                          <Cell col="14" style="align:center;background:transparent;background2:transparent;" text="bind:CUSTOMER_NOTE"/>
+                        </Band>
+                      </Format>
+                    </Formats>
+                  </Grid>
+                  <Static id="Static00" text="일반 거래 정보" onclick="Static00_onclick" position2="absolute l:4 w:1212 t:123 h:53" positiontype="position2" style="background:@gradation;color:black;font:함초롬돋움,22,bold;"/>
+                  <GroupBox id="GroupBox00" text="일반거래처 검색 조건" position2="absolute l:6 w:307 t:23 h:84" positiontype="position2" style="titlealign:topleft;background:@gradation;border:2 solid lightsteelblue ;color:black;font:함초롬돋움,12, bold antialias;"/>
+                  <Button id="Button00" taborder="1" text="일반거래처 조회" position2="absolute l:149 w:148 t:52 h:43" positiontype="position2" style="border:1px solid transparent ;font:함초롬돋움,11,bold;"/>
+                  <GroupBox id="GroupBox01" text="일반거래처 정보 관리" position2="absolute l:326 w:379 t:23 h:84" positiontype="position2" style="titlealign:topleft;background:@gradation;border:2 solid lightsteelblue ;color:black;font:함초롬돋움,12, bold antialias;"/>
+                  <Button id="Button01" taborder="1" text="일괄저장" position2="absolute l:581 w:107 t:52 h:43" positiontype="position2" style="border:1px solid transparent ;font:함초롬돋움,11,bold;"/>
+                  <Combo id="contractType" taborder="1" displaynulltext="전체" innerdataset="@Dataset00" codecolumn="TYPE_CODE_NAME" datacolumn="TYPE_NAME" onitemchanged="fn_searchCTType_changed" position2="absolute l:16 w:121 t:52 h:45" positiontype="position2" style="color:#f24a00ff;align:center middle;font:함초롬돋움,9,bold antialias;"/>
+                  <Button id="Button02" taborder="1" text="새로운 일반거래처 정보 추가" position2="absolute l:333 w:236 t:52 h:43" positiontype="position2" style="border:1px solid transparent ;font:함초롬돋움,11,bold;"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="tabpage2" text="금융 거래처" style="anchor:default;background:@gradation;">
+              <Layouts>
+                <Layout>
+                  <Static id="Static00" text="금융 거래처 정보" onclick="Static00_onclick" position2="absolute l:4 w:1212 t:123 h:53" positiontype="position2" style="background:@gradation;color:black;font:함초롬돋움,22,bold;"/>
+                  <Grid id="Grid00" taborder="1" binddataset="gds_financialAccountAssociates" useinputpanel="false" autofittype="none" position2="absolute l:4 w:1212 t:184 h:388" positiontype="position2" style="font:함초롬돋움,9,antialias;" formats="&lt;Formats&gt;&#10;  &lt;Format id=&quot;default&quot;&gt;&#10;    &lt;Columns&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;    &lt;/Columns&gt;&#10;    &lt;Rows&gt;&#10;      &lt;Row band=&quot;head&quot; size=&quot;24&quot;/&gt;&#10;      &lt;Row band=&quot;body&quot; size=&quot;24&quot;/&gt;&#10;    &lt;/Rows&gt;&#10;    &lt;Band id=&quot;head&quot;&gt;&#10;      &lt;Cell col=&quot;0&quot; disptype=&quot;normal&quot; text=&quot;ACCOUNT_ASSOCIATES_CODE&quot;/&gt;&#10;      &lt;Cell col=&quot;1&quot; disptype=&quot;normal&quot; text=&quot;WORKPLACE_CODE&quot;/&gt;&#10;      &lt;Cell col=&quot;2&quot; disptype=&quot;normal&quot; text=&quot;ACCOUNT_ASSOCIATES_NAME&quot;/&gt;&#10;      &lt;Cell col=&quot;3&quot; disptype=&quot;normal&quot; text=&quot;ACCOUNT_ASSOCIATES_TYPE&quot;/&gt;&#10;      &lt;Cell col=&quot;4&quot; disptype=&quot;normal&quot; text=&quot;ACCOUNT_NUMBER&quot;/&gt;&#10;      &lt;Cell col=&quot;5&quot; disptype=&quot;normal&quot; text=&quot;ACCOUNT_OPEN_PLACE&quot;/&gt;&#10;      &lt;Cell col=&quot;6&quot; disptype=&quot;normal&quot; text=&quot;CARD_NUMBER&quot;/&gt;&#10;      &lt;Cell col=&quot;7&quot; disptype=&quot;normal&quot; text=&quot;CARD_TYPE&quot;/&gt;&#10;      &lt;Cell col=&quot;8&quot; disptype=&quot;normal&quot; text=&quot;CARD_MEMBER_NAME&quot;/&gt;&#10;      &lt;Cell col=&quot;9&quot; disptype=&quot;normal&quot; text=&quot;CARD_OPEN_PLACE&quot;/&gt;&#10;      &lt;Cell col=&quot;10&quot; disptype=&quot;normal&quot; text=&quot;BUSINESS_LICENSE_NUMBER&quot;/&gt;&#10;      &lt;Cell col=&quot;11&quot; disptype=&quot;normal&quot; text=&quot;FINANCIAL_INSTITUTE_CODE&quot;/&gt;&#10;      &lt;Cell col=&quot;12&quot; disptype=&quot;normal&quot; text=&quot;FINANCIAL_INSTITUTE_NAME&quot;/&gt;&#10;      &lt;Cell col=&quot;13&quot; disptype=&quot;normal&quot; text=&quot;FINANCIAL_ACCOUNT_NOTE&quot;/&gt;&#10;    &lt;/Band&gt;&#10;    &lt;Band id=&quot;body&quot;&gt;&#10;      &lt;Cell col=&quot;0&quot; disptype=&quot;normal&quot; text=&quot;bind:ACCOUNT_ASSOCIATES_CODE&quot;/&gt;&#10;      &lt;Cell col=&quot;1&quot; disptype=&quot;normal&quot; text=&quot;bind:WORKPLACE_CODE&quot;/&gt;&#10;      &lt;Cell col=&quot;2&quot; disptype=&quot;normal&quot; text=&quot;bind:ACCOUNT_ASSOCIATES_NAME&quot;/&gt;&#10;      &lt;Cell col=&quot;3&quot; disptype=&quot;normal&quot; text=&quot;bind:ACCOUNT_ASSOCIATES_TYPE&quot;/&gt;&#10;      &lt;Cell col=&quot;4&quot; disptype=&quot;normal&quot; text=&quot;bind:ACCOUNT_NUMBER&quot;/&gt;&#10;      &lt;Cell col=&quot;5&quot; disptype=&quot;normal&quot; text=&quot;bind:ACCOUNT_OPEN_PLACE&quot;/&gt;&#10;      &lt;Cell col=&quot;6&quot; disptype=&quot;normal&quot; text=&quot;bind:CARD_NUMBER&quot;/&gt;&#10;      &lt;Cell col=&quot;7&quot; disptype=&quot;normal&quot; text=&quot;bind:CARD_TYPE&quot;/&gt;&#10;      &lt;Cell col=&quot;8&quot; disptype=&quot;normal&quot; text=&quot;bind:CARD_MEMBER_NAME&quot;/&gt;&#10;      &lt;Cell col=&quot;9&quot; disptype=&quot;normal&quot; text=&quot;bind:CARD_OPEN_PLACE&quot;/&gt;&#10;      &lt;Cell col=&quot;10&quot; disptype=&quot;normal&quot; text=&quot;bind:BUSINESS_LICENSE_NUMBER&quot;/&gt;&#10;      &lt;Cell col=&quot;11&quot; disptype=&quot;normal&quot; text=&quot;bind:FINANCIAL_INSTITUTE_CODE&quot;/&gt;&#10;      &lt;Cell col=&quot;12&quot; disptype=&quot;normal&quot; text=&quot;bind:FINANCIAL_INSTITUTE_NAME&quot;/&gt;&#10;      &lt;Cell col=&quot;13&quot; disptype=&quot;normal&quot; text=&quot;bind:FINANCIAL_ACCOUNT_NOTE&quot;/&gt;&#10;    &lt;/Band&gt;&#10;  &lt;/Format&gt;&#10;&lt;/Formats&gt;&#10;">
+                    <Formats>
+                      <Format id="default">
+                        <Columns>
+                          <Column size="40"/>
+                          <Column size="113"/>
+                          <Column size="83"/>
+                          <Column size="210"/>
+                          <Column size="116"/>
+                          <Column size="154"/>
+                          <Column size="80"/>
+                          <Column size="175"/>
+                          <Column size="80"/>
+                          <Column size="111"/>
+                          <Column size="80"/>
+                          <Column size="111"/>
+                          <Column size="84"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                        </Columns>
+                        <Rows>
+                          <Row size="24" band="head"/>
+                          <Row size="24"/>
+                        </Rows>
+                        <Band id="head">
+                          <Cell displaytype="checkbox" edittype="checkbox"/>
+                          <Cell col="1" text="금융거래처 코드"/>
+                          <Cell col="2" text="사업장 코드"/>
+                          <Cell col="3" text="금융거래처명"/>
+                          <Cell col="4" text="금융거래처타입"/>
+                          <Cell col="5" text="계좌번호"/>
+                          <Cell col="6" text="계좌개설점"/>
+                          <Cell col="7" text="카드번호"/>
+                          <Cell col="8" text="카드구분"/>
+                          <Cell col="9" text="카드회원명"/>
+                          <Cell col="10" text="카드"/>
+                          <Cell col="11" text="사업자등록번호"/>
+                          <Cell col="12" text="금융기관코드"/>
+                          <Cell col="13" text="금융기관명"/>
+                          <Cell col="14" text="비고"/>
+                        </Band>
+                        <Band id="body">
+                          <Cell displaytype="checkbox" edittype="checkbox" style="align:center;background:transparent;background2:transparent;"/>
+                          <Cell col="1" style="align:center;background:transparent;background2:transparent;" text="bind:ACCOUNT_ASSOCIATES_CODE"/>
+                          <Cell col="2" style="align:center;background:transparent;background2:transparent;" text="bind:WORKPLACE_CODE"/>
+                          <Cell col="3" style="align:center;background:transparent;background2:transparent;" text="bind:ACCOUNT_ASSOCIATES_NAME"/>
+                          <Cell col="4" style="align:center;background:transparent;background2:transparent;" text="bind:ACCOUNT_ASSOCIATES_TYPE"/>
+                          <Cell col="5" style="align:center;background:transparent;background2:transparent;" text="bind:ACCOUNT_NUMBER"/>
+                          <Cell col="6" style="align:center;background:transparent;background2:transparent;" text="bind:ACCOUNT_OPEN_PLACE"/>
+                          <Cell col="7" style="align:center;background:transparent;background2:transparent;" text="bind:CARD_NUMBER"/>
+                          <Cell col="8" style="align:center;background:transparent;background2:transparent;" text="bind:CARD_TYPE"/>
+                          <Cell col="9" style="align:center;background:transparent;background2:transparent;" text="bind:CARD_MEMBER_NAME"/>
+                          <Cell col="10" style="align:center;background:transparent;background2:transparent;" text="bind:CARD_OPEN_PLACE"/>
+                          <Cell col="11" style="align:center;background:transparent;background2:transparent;" text="bind:BUSINESS_LICENSE_NUMBER"/>
+                          <Cell col="12" style="align:center;background:transparent;background2:transparent;" text="bind:FINANCIAL_INSTITUTE_CODE"/>
+                          <Cell col="13" style="align:center;background:transparent;background2:transparent;" text="bind:FINANCIAL_INSTITUTE_NAME"/>
+                          <Cell col="14" style="align:center;background:transparent;background2:transparent;" text="bind:FINANCIAL_ACCOUNT_NOTE"/>
+                        </Band>
+                      </Format>
+                    </Formats>
+                  </Grid>
+                  <GroupBox id="GroupBox00" text="금융거래처 검색 조건" position2="absolute l:6 w:307 t:23 h:84" positiontype="position2" style="titlealign:topleft;background:@gradation;border:2 solid lightsteelblue ;color:black;font:함초롬돋움,12, bold antialias;"/>
+                  <Combo id="contractType" taborder="1" displaynulltext="전체" innerdataset="@Dataset00" codecolumn="TYPE_CODE_NAME" datacolumn="TYPE_NAME" onitemchanged="fn_searchCTType_changed" position2="absolute l:16 w:121 t:52 h:45" positiontype="position2" style="color:#f24a00ff;align:center middle;font:함초롬돋움,9,bold antialias;"/>
+                  <Button id="Button00" taborder="1" text="금융거래처 조회" position2="absolute l:149 w:148 t:52 h:43" positiontype="position2" style="border:1px solid transparent ;font:함초롬돋움,11,bold;"/>
+                  <GroupBox id="GroupBox01" text="금융거래처 정보 관리" position2="absolute l:326 w:379 t:23 h:84" positiontype="position2" style="titlealign:topleft;background:@gradation;border:2 solid lightsteelblue ;color:black;font:함초롬돋움,12, bold antialias;"/>
+                  <Button id="Button02" taborder="1" text="새로운 금융거래처 정보 추가" position2="absolute l:333 w:236 t:52 h:43" positiontype="position2" style="border:1px solid transparent ;font:함초롬돋움,11,bold;"/>
+                  <Button id="Button01" taborder="1" text="일괄저장" position2="absolute l:581 w:107 t:52 h:43" positiontype="position2" style="border:1px solid transparent ;font:함초롬돋움,11,bold;"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+          </Tabpages>
+        </Tab>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="Dataset00" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="TYPE_NAME" type="STRING" size="256"/>
+          <Column id="TYPE_CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="TYPE_NAME">전체</Col>
+            <Col id="TYPE_CODE_NAME">all</Col>
+          </Row>
+          <Row>
+            <Col id="TYPE_NAME">사업장</Col>
+            <Col id="TYPE_CODE_NAME">workplace</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript4.0"><![CDATA[
+
+function ClientInfo_onload(obj:Form, e:LoadEventInfo)
+{
+	transaction(
+				"customerInfo" //controller method's name
+				,"svcBasicInfo::searchCustomer.do", // url
+				"", // inData
+				"gds_customer=gds_customer", // outData
+				" searchCondition=ALL"+
+				" companyCode= "+
+				" workplaceCode= ", // variables
+				"fn_callBack"
+				);
+				
+	transaction(
+				"financialInfo" //controller method's name
+				,"svcBasicInfo::searchFinancialAccountAssociatesList.do", // url
+				"", // inData
+				"gds_financialAccountAssociates=gds_financialAccountAssociates", // outData
+				" searchCondition=ALL"+
+				" workplaceCode= ", // variables
+				"fn_callBack"
+				);
+}
+
+function fn_callBack(trId, ErrorCode, ErrorMsg)
+{
+}
+]]></Script>
+  </Form>
+</FDL>

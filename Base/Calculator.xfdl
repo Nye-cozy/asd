@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.4">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="Calculator" classname="Calculator" inheritanceid="" position="absolute 0 0 320 350" onload="CalculatorDialog_onload">
+    <Layouts>
+      <Layout>
+        <Div id="calculator" taborder="0" style="background:transparent;" position="absolute 8 7 312 344">
+          <Layouts>
+            <Layout width="304" height="337">
+              <Static id="Static00" text="견적수량" position="absolute -1 30 131 71" style="align:center middle;font:함초롬돋움,16, bold;" anchor="default"/>
+              <Static id="Static01" text="견적단가" position="absolute -1 104 131 145" style="align:center middle;font:함초롬돋움,16, bold;" anchor="default"/>
+              <Static id="Static02" text="합계액" position="absolute -9 178 123 219" style="align:center middle;font:함초롬돋움,16, bold;" anchor="default"/>
+              <MaskEdit id="edt_esAmount" taborder="1" displaynulltext="0" mask="###,###,###,##0" useinputpanel="false" onkeyup="fn_edt_esAmount_onkeyup" position="absolute 154 30 295 71" anchor="default"/>
+              <MaskEdit id="edt_esPrice" taborder="1" displaynulltext="0" mask="###,###,###,##0" useinputpanel="false" onkeyup="fn_edt_esAmount_onkeyup" position="absolute 154 104 295 145" anchor="default"/>
+              <MaskEdit id="edt_esSumPrice" taborder="1" displaynulltext="0" readonly="true" mask="###,###,###,##0" position="absolute 154 178 295 219" anchor="default"/>
+              <Button id="btn_confirm" taborder="1" text="확인" onclick="fn_btn_confirm_onclick" position2="absolute l:31 w:89 t:262 h:42" positiontype="position2"/>
+              <Button id="btn_cancel" taborder="1" text="취소" onclick="fn_btn_cancel_onclick" position2="absolute l:170 w:89 t:262 h:42" positiontype="position2"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript4.0"><![CDATA[var parentName;
+//***********		견적 상세 계산기 onload		***********
+function CalculatorDialog_onload(obj:Form, e:LoadEventInfo)
+{	trace("계산기");
+	gds_item.clearData();
+	// 계산 트랜잭션
+	transaction(
+				"calculation", 
+				"svcLogisticsInfo::getStandardUnitPrice.do", 
+				"gds_codeDetail=gds_codeDetail", 
+				"gds_item=gds_item", 
+				"itemCode='"+itemCode+"'", 
+				"fn_callBack"
+				);
+}
+
+
+//***********		callBack		***********
+function fn_callBack(trId, ErrorCode, ErrorMsg)
+{
+	switch(trId){
+		case "calculation" :
+			// 견적단가
+			var iPrice      = gds_item.getColumn(0,"STANDARD_UNIT_PRICE");
+			// gds_estimateDetail 선택한 행 위치
+			var edposition  = gds_estimateDetail.rowposition;
+			// 계산기 견적단가
+			calculator.edt_esPrice.value = iPrice;
+			
+			// trace("		@ value: "+gds_item.getColumn(0,"STANDARD_UNIT_PRICE"));
+			trace("		@ Estimate.trId: "+trId);
+			trace("		@ ErrorCode: "+ErrorCode);
+			trace("		@ ErrorMsg: "+ErrorMsg);
+	}
+	
+	/*
+	if(ErrorCode<0){
+		alert("Estimate.에러");	
+	}
+	*/
+}
+
+
+//***********		견적수량,견적단가 onkeyup		***********
+function fn_edt_esAmount_onkeyup(obj:MaskEdit, e:KeyEventInfo)
+{
+	calculator.edt_esSumPrice.value = calculator.edt_esAmount.value*calculator.edt_esPrice.value;
+}
+
+
+//***********	확인		***********
+function fn_btn_confirm_onclick(obj:Button,  e:ClickEventInfo)
+{
+	//if(박스안의 값을 다 적었을 경우){}
+	// gds_estimateDetail 선택한 행 위치
+	var edRPosition  = gds_estimateDetail.rowposition;
+	gds_estimateDetail.setColumn(edRPosition,"ESTIMATE_AMOUNT", calculator.edt_esAmount.value);
+	gds_estimateDetail.setColumn(edRPosition,"UNIT_PRICE_OF_ESTIMATE", calculator.edt_esPrice.value);
+	gds_estimateDetail.setColumn(edRPosition,"SUM_PRICE_OF_ESTIMATE", calculator.edt_esSumPrice.value);
+	close();
+}
+
+
+//***********	취소		***********
+function fn_btn_cancel_onclick(obj:Button,  e:ClickEventInfo)
+{
+	close();
+}
+]]></Script>
+  </Form>
+</FDL>

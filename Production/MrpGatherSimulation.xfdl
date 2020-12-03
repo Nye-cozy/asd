@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.4">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="MrpGatherSimulation" classname="MrpGatherSimulation" inheritanceid="" position="absolute 0 0 1024 500" titletext="New Form" onload="MrpGatherSimulation_onload">
+    <Layouts>
+      <Layout>
+        <GroupBox id="GroupBox00" text="소요량 취합 등록 일자" position2="absolute l:98 w:262 t:25 h:80" positiontype="position2" style="background:@gradation;border:2 solid lightsteelblue ;color:black;"/>
+        <GroupBox id="GroupBox01" text="소요량 취합 등록" position2="absolute l:618 w:262 t:25 h:80" positiontype="position2" style="border:2 solid lightsteelblue ;color:black;"/>
+        <Radio id="r_division" taborder="1" columncount="0" rowcount="0" innerdataset="@ds_MRP_test_division" codecolumn="data" datacolumn="id" direction="vertical" onitemchanged="fn_r_division_onitemchanged" position2="absolute l:130 w:226 t:49 h:41" positiontype="position2" style="color:#f24a00ff;font:함초롬돋움,10,bold;" onitemclick="r_division_onitemclick"/>
+        <Calendar id="c_date" taborder="1" dateformat="yyyy-MM-dd" onchanged="fn_cDate_onchanged" position2="absolute l:371 w:229 t:49 h:43" positiontype="position2" style="border:1px solid lightsteelblue ;color:#f24a00ff;" visible="false" oneditclick="c_date_oneditclick"/>
+        <Button id="btn_registerMrpGather" taborder="1" text="현재 취합된 결과를 등록" onclick="btn_registerMrpGather_onclick" position2="absolute l:640 w:217 t:53 h:36" positiontype="position2" style="background:@gradation;border:1px solid transparent ;color:#f24a00ff;font:함초롬돋움,9,bold;"/>
+        <Grid id="grd_mrpGathering" taborder="1" binddataset="gds_mrpGathering" locale="ko_KR" useinputpanel="false" autofittype="col" position2="absolute l:85 w:827 t:133 h:337" positiontype="position2" style="border:1px solid lightsteelblue ;align:center middle;font:함초롬돋움,9,antialias;">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="118"/>
+                <Column size="104"/>
+                <Column size="139"/>
+                <Column size="64"/>
+                <Column size="138"/>
+                <Column size="158"/>
+                <Column size="84"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head" style="background:#@gradation;">
+                <Cell displaytype="normal" text="구매 및 생산여부"/>
+                <Cell col="1" displaytype="normal" text="품목코드"/>
+                <Cell col="2" displaytype="normal" text="품목명"/>
+                <Cell col="3" displaytype="normal" text="단위"/>
+                <Cell col="4" displaytype="normal" text="발주/작업지시기한"/>
+                <Cell col="5" displaytype="normal" text="발주/작업지시 완료기한"/>
+                <Cell col="6" displaytype="normal" text="필요수량"/>
+              </Band>
+              <Band id="body" style="cellbackground:transparent;cellbackground2:transparent;cellcolor:black;cellcolor2:black;">
+                <Cell displaytype="normal" text="bind:ORDER_OR_PRODUCTION_STATUS"/>
+                <Cell col="1" displaytype="normal" text="bind:ITEM_CODE"/>
+                <Cell col="2" displaytype="normal" text="bind:ITEM_NAME"/>
+                <Cell col="3" displaytype="normal" text="bind:UNIT_OF_MRP_GATHERING"/>
+                <Cell col="4" displaytype="normal" text="bind:CLAIM_DATE"/>
+                <Cell col="5" displaytype="normal" text="bind:DUE_DATE"/>
+                <Cell col="6" displaytype="normal" text="bind:NECESSARY_AMOUNT"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_MRP_test_division" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="id" type="STRING" size="256"/>
+          <Column id="data" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="id">현재일자</Col>
+            <Col id="data">todayAsMrpDate</Col>
+          </Row>
+          <Row>
+            <Col id="id">직접입력</Col>
+            <Col id="data">userInputAsMrpDate</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript4.0"><![CDATA[var rdate;
+
+
+function MrpGatherSimulation_onload(obj:Form, e:LoadEventInfo)
+{
+	obj.titletext="소요량 취합 시물레이션";
+	mrpNoAndItemCode=mrpNoAndItemCode.substring(0,mrpNoAndItemCode.length-1)+"}";
+	trace("받아온 값"+mrpNoAndItemCode);
+	
+	
+}
+
+
+//라디오 버튼 이벤트
+function fn_r_division_onitemchanged(obj:Radio, e:ItemChangeEventInfo)
+{
+
+	if(obj.value=="todayAsMrpDate"){
+	c_date.visible=false;
+		rdate=getToday();
+	}else{
+		c_date.visible=true;
+	}
+	trace("rdate   "+rdate);
+	
+}
+
+//캘린더 활성화 되었을 때 rdate에 값넣기
+function fn_cDate_onchanged(obj:Calendar, e:ChangeEventInfo)
+{
+	rdate=obj.text;
+	trace("rdate   "+rdate);
+}
+
+
+//현재 취합된 결과를 등록
+function btn_registerMrpGather_onclick(obj:Button,  e:ClickEventInfo)
+{
+		if(rdate==undefined){
+			alert("등록일자를 선택하시오");
+			return;
+		}
+		if(confirm("결과를 등록")){
+		transaction("MrpGatherSimulation"
+				,"svcProduction::registerMrpGathering.do"
+				,"gds_mrpGathering=gds_mrpGathering"
+				,""
+				,"mrpGatheringRegisterDate="+rdate+" mrpNoAndItemCodeList="+mrpNoAndItemCode
+				,"fn_callback",false
+				);
+		close("true");
+		}
+}
+
+
+function fn_callback(trId, ErrorCode, ErrorMsg){
+
+
+}]]></Script>
+  </Form>
+</FDL>

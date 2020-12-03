@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.4">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="LoginForm" classname="LoginForm" inheritanceid="" position="absolute 0 0 500 600" titletext="로그인" onload="LoginForm_onload">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" text="NEW COMPANY" position2="absolute l:74 w:329 t:43 h:58" positiontype="position2" style="color:black;align:center top;font:함초롬돋움,26,bold;" onclick="Static00_onclick"/>
+        <Edit id="edt_empId" taborder="7" position2="absolute l:110 w:266 t:317 h:44" positiontype="position2" style="align:center;font:함초롬돋움,9,bold;" ontextchange="edt_empId_ontextchange"/>
+        <Edit id="edt_empPw" taborder="4" oneditclick="empCode_oneditclick" position2="absolute l:110 w:266 t:395 h:44" positiontype="position2" style="align:center;font:함초롬돋움,9,bold;"/>
+        <Button id="btn_login" taborder="6" text="로그인" onclick="loginBtn_onclick" position2="absolute l:111 w:89 t:494 h:42" positiontype="position2" style="font:함초롬돋움,9,bold;"/>
+        <Button id="btn_logout" taborder="5" text="나가기" onclick="exitBtn_onclick" position2="absolute l:280 w:89 t:494 h:42" positiontype="position2" style="font:함초롬돋움,9,bold;"/>
+        <Static id="Static03" text="PW" onclick="Static01_onclick" position2="absolute l:84 w:100 t:391 h:50" positiontype="position2" style="color:black;align:center;font:함초롬돋움,12,bold;"/>
+        <Button id="btn_findCompany" taborder="3" text="회사코드" onclick="btn_findCompanyCode" position2="absolute l:40 w:109 t:144 h:44" positiontype="position2" style="background:silver;color:#000000ff;font:함초롬돋움,12,bold;"/>
+        <Button id="btn_findWorkplace" taborder="2" text="사업장코드" onclick="btn_findWorkspace" position2="absolute l:40 w:109 t:229 h:44" positiontype="position2" style="background:silver;color:#000000ff;font:함초롬돋움,12,bold;"/>
+        <Edit id="edt_workplace" taborder="1" position2="absolute l:174 w:266 t:229 h:44" positiontype="position2" style="align:center;font:함초롬돋움,9,bold;" readonly="true"/>
+        <Edit id="edt_company" taborder="0" position2="absolute l:174 w:266 t:142 h:44" positiontype="position2" style="align:center;font:함초롬돋움,9,bold;" readonly="true"/>
+        <Static id="Id" text="ID" onclick="Static01_onclick" position2="absolute l:84 w:100 t:314 h:50" positiontype="position2" style="color:black;align:center;font:함초롬돋움,12,bold;"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript4.0"><![CDATA[//로그인 화면 onload
+function LoginForm_onload(obj:Form, e:LoadEventInfo)
+{
+	gds_company.clearData();
+	gds_workplace.clearData();
+	
+	edt_empId.enable=false;
+	edt_empPw.enable=false;
+	
+	btn_login.enable=false;
+	
+	// 회사코드 transaction
+	transaction(
+				"findCompanyList",	// 트랜잭션을 구분하기 위한 ID
+				"svcBasicInfo::searchCompany.do",	// 트랜잭션을 요청할 주소 값
+				"", // 트랜잭션을 요청할 때 입력값으로 보낼 데이터세트의 ID 값
+				"gds_company=gds_company", // 트랙잭션의 처리 결과를 받을 데이터세트의 ID
+				"", // 트랜잭션을 위한 인자값; a=b의 형태; 빈칸으로 구분;
+				"fn_callback"	// 트랜잭션의 결과를 돌려줄 함수의 이름;
+				,false
+						);
+	// 사업장코드 transaction
+	transaction(
+				"findWorkplaceList", 
+				"svcBasicInfo::searchWorkplace.do", 
+				"gds_company=gds_company", 
+				"gds_workplace=gds_workplace", 
+				"",
+				"fn_callback"
+				);
+}
+//나가기 버튼
+function exitBtn_onclick(obj:Button,  e:ClickEventInfo)
+{
+	application.exit();
+}
+
+//회사 버튼
+function btn_findCompanyCode(obj:Button,  e:ClickEventInfo)
+{
+	trace("btn_findCompanyCode");
+	dialog(	"CompanyCode",	// 생성될 ChildFrame의 이름
+			"Base::CommonDialog.xfdl",	// 로딩한 폼의 URL
+			"LoginForm",	// ParentFrame
+			null,	// ChildFrame에 추가될 변수 리스트 {변수명:변수값, 변수명:변수값}
+			"",	// ChildFrame에 설정할 속성 리스트 a=b b='c' 
+			650,	// ChildFrame의 position 중 left 값
+			350	// ChildFrame의 position 중 top 값
+	);	
+}
+
+//사업장코드
+function btn_findWorkspace(obj:Button,  e:ClickEventInfo)
+{
+	if (edt_company.text == null){
+
+		alert("회사 코드를 먼저 입력해 주세요");
+		
+	} else {
+		dialog(
+			"WorkplaceCode",
+			"Base::CommonDialog.xfdl",
+			MainFrame,
+			null,
+			"",
+			650,
+			350
+		);
+   }
+	// Id & Pw 창 edit 금지 해제
+	if (edt_company.text != null && edt_workplace.text != null){
+	
+      edt_empId.enable=true;
+      edt_empPw.enable=true;
+      edt_empId.autoselect=true;
+      
+      btn_login.enable=true;
+      
+	}
+	
+}
+
+function loginBtn_onclick(obj:Button,  e:ClickEventInfo)
+{
+	if(edt_empId.text==""){
+		alert("사원ID를 입력해주세요");
+		return;
+	}else if(edt_empPw.text==""){
+		alert("비밀번호를 입력해주세요");
+		return;
+	}
+
+	transaction(	
+				"loginClick", 
+				"svcLocalhost::login.do", 
+				"gds_company=gds_company gds_workplace=gds_workplace", 
+				"gds_employee=gds_employee", 
+				"userId='"+edt_empId.value+
+					"' userPassWord='"+edt_empPw.value+"'",
+				"fn_callback",
+				false
+				);
+}
+
+//*******************		로그인 폼 transaction callback		*******************
+function fn_callback(trid, ErrorCode, ErrorMsg)
+{
+	if(ErrorCode < 0){
+		alert("LoginForm "+trid+" Error: "+ErrorMsg);
+		return;
+	}
+
+	switch(trid){
+		case "findCompanyList" :
+			trace("gds_company.rowposition:  "+gds_company.rowposition);
+			gds_company.getColumn(gds_company.rowposition,"COMPANY_CODE");	
+			break;
+		
+		case "findWorkplaceList" :
+			//trace("gds_workplace.rowposition:  "+gds_workplace.rowposition);
+			break;
+		
+		case "loginClick" :
+			//basicTransaction(); 공통 스크립스 함수 사용 여부 ?
+			g_userId = gds_employee.getColumn(0,"EMP_CODE");		
+			g_empCode = gds_employee.getColumn(0,"EMP_CODE");
+			g_empName = gds_employee.getColumn(0,"EMP_NAME");
+			g_deptCode = gds_employee.getColumn(0,"DEPT_CODE");
+			g_deptName = gds_employee.getColumn(0,"DEPT_NAME");
+			g_positionCode = gds_employee.getColumn(0,"POSITION_CODE");
+			g_positionName = gds_employee.getColumn(0,"POSITION_NAME");
+			g_companyCode = gds_company.getColumn(gds_company.rowposition,"COMPANY_CODE");
+			g_companyName = gds_company.getColumn(gds_company.rowposition,"COMPANY_NAME");
+			g_workplaceCode= gds_workplace.getColumn(gds_workplace.rowposition,"WORKPLACE_CODE");
+			g_workplaceName= gds_workplace.getColumn(gds_workplace.rowposition,"WORKPLACE_NAME");
+		
+	/*	trace("gds_employee.rowposition:  "+gds_employee.rowposition);
+		trace("g_userId: "+g_userId);
+		trace("g_empCode: "+g_empCode);
+		trace("g_empName: "+g_empName);
+		trace("g_deptCode: "+g_deptCode);
+		trace("g_deptName: "+g_deptName);
+		trace("g_positionCode: "+g_positionCode);
+		trace("g_positionName: "+g_positionName);
+		trace("gds_company.rowposition: "+gds_company.rowposition);
+		trace("g_companyCode: "+g_companyCode);
+		trace("g_companyName: "+g_companyName);
+		trace("gds_workplace.rowposition: "+gds_workplace.rowposition);
+		trace("g_workplaceCode: "+g_workplaceCode);
+		trace("g_workplaceName: "+g_workplaceName);
+		*/
+			gds_info.addRow();
+			gds_info.setColumn(0,"deptName",g_deptName);
+			gds_info.setColumn(0,"positionName",g_positionName);
+			gds_info.setColumn(0,"empName",g_empName);
+		
+			alert(g_empName+"님 즐거운 시간 되세요");
+			
+			/*
+			// Common Transaction start;
+			transaction( // ITEM table의 모든 아이템
+						"getItemInfo", 
+						"svcLogistics::searchItem.do", 
+						"", 
+						"gds_item=gds_item",
+						"searchCondition='ALL' minPrice='최소가격' maxPrice='최대가격' itemClassification='' itemGroupCode=''",
+						"callback",
+						false
+						);
+			transaction( // CODE table의 모든 코드
+						"searchCodeList",								
+						"svcBase::searchCodeList.do",
+						"",												
+						"gds_code=gds_code gds_codeDetail=gds_codeDetail",					
+						"",												
+						"callback",
+						false
+						);
+			transaction(
+						"searchWarehouse",								
+						"svcLogistics::warehouseInfo.do",	
+						"",												
+						"gds_warehouse=gds_warehouse",					
+						"",												
+						"callback",
+						false
+						);
+			transaction(
+						"searchStock",								
+						"svcPurchase::searchStockList.do",	
+						"",												
+						"gds_stock=gds_stock",					
+						"",												
+						"callback",
+						false
+						);
+			*/
+			
+			
+			
+			application.mainframe.visible = true;
+			close();
+			
+		
+			
+			//mainframe.position="absolute 100 30 1710 1030"; //화면 크기 조정하고 싶으면 이 속성으로 재할당 할 수 있음
+			// go("Base::MainPageForm.xfdl");
+			//MainFrame에 화면 구성을 했기 때문에 MainForm을 별도로 만들지 않았다.
+			break;
+	}
+	
+}
+]]></Script>
+  </Form>
+</FDL>

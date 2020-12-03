@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.4">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="dialog_workInstruction_simulation" classname="dialog_workInstruction_simulation" inheritanceid="" position="absolute 0 0 1150 500" titletext="New Form" onload="dialog_workInstruction_simulation_onload">
+    <Layouts>
+      <Layout>
+        <GroupBox id="GroupBox01" text="작업지시" position2="absolute l:28 w:228 t:24 h:64" positiontype="position2" style="background:@gradation;border:2 solid lightsteelblue ;color:black;font:함초롬돋움,10,bold antialias;"/>
+        <Button id="Button00" taborder="1" text="현재 모의 전개된 결과 작업지시" onclick="fn_workOrder_onclick" position2="absolute l:43 w:199 t:45 h:30" positiontype="position2" style="background:@gradation;border:1px solid transparent ;color:#f24a00ff;font:함초롬돋움,9,bold;"/>
+        <GroupBox id="GroupBox02" text="사업장 및 생산공정" position2="absolute l:292 w:360 t:24 h:64" positiontype="position2" style="background:@gradation;border:2 solid lightsteelblue ;color:black;font:함초롬돋움,10,bold antialias;"/>
+        <Edit id="edt_workSite" taborder="1" readonly="true" oneditclick="fn_workSite_onclick" position2="absolute l:317 w:140 t:45 h:30" positiontype="position2" style="border:1px solid lightsteelblue ;color:#f24a00ff;align:center middle;font:함초롬돋움,9,bold;" rtldirection="inherit"/>
+        <Edit id="edt_processing" taborder="1" displaynulltext="생산공정코드" readonly="true" oneditclick="fn_processing_onedit" position2="absolute l:485 w:140 t:45 h:30" positiontype="position2" style="border:1px solid lightsteelblue ;color:#f24a00ff;align:center middle;font:함초롬돋움,9,bold;"/>
+        <Grid id="grid_workOrderSimulation" taborder="1" binddataset="gds_workOrderSimulation" useinputpanel="false" position2="absolute l:25 w:1100 t:116 h:364" positiontype="position2" style="align:center middle;font:함초롬돋움,9,antialias;">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="128"/>
+                <Column size="113"/>
+                <Column size="121"/>
+                <Column size="64"/>
+                <Column size="78"/>
+                <Column size="164"/>
+                <Column size="44"/>
+                <Column size="139"/>
+                <Column size="149"/>
+                <Column size="143"/>
+                <Column size="91"/>
+                <Column size="93"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head" style="background:@gradation;">
+                <Cell displaytype="normal" text="소요량전개번호"/>
+                <Cell col="1" displaytype="normal" text="주생산계획번호"/>
+                <Cell col="2" displaytype="normal" text="소요량취합번호"/>
+                <Cell col="3" displaytype="normal" text="품목분류"/>
+                <Cell col="4" displaytype="normal" text="품목코드"/>
+                <Cell col="5" displaytype="normal" text="품목명"/>
+                <Cell col="6" displaytype="normal" text="단위"/>
+                <Cell col="7" displaytype="normal" text="재고량(투입예정재고)"/>
+                <Cell col="8" displaytype="normal" text="재고소요/제품제작수량"/>
+                <Cell col="9" displaytype="normal" text="재고량(재고소요이후)"/>
+                <Cell col="10" displaytype="normal" text="작업지시기한"/>
+                <Cell col="11" displaytype="normal" text="작업완료기한"/>
+              </Band>
+              <Band id="body" style="background:white;cellbackground:white;cellbackground2:white;">
+                <Cell displaytype="normal" text="bind:MRP_NO"/>
+                <Cell col="1" displaytype="normal" text="bind:MPS_NO"/>
+                <Cell col="2" displaytype="normal" text="bind:MRP_GATHERING_NO"/>
+                <Cell col="3" displaytype="normal" text="bind:ITEM_CLASSIFICATION"/>
+                <Cell col="4" displaytype="normal" text="bind:ITEM_CODE"/>
+                <Cell col="5" displaytype="normal" text="bind:ITEM_NAME"/>
+                <Cell col="6" displaytype="normal" text="bind:UNIT_OF_MRP"/>
+                <Cell col="7" displaytype="normal" text="bind:INPUT_AMOUNT"/>
+                <Cell col="8" displaytype="normal" text="bind:REQUIRED_AMOUNT"/>
+                <Cell col="9" displaytype="normal" text="bind:STOCK_AFTER_WORK"/>
+                <Cell col="10" displaytype="normal" text="bind:ORDER_DATE"/>
+                <Cell col="11" displaytype="normal" text="bind:REQUIRED_DATE"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item0" compid="edt_workSite" propid="value" datasetid="gds_workplace" columnid="WORKPLACE_NAME"/>
+    </Bind>
+    <Objects/>
+    <Script type="xscript4.0"><![CDATA[
+function dialog_workInstruction_simulation_onload(obj:Form, e:LoadEventInfo)
+{
+		trace("mrpNo:"+mrpNo);
+		
+		transaction(
+				"ShowWorkOrderDialog",
+				"svcProduction::showWorkOrderDialog.do",
+				"",
+				"gds_workOrderSimulation=gds_workOrderSimulation",
+				"MRP_NO='"+mrpNo+"'",
+				"fn_callback",
+				false
+				);
+				
+			
+
+}
+
+function fn_callback(trId, ErrorCode, ErrorMsg)
+{
+
+
+}
+var productionProcessCode;
+//생산공정코드
+function fn_processing_onedit(obj:Edit,  e:EditClickEventInfo)
+{
+		dialog  (
+			"CustomerCode",	// 생성될 ChildFrame의 이름
+			"Base::CommonDialog.xfdl",	// 로딩한 폼의 URL
+			"dialog_workInstruction_simulation",	// ParentFrame
+			{divisionCode:"PP"},	// ChildFrame에 추가될 변수 리스트 {변수명:변수값, 변수명:변수값}
+			"",	// ChildFrame에 설정할 속성 리스트 a=b b='c' 
+			650,	// ChildFrame의 position 중 left 값
+			350	// ChildFrame의 position 중 top 값
+			);
+		
+	// 생산공정코드	
+	productionProcessCode=gds_codeDetail.getColumn(gds_codeDetail.rowposition, "DETAIL_CODE");
+	trace("productionProcessCode"+productionProcessCode);
+	edt_processing.value=gds_codeDetail.getColumn(gds_codeDetail.rowposition, "DETAIL_CODE_NAME");
+}
+
+
+//현재 모의 전개된 결과 작업지시
+function fn_workOrder_onclick(obj:Button,  e:ClickEventInfo)
+{
+
+if(productionProcessCode==undefined){
+	alert("생산공정코드를 선택하시오")
+	return;
+}
+	trace("g_workplaceCode"+g_workplaceCode);
+	trace("productionProcessCode"+productionProcessCode);
+	if(confirm("현재 모의 전개된 결과를 작업지시 하시겠습니까")){
+	transaction(
+						"WorkOrder",
+						"svcProduction::workOrder.do",
+						"",
+						"",
+						"productionProcessCode="+productionProcessCode+" workPlaceCode="+g_workplaceCode,
+						"fn_callback",
+						false
+						);
+
+	}
+	close("true");
+}
+]]></Script>
+  </Form>
+</FDL>

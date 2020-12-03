@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.4">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="MrpInfo" classname="MrpInfo" inheritanceid="" position="absolute 0 0 1250 680" titletext="New Form" onload="MrpInfo_onload">
+    <Layouts>
+      <Layout>
+        <GroupBox id="GroupBox00" text="소요량 취합 검색" position2="absolute l:45 w:419 t:45 h:80" positiontype="position2" style="background:@gradation;border:2 solid lightsteelblue ;color:black;font:함초롬돋움,12, bold antialias;"/>
+        <Radio id="r_division" taborder="1" columncount="0" rowcount="0" innerdataset="@ds_MRP_division" codecolumn="data" datacolumn="id" direction="vertical" position2="absolute l:51 w:407 t:69 h:42" positiontype="position2" style="buttonborder:1px solid lightsteelblue ;color:#f24a00ff;font:함초롬돋움,12, bold antialias;"/>
+        <Calendar id="c_sDate" taborder="1" displaynulltext="시작일" dateformat="yyyy-MM-dd" position2="absolute l:491 w:200 t:68 h:45" positiontype="position2" style="background:@gradation;border:1px solid lightsteelblue ;color:#f24a00ff;font:함초롬돋움,16, bold antialias;"/>
+        <Calendar id="c_eDate" taborder="1" displaynulltext="종료일" dateformat="yyyy-MM-dd" position2="absolute l:706 w:200 t:68 h:45" positiontype="position2" style="background:@gradation;border:1px solid lightsteelblue ;color:#f24a00ff;font:함초롬돋움,16, bold antialias;"/>
+        <Button id="btn_searchMrpGather" taborder="1" text="소요량취합 조회" onclick="btn_searchMrpGather_onclick" position2="absolute l:954 w:180 t:68 h:44" positiontype="position2" style="background:@gradation;border:1px solid transparent ;color:#f24a00ff;font:함초롬돋움,14, bold antialias;"/>
+        <Grid id="grd_mrpGathering" taborder="1" binddataset="gds_mrpGathering" useinputpanel="false" oncellclick="grd_mrpGathering_oncellclick" position2="absolute l:16 w:623 t:148 h:476" positiontype="position2" style="border:1px solid lightsteelblue ;font:함초롬돋움,9,antialias;" autofittype="none">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="119"/>
+                <Column size="91"/>
+                <Column size="66"/>
+                <Column size="103"/>
+                <Column size="56"/>
+                <Column size="33"/>
+                <Column size="117"/>
+                <Column size="146"/>
+              </Columns>
+              <Rows>
+                <Row size="35" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head" style="background:#@gradation;">
+                <Cell style="font:돋움,10, antialias;" text="소요량취합번호"/>
+                <Cell col="1" style="font:돋움,10, antialias;" text="구매및생산여부"/>
+                <Cell col="2" style="font:돋움,10, antialias;" text="품목코드"/>
+                <Cell col="3" style="font:돋움,10, antialias;" text="품목명"/>
+                <Cell col="4" style="font:돋움,10, antialias;" text="필요수량"/>
+                <Cell col="5" style="font:돋움,10, antialias;" text="단위"/>
+                <Cell col="6" style="font:돋움,10, antialias;" text="발주/작업지시기한"/>
+                <Cell col="7" style="font:돋움,10, antialias;" text="발주/작업지시완료기한"/>
+              </Band>
+              <Band id="body" style="border:1 solid #808080 ;background:white;">
+                <Cell displaytype="text" edittype="none" style="background:transparent;background2:transparent;" text="bind:MRP_GATHERING_NO"/>
+                <Cell col="1" displaytype="text" edittype="none" style="background:transparent;background2:transparent;" text="bind:ORDER_OR_PRODUCTION_STATUS"/>
+                <Cell col="2" displaytype="text" edittype="none" style="background:transparent;background2:transparent;" text="bind:ITEM_CODE"/>
+                <Cell col="3" displaytype="text" edittype="none" style="background:transparent;background2:transparent;" text="bind:ITEM_NAME"/>
+                <Cell col="4" displaytype="text" edittype="none" style="background:transparent;background2:transparent;" text="bind:NECESSARY_AMOUNT"/>
+                <Cell col="5" displaytype="text" edittype="none" style="background:transparent;background2:transparent;" text="bind:UNIT_OF_MRP_GATHERING"/>
+                <Cell col="6" displaytype="text" edittype="none" style="background:transparent;background2:transparent;" text="bind:CLAIM_DATE"/>
+                <Cell col="7" displaytype="text" edittype="none" style="background:transparent;background2:transparent;" text="bind:DUE_DATE"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="grd_mrp" taborder="1" binddataset="gds_mrp" useinputpanel="false" position2="absolute l:652 w:603 t:148 h:476" positiontype="position2" style="border:1px solid lightsteelblue ;font:함초롬돋움,9,antialias;">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="117"/>
+                <Column size="102"/>
+                <Column size="120"/>
+                <Column size="51"/>
+                <Column size="63"/>
+                <Column size="112"/>
+                <Column size="112"/>
+                <Column size="138"/>
+                <Column size="61"/>
+                <Column size="33"/>
+              </Columns>
+              <Rows>
+                <Row size="35" band="head"/>
+                <Row size="35"/>
+              </Rows>
+              <Band id="head" style="border:0ff solid #808080ff ;background:#@gradation;">
+                <Cell style="font:돋움,10, antialias;" text="소요량전개번호"/>
+                <Cell col="1" style="font:돋움,10, antialias;" text="주생산계획번호"/>
+                <Cell col="2" style="font:돋움,10, antialias;" text="소요량취합번호"/>
+                <Cell col="3" style="font:돋움,10, antialias;" text="품목분류"/>
+                <Cell col="4" style="font:돋움,10, antialias;" text="품목코드"/>
+                <Cell col="5" style="font:돋움,10, antialias;" text="품목명"/>
+                <Cell col="6" style="font:돋움,10, antialias;" text="발주/작업지시기한"/>
+                <Cell col="7" style="font:돋움,10, antialias;" text="발주/작업지시완료기한"/>
+                <Cell col="8" style="font:돋움,10, antialias;" text="필요수량"/>
+                <Cell col="9" style="font:돋움,10, antialias;" text="단위"/>
+              </Band>
+              <Band id="body" style="background:white;">
+                <Cell displaytype="text" style="background:transparent;background2:transparent;" text="bind:MRP_NO"/>
+                <Cell col="1" displaytype="text" style="background:transparent;background2:transparent;" text="bind:MPS_NO"/>
+                <Cell col="2" displaytype="text" style="background:transparent;background2:transparent;" text="bind:MRP_GATHERING_NO"/>
+                <Cell col="3" displaytype="text" style="background:transparent;background2:transparent;" text="bind:ITEM_CLASSIFICATION"/>
+                <Cell col="4" displaytype="text" style="background:transparent;background2:transparent;" text="bind:ITEM_CODE"/>
+                <Cell col="5" displaytype="text" style="background:transparent;background2:transparent;" text="bind:ITEM_NAME"/>
+                <Cell col="6" displaytype="text" style="background:transparent;background2:transparent;" text="bind:ORDER_DATE"/>
+                <Cell col="7" displaytype="text" style="background:transparent;background2:transparent;" text="bind:REQUIRED_DATE"/>
+                <Cell col="8" displaytype="text" style="background:transparent;background2:transparent;" text="bind:REQUIRED_AMOUNT"/>
+                <Cell col="9" displaytype="text" style="background:transparent;background2:transparent;" text="bind:UNIT_OF_MRP"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_MRP_division" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="id" type="STRING" size="256"/>
+          <Column id="data" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="id">발주/작업지시 기한</Col>
+            <Col id="data">claimDate</Col>
+          </Row>
+          <Row>
+            <Col id="id">발주/작업지시 완료 기한</Col>
+            <Col id="data">dueDate</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript4.0"><![CDATA[
+function MrpInfo_onload(obj:Form, e:LoadEventInfo)
+{
+	gds_mrpGathering.clearData();
+	gds_mrp.clearData();
+}
+
+
+//버튼 이벤트
+function btn_searchMrpGather_onclick(obj:Button,  e:ClickEventInfo)
+{
+	
+	var searchDateCondition = r_division.value;
+	trace("searchDateCondition:"+searchDateCondition);
+	
+	var startDate = c_sDate.value.toFormatString("%Y-%m-%d", "ko_KR");;
+	var endDate = c_eDate.value.toFormatString("%Y-%m-%d", "ko_KR");;
+	
+	trace("c_sDate.value: "+c_sDate.value);
+	trace("startDate: "+startDate);
+	trace("endDate: "+endDate);
+	
+	
+	transaction(
+			"searchMrpGathering",
+			"svcProduction::searchMrpGathering.do",
+			"",
+			"gds_mrpGathering=gds_mrpGathering gds_mrp=gds_mrp",
+			"searchDateCondition="+searchDateCondition+" startDate="+startDate+" endDate="+endDate,
+			"fn_callBack"
+	);
+	grd_mrp.binddataset=false;
+	
+}
+
+
+function fn_callBack(trId, ErrorCode, ErrorMsg)
+{
+
+}
+function grd_mrpGathering_oncellclick(obj:Grid, e:GridClickEventInfo)
+{
+grd_mrp.binddataset=gds_mrp;
+		var gRow = gds_mrpGathering.rowposition;
+	var gatheringNo = gds_mrpGathering.getColumn(gRow, "MRP_GATHERING_NO");
+	gds_mrp.filter("MRP_GATHERING_NO=='"+gatheringNo+"'");
+}
+]]></Script>
+  </Form>
+</FDL>

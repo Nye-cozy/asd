@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.4">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="CompanyInfo" classname="CompanyInfo" inheritanceid="" position="absolute 0 0 1250 700" titletext="부서 정보" onload="CompanyInfo_onload">
+    <Layouts>
+      <Layout>
+        <Grid id="Grid00" taborder="0" useinputpanel="false" position2="absolute l:20 w:1212 t:176 h:388" positiontype="position2" binddataset="gds_department" formats="&lt;Formats&gt;&#10;  &lt;Format id=&quot;default&quot;&gt;&#10;    &lt;Columns&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;    &lt;/Columns&gt;&#10;    &lt;Rows&gt;&#10;      &lt;Row band=&quot;head&quot; size=&quot;24&quot;/&gt;&#10;      &lt;Row band=&quot;body&quot; size=&quot;24&quot;/&gt;&#10;    &lt;/Rows&gt;&#10;    &lt;Band id=&quot;head&quot;&gt;&#10;      &lt;Cell col=&quot;0&quot; disptype=&quot;normal&quot; text=&quot;WORKPLACE_CODE&quot;/&gt;&#10;      &lt;Cell col=&quot;1&quot; disptype=&quot;normal&quot; text=&quot;DEPT_CODE&quot;/&gt;&#10;      &lt;Cell col=&quot;2&quot; disptype=&quot;normal&quot; text=&quot;DEPT_NAME&quot;/&gt;&#10;      &lt;Cell col=&quot;3&quot; disptype=&quot;normal&quot; text=&quot;WORKPLACE_NAME&quot;/&gt;&#10;      &lt;Cell col=&quot;4&quot; disptype=&quot;normal&quot; text=&quot;COMPANY_CODE&quot;/&gt;&#10;      &lt;Cell col=&quot;5&quot; disptype=&quot;normal&quot; text=&quot;DEPT_START_DATE&quot;/&gt;&#10;      &lt;Cell col=&quot;6&quot; disptype=&quot;normal&quot; text=&quot;DEPT_END_DATE&quot;/&gt;&#10;    &lt;/Band&gt;&#10;    &lt;Band id=&quot;body&quot;&gt;&#10;      &lt;Cell col=&quot;0&quot; disptype=&quot;normal&quot; text=&quot;bind:WORKPLACE_CODE&quot;/&gt;&#10;      &lt;Cell col=&quot;1&quot; disptype=&quot;normal&quot; text=&quot;bind:DEPT_CODE&quot;/&gt;&#10;      &lt;Cell col=&quot;2&quot; disptype=&quot;normal&quot; text=&quot;bind:DEPT_NAME&quot;/&gt;&#10;      &lt;Cell col=&quot;3&quot; disptype=&quot;normal&quot; text=&quot;bind:WORKPLACE_NAME&quot;/&gt;&#10;      &lt;Cell col=&quot;4&quot; disptype=&quot;normal&quot; text=&quot;bind:COMPANY_CODE&quot;/&gt;&#10;      &lt;Cell col=&quot;5&quot; disptype=&quot;normal&quot; text=&quot;bind:DEPT_START_DATE&quot;/&gt;&#10;      &lt;Cell col=&quot;6&quot; disptype=&quot;normal&quot; text=&quot;bind:DEPT_END_DATE&quot;/&gt;&#10;    &lt;/Band&gt;&#10;  &lt;/Format&gt;&#10;&lt;/Formats&gt;&#10;" autofittype="col" style="font:함초롬돋움,9,antialias;">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="사업장코드"/>
+                <Cell col="1" text="부서코드"/>
+                <Cell col="2" text="부서명"/>
+                <Cell col="3" text="사업장명"/>
+                <Cell col="4" text="부서신설일"/>
+                <Cell col="5" text="부서해체일"/>
+              </Band>
+              <Band id="body">
+                <Cell style="align:center;background:transparent;background2:transparent;" text="bind:WORKPLACE_CODE"/>
+                <Cell col="1" style="align:center;background:transparent;background2:transparent;" text="bind:DEPT_CODE"/>
+                <Cell col="2" style="align:center;background:transparent;background2:transparent;" text="bind:DEPT_NAME"/>
+                <Cell col="3" style="align:center;background:transparent;background2:transparent;" text="bind:WORKPLACE_NAME"/>
+                <Cell col="4" style="align:center;background:transparent;background2:transparent;" text="bind:DEPT_START_DATE"/>
+                <Cell col="5" style="align:center;background:transparent;background2:transparent;" text="bind:DEPT_END_DATE"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static00" text="부서 정보" position2="absolute l:20 w:1212 t:123 h:53" positiontype="position2" style="background:@gradation;color:black;font:함초롬돋움,22,bold;" onclick="Static00_onclick"/>
+        <GroupBox id="GroupBox00" text="회사 정보 관리" position2="absolute l:22 w:273 t:31 h:84" positiontype="position2" style="titlealign:topleft;background:@gradation;border:2 solid lightsteelblue ;color:black;font:함초롬돋움,12, bold antialias;"/>
+        <Button id="Button00" taborder="1" text="부서 조회" position2="absolute l:165 w:121 t:60 h:43" positiontype="position2" style="border:1px solid transparent ;font:함초롬돋움,11,bold;"/>
+        <GroupBox id="GroupBox01" text="회사 정보 관리" position2="absolute l:302 w:326 t:31 h:84" positiontype="position2" style="titlealign:topleft;background:@gradation;border:2 solid lightsteelblue ;color:black;font:함초롬돋움,12, bold antialias;"/>
+        <Button id="Button01" taborder="1" text="일괄저장" position2="absolute l:509 w:107 t:60 h:43" positiontype="position2" style="border:1px solid transparent ;font:함초롬돋움,11,bold;"/>
+        <Combo id="contractType" taborder="1" innerdataset="@Dataset00" codecolumn="TYPE_CODE_NAME" datacolumn="TYPE_NAME" onitemchanged="fn_searchCTType_changed" position2="absolute l:32 w:121 t:60 h:45" positiontype="position2" style="color:#f24a00ff;align:center middle;font:함초롬돋움,9,bold antialias;" displaynulltext="전체"/>
+        <Button id="Button02" taborder="1" text="새로운 부서 정보 추가" position2="absolute l:309 w:195 t:60 h:43" positiontype="position2" style="border:1px solid transparent ;font:함초롬돋움,11,bold;"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="Dataset00" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="TYPE_NAME" type="STRING" size="256"/>
+          <Column id="TYPE_CODE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="TYPE_NAME">전체</Col>
+            <Col id="TYPE_CODE_NAME">all</Col>
+          </Row>
+          <Row>
+            <Col id="TYPE_NAME">사업장</Col>
+            <Col id="TYPE_CODE_NAME">workplace</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript4.0"><![CDATA[
+
+function CompanyInfo_onload(obj:Form, e:LoadEventInfo)
+{
+	
+	transaction(
+				"deptInfo" //controller method's name
+				,"svcBasicInfo::searchDepartment.do", // url
+				"", // inData
+				"gds_department=gds_department", // outData
+				" searchCondition=ALL"+
+				" companyCode="+g_companyCode+
+				" workplaceCode= ", // variables
+				"fn_callBack"
+				);
+	
+}
+
+function fn_callBack(trId, ErrorCode, ErrorMsg)
+{
+}
+]]></Script>
+  </Form>
+</FDL>

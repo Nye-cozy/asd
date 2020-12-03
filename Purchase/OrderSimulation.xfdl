@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.4">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="OrderSimulation" classname="OrderSimulation" inheritanceid="" position="absolute 0 0 1024 500" titletext="New Form" onload="OrderSimulation_onload">
+    <Layouts>
+      <Layout>
+        <GroupBox id="GroupBox00" text="발주 등록 일자" position2="absolute l:44 w:124 t:28 h:59" positiontype="position2" style="background:@gradation;border:2 solid lightsteelblue ;color:black;font:함초롬돋움,11, bold antialias;"/>
+        <Radio id="Radio00" taborder="1" columncount="0" rowcount="0" innerdataset="@ds_order_test_division" codecolumn="data" datacolumn="id" direction="vertical" onitemchanged="Radio00_onitemchanged" position2="absolute l:61 w:86 t:49 h:31" positiontype="position2" style="buttonborder:1px solid lightsteelblue ;color:#f24a00ff;font:함초롬돋움,12, bold antialias;"/>
+        <GroupBox id="GroupBox01" text="발주" position2="absolute l:181 w:282 t:28 h:59" positiontype="position2" style="background:@gradation;border:2 solid lightsteelblue ;color:black;font:함초롬돋움,11, bold antialias;"/>
+        <Button id="Button00" taborder="1" text="현재 전개된 결과 발주 및 재고처리" onclick="Button00_onclick" position2="absolute l:198 w:250 t:48 h:29" positiontype="position2" style="background:@gradation;border:1px solid transparent ;color:#f24a00ff;font:함초롬돋움,10,bold;"/>
+        <Grid id="Grid00" taborder="1" binddataset="gds_orderDialogTemp" useinputpanel="false" autofittype="col" position2="absolute l:44 w:918 t:114 h:340" positiontype="position2" style="background:white;border:1px solid lightsteelblue ;align:center middle;font:함초롬돋움,9,antialias;">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="102"/>
+                <Column size="148"/>
+                <Column size="60"/>
+                <Column size="107"/>
+                <Column size="110"/>
+                <Column size="110"/>
+                <Column size="98"/>
+                <Column size="120"/>
+              </Columns>
+              <Rows>
+                <Row size="35" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head" style="background:@gradation;">
+                <Cell displaytype="normal" style="font:돋움,10, antialias;" text="아이템코드"/>
+                <Cell col="1" displaytype="normal" style="font:돋움,10, antialias;" text="아이템이름"/>
+                <Cell col="2" displaytype="normal" style="font:돋움,10, antialias;" text="단위"/>
+                <Cell col="3" displaytype="normal" style="font:돋움,10, antialias;" text="총발주필요량"/>
+                <Cell col="4" displaytype="normal" style="font:돋움,10, antialias;" text="사용가능재고량"/>
+                <Cell col="5" displaytype="normal" style="font:돋움,10, antialias;" text="실제발주필요량"/>
+                <Cell col="6" displaytype="normal" style="font:돋움,10, antialias;" text="단가"/>
+                <Cell col="7" displaytype="normal" style="font:돋움,10, antialias;" text="합계금액"/>
+              </Band>
+              <Band id="body" style="border:1 solid lightsteelblue ;background:white;">
+                <Cell displaytype="normal" style="background:transparent;background2:transparent;" text="bind:ITEM_CODE"/>
+                <Cell col="1" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:ITEM_NAME"/>
+                <Cell col="2" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:UNIT_OF_MRP"/>
+                <Cell col="3" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:REQUIRED_AMOUNT"/>
+                <Cell col="4" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:STOCK_AMOUNT"/>
+                <Cell col="5" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:CALCULATED_REQUIRED_AMOUNT"/>
+                <Cell col="6" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:STANDARD_UNIT_PRICE"/>
+                <Cell col="7" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:SUM_PRICE"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_order_test_division" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="id" type="STRING" size="256"/>
+          <Column id="data" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="id">현재일자</Col>
+            <Col id="data">todayAsMrpDate</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript4.0"><![CDATA[var day;
+var mrpGatheringNoList;
+
+
+// form onload
+function OrderSimulation_onload(obj:Form, e:LoadEventInfo)
+{
+	mrpGatheringNoList="["+mrpNo.toString()+"]";
+	trace("mrpGatheringNoList : "+mrpGatheringNoList);
+	transaction(
+		"search_order_dialog_list",
+		"svcPurchase::showOrderDialog.do",
+		"",
+		"gds_orderDialogTemp=gds_orderDialogTemp",
+		"mrpGatheringNoList="+mrpGatheringNoList,
+		"callback"
+	);
+}
+
+
+// 발주 등록 일자 체크
+function Radio00_onitemchanged(obj:Radio, e:ItemChangeEventInfo)
+{
+	var now=new Date();
+	var today = now.getFullYear() + "-" +('0' + (now.getMonth() +1 )).slice(-2) + "-" + ('0' + now.getDate()).slice(-2);
+	day=today;
+	trace(day);
+}
+
+
+// 현재 전개된 결과 발주 및 재고처리
+function Button00_onclick(obj:Button,  e:ClickEventInfo)
+{
+	if(day==null){
+		alert("발주등록일자를 선택해주세요"); 
+		return;
+	}else{
+		var rowCnt = gds_orderDialogTemp.rowcount;
+		var msg = "아래품목들에 대해 처리합니다.\n일자 :'"+day+"' \n계속하시겠습니까?";
+		if(confirm(msg)){
+			transaction(
+				"batch_order_dialog_list",
+				"svcPurchase::order.do",
+				"",
+				"",
+				"mrpGatheringNoList="+mrpGatheringNoList,
+				"callback",false
+			);
+		}
+		close("true");
+	}
+}
+
+
+// callback
+function callback(trid , ErrorCode, ErrorMsg){
+	if(trid.indexOf("search")!=-1){
+		if(ErrorCode <0){
+			alert("조회 실패 : " + ErrorMsg);
+		}
+	}else if(trid.indexOf("batch")!=-1){
+		if(ErrorCode <0){
+			alert("데이터 저장 실패 : " + ErrorMsg);
+		}else{
+			alert("발주 성공!");
+			close("true");
+		}
+	}
+}]]></Script>
+  </Form>
+</FDL>

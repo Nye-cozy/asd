@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ADL version="1.1">
+  <TypeDefinition url="default_typedef.xml"/>
+  <GlobalVariables url="globalvars.xml"/>
+  <Application id="XPLAT" codepage="utf-8" language="Korean" loginformurl="" loginformstyle="" windowopeneffect="" windowcloseeffect="" version="" tracemode="" themeid="default.xtheme" onload="application_onload">
+    <Layout>
+      <MainFrame id="mainframe" title="maintitle" defaultfont="" resizable="true" showtitlebar="true" showstatusbar="true" position="absolute 0 0 1500 820">
+        <VFrameSet id="VFrameSet0" separatesize="100,*">
+          <Frames>
+            <ChildFrame id="TopFrame" formurl="Frame::frmTop.xfdl" showtitlebar="false"/>
+            <HFrameSet id="HFrameSet0" separatesize="210,*">
+              <Frames>
+                <ChildFrame id="LeftFrame" formurl="Frame::frmLeft.xfdl" showtitlebar="false" position="absolute 0 0 0 0"/>
+                <FrameSet id="FrameSet0" style="background:transparent;" showcascadetitletext="true" showcascadestatustext="true"/>
+              </Frames>
+            </HFrameSet>
+          </Frames>
+        </VFrameSet>
+      </MainFrame>
+    </Layout>
+    <ScreenInfo/>
+  </Application>
+  <Script type="xscript4.0"><![CDATA[//********************		application onload *********************
+function application_onload(obj:Object, e:LoadEventInfo)
+{
+
+
+	application.mainframe.visible = false;
+	// LoginForm 부터 실행
+	oLoginFormDialog("Loginform","LoginForm","Base::LoginForm.xfdl");
+	
+	var leftForm=application.mainframe.VFrameSet0.HFrameSet0.LeftFrame.form;
+
+	leftForm.ed_deptName.value=g_deptName;
+	leftForm.ed_positionName.value=g_positionName;
+	leftForm.ed_empName.value=g_empName;
+	leftForm.ed_workplaceName.value=g_companyName;
+	
+	
+
+}
+
+
+//*************		화면 실행할 때 로그인 폼부터 뜨게 만들기	***************
+function oLoginFormDialog(sID,sTitle,sUrl){
+   
+   var loginDialog = new ChildFrame(sID,0,0,0,0,sUrl);   
+   loginDialog.showstatusbar        = false;
+   loginDialog.resizable            = false;
+   loginDialog.openalign            = "center middle"; //ChildFrame 뜰때 위치 지정 
+   loginDialog.showcascadetitletext = false; // newForm 상단에 나타나는것 제거!!(text 미포함)
+   loginDialog.showModal(sID);  // 선언 순서 상관 있음 
+
+}
+
+preChild='28'
+//********************		MDL Frame		*********************
+function gfn_Open(sID, sURL, sTitle)
+{
+	var oFrameSet           = application.mainframe.VFrameSet0.HFrameSet0.FrameSet0;
+	var oChildFrame         =new ChildFrame(sID, 10, 10, 1250, 680);
+	
+	oChildFrame.formurl     =sURL;
+	oChildFrame.titletext   =sTitle;
+	oChildFrame.resizable   = true;
+	oFrameSet.removeChild(preChild,oChildFrame);
+	oFrameSet.addChild(sID, oChildFrame);
+	preChild=sID
+	oChildFrame.show();
+}
+
+
+//*************		CommonDialog - childFrame 이름	***************
+function getBindColIdByIndex(grid, index) 
+{
+	var text = "";
+	var columnid = null;
+	
+	// getCellProperty(strBand,nCellIdx,strPropID): 셀의 각 속성 값을 가져오는 메소드;
+	// strBand:  'Head'/'Body'/'Summ'('Summary'); 구하고자 하는 셀의 영역;
+	// nCellIdx: 구하고자 하는 셀의 인덱스;
+	// strPropID:구하고자 하는 셀의 속성명;
+	var subCell = grid.getCellProperty("body", index, "subcell");
+	if ( subCell > 0 )
+	{
+	text = grid.getSubCellProperty("body", index, 0, "text");
+	}
+	else
+	{
+	text = grid.getCellProperty("body", index, "text");
+	}
+
+	if ( text && text.length > 0 )
+	{
+	if ( text.search(/^bind:/) > -1 ) 
+	{
+	columnid = text.replace(/^bind:/, "");
+	}  
+	else if ( text.search(/^BIND\(/) > -1 ) 
+	{  
+	columnid = text.replace(/^BIND\(/, "");
+	columnid = columnid.substr(0, columnid.length-1);
+	} 
+	}
+
+	return columnid;
+}
+
+
+//********************		head - checkBox		*********************
+function headClick(grObj, grClickEventInfo)
+{
+	
+	// 그리드의 전체 셀과 바인드되는 데이터셋의 ID를 설정
+	var dsObj   = eval(grObj.binddataset);
+	// 셀의 각 속성 값을 가져오는 메소드;
+	// Grid.getCellProperty('Head'/'Body'/'Summ',nCellIdx,strPropID);
+	var v_ColId = grObj.getCellProperty("body", grClickEventInfo.cell, "text").replace("bind:", "");
+ 
+	g_isAllGrChecked = (g_isAllGrChecked ? 0 : 1);
+	
+	//trace("g_isAllGrChecked:"+g_isAllGrChecked);
+	// 데이터셋의 이벤트를 발생시킬지 여부를 설정
+	dsObj.enableevent = false;
+
+	
+	for (var i=0; i<dsObj.getRowCount(); i++) {
+		dsObj.setColumn(i, v_ColId, g_isAllGrChecked);
+	}
+	grObj.setCellProperty( "Head", 0, "expr", g_isAllGrChecked);
+	dsObj.enableevent = true;
+	
+}
+
+
+//********************		first - last Date		*********************
+function getFirstLastDate(){
+
+	var value = [];
+	
+	// Date 객체 생성;
+    var now = new Date();
+    // Date 연도 값;
+    var nowYear = now.getYear();
+    // field 시작일, 마지막일;
+    var firstDate, lastDate;
+    
+    var formatDate = 
+		function(date){
+			// Date  월 값;
+			var myMonth = date.getMonth()+1; 
+			// Date 날짜 값;
+			var myWeekDay = date.getDate();
+        
+			// 0~9까지 0+(1~9)
+			var addZero = 
+				function(num){
+					if (num < 10){
+					num = "0"+num;
+					}
+					return num;
+				}
+		//month-day
+        var md = addZero(myMonth)+"-"+addZero(myWeekDay);
+        return md;
+    }
+    
+    // 이해 x
+    firstDate = new Date(now.getYear(),now.getMonth(), 1);
+    lastDate = new Date(now.getYear(),now.getMonth()+1, 0);
+    nowYear += (nowYear < 2000) ? 1900 : 0; 
+    value.push(nowYear+"-"+formatDate(firstDate));
+    value.push(nowYear+"-"+formatDate(lastDate));
+    return value;
+}
+
+
+function getToday(){
+   var d = new Date();
+   var year = d.getFullYear();
+   var month = d.getMonth() + 1;
+   var date = d.getDate();
+   if(month.toString().length==1){
+	month = "0"+month;
+   }
+   if(date.toString().length==1){
+	date = "0"+date;
+   }
+   return(year+"-"+month+"-"+date);
+}
+
+function fn_DateForm(sDate){
+	var ret;
+	if( sDate==null ){
+		return "";
+	}
+	if( sDate.length != 8 ){
+		return "";
+	}
+
+	ret = sDate.substr(0, 4) + "-" + sDate.substr(4, 2)+ "-" + sDate.substr(6, 2);
+	return ret;
+}
+
+
+// open mrp 날자값 20/07/25 -> 2020-07-25
+function fn_dateForm2(pDate){
+   var year = "20"+pDate.substr(0,2);
+   var month = pDate.substr(3,2);
+   var date = pDate.substr(6,2);
+   var rDate = year+"-"+month+"-"+date;
+   return rDate;
+}
+
+]]></Script>
+</ADL>

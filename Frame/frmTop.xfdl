@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.4">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="frmTop" classname="frmTop" inheritanceid="" position="absolute 0 0 1200 100" titletext="New Form">
+    <Layouts>
+      <Layout>
+        <Menu id="Menu00" taborder="0" innerdataset="@gds_menuOption" idcolumn="menu_id" captioncolumn="menu_name" levelcolumn="menu_level" onmenuclick="Menu00_onmenuclick" position2="absolute l:212 w:788 t:23 h:49" positiontype="position2" style="align:center;background:@gradation;color:black;font:함초롬돋움,11,bold antialias;" buttonsize="-1"/>
+        <Static id="Static00" text="물류" position2="absolute l:-14 w:222 t:8 h:79" positiontype="position2" style="color:black;align:center;font:함초롬돋움,48,bold;"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript4.0"><![CDATA[
+
+function Menu00_onmenuclick(obj:Menu, e:MenuClickEventInfo)
+{
+	
+		var sID   =e.id; // menu bar 내부의 선택한 속성 id
+	var sURL  =gds_menuOption.lookup("menu_id", e.id, "menu_url");
+	var sTitle=gds_menuOption.lookup("menu_id", e.id, "menu_name");
+	
+	trace("		@frmTop_URL: "+sURL);
+	// url이 없다. 최소 6자리 x.xfdl
+	if(sURL.length < 1)
+	{
+		alert("no page!!!!!!!!!!!!!!!!!!!!!!2");
+		return;
+	}
+	
+	gfn_Open(sID, sURL, sTitle); //ADL의 Edit Script에 gfn으로 세팅
+}
+
+]]></Script>
+  </Form>
+</FDL>

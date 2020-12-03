@@ -1,0 +1,338 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.4">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="WorkInstruction" classname="WorkInstruction" inheritanceid="" position="absolute 0 0 1250 680" titletext="New Form" onload="WorkInstruction_onload">
+    <Layouts>
+      <Layout>
+        <Tab id="workInstruction" taborder="0" position2="absolute l:14 w:1182 t:30 h:622" positiontype="position2" tabindex="0" scrollbars="autoboth" style="background:white;font:함초롬돋움,10,bold antialias;">
+          <Tabpages>
+            <Tabpage id="tab_workInstruction" text="작업지시" style="anchor:default;background:transparent;">
+              <Layouts>
+                <Layout>
+                  <GroupBox id="GroupBox00" text="작업지시 필요품목 검색 및 작업지시(BY MRP)" position2="absolute l:33 w:456 t:35 h:89" positiontype="position2" style="background:@gradation;border:2 solid lightsteelblue ;color:black;font:함초롬돋움,10,bold antialias;"/>
+                  <Button id="searchWorkInstructionList" taborder="1" text="작업지시 필요목록 조회" onclick="fn_searchWorkInstructionList" position2="absolute l:51 w:190 t:65 h:36" positiontype="position2" style="background:@gradation;border:1px solid transparent ;color:#f24a00ff;font:함초롬돋움,10,bold;"/>
+                  <Button id="instructionSimulation" taborder="1" text="모의 작업지시 (BY MRP)" onclick="fn_simulatingWorkInstruction" position2="absolute l:275 w:190 t:65 h:36" positiontype="position2" style="background:@gradation;border:1px solid transparent ;color:#f24a00ff;font:함초롬돋움,10,bold;"/>
+                  <Grid id="grid_workInstruction" taborder="1" binddataset="gds_workOrderableMrpList" useinputpanel="false" autofittype="col" oncellclick="fn_workInstructionCell_on" position2="absolute l:1 w:1160 t:157 h:374" positiontype="position2" style="align:center middle;font:함초롬돋움,9,antialias;">
+                    <Formats>
+                      <Format id="default">
+                        <Columns>
+                          <Column size="40"/>
+                          <Column size="131"/>
+                          <Column size="125"/>
+                          <Column size="125"/>
+                          <Column size="92"/>
+                          <Column size="105"/>
+                          <Column size="146"/>
+                          <Column size="60"/>
+                          <Column size="77"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                        </Columns>
+                        <Rows>
+                          <Row size="24" band="head"/>
+                          <Row size="24"/>
+                        </Rows>
+                        <Band id="head" style="background:@gradation;">
+                          <Cell displaytype="checkbox" edittype="checkbox"/>
+                          <Cell col="1" displaytype="normal" text="소요량전개번호"/>
+                          <Cell col="2" displaytype="normal" text="주생산계획번호"/>
+                          <Cell col="3" displaytype="normal" text="소요량취합번호"/>
+                          <Cell col="4" displaytype="normal" text="품목분류"/>
+                          <Cell col="5" displaytype="normal" text="품목코드"/>
+                          <Cell col="6" displaytype="normal" text="품목명"/>
+                          <Cell col="7" displaytype="normal" text="단위"/>
+                          <Cell col="8" displaytype="normal" text="필요수량"/>
+                          <Cell col="9" displaytype="normal" text="작업지시기한"/>
+                          <Cell col="10" displaytype="normal" text="작업완료기한"/>
+                        </Band>
+                        <Band id="body" style="background:white;">
+                          <Cell displaytype="checkbox" edittype="checkbox" style="background:transparent;background2:transparent;" text="bind:CHECKED"/>
+                          <Cell col="1" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:MRP_NO"/>
+                          <Cell col="2" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:MPS_NO"/>
+                          <Cell col="3" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:MRP_GATHERING_NO"/>
+                          <Cell col="4" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:ITEM_CLASSIFICATION"/>
+                          <Cell col="5" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:ITEM_CODE"/>
+                          <Cell col="6" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:ITEM_NAME"/>
+                          <Cell col="7" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:UNIT_OF_MRP"/>
+                          <Cell col="8" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:REQUIRED_AMOUNT"/>
+                          <Cell col="9" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:ORDER_DATE"/>
+                          <Cell col="10" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:REQUIRED_DATE"/>
+                        </Band>
+                      </Format>
+                    </Formats>
+                  </Grid>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="tap_workInstruction_presentCondition" text="작업지시현황" style="anchor:default;background:white;" canlayoutchange="fn_layout" ongesture="fn_ges">
+              <Layouts>
+                <Layout>
+                  <GroupBox id="GroupBox00" text="작업지시 현황조회 및 작업완료 등록" position2="absolute l:33 w:377 t:33 h:85" positiontype="position2" style="background:@gradation;border:2 solid lightsteelblue ;color:black;font:함초롬돋움,10,bold antialias;"/>
+                  <Button id="btn_workInstruction_presentCondition" taborder="1" text="작업지시 현황 조회" onclick="fn_workInstruction_presentConditiononclick" position2="absolute l:54 w:154 t:64 h:37" positiontype="position2" style="background:@gradation;border:1px solid transparent ;color:#f24a00ff;font:함초롬돋움,10,bold;"/>
+                  <Button id="Button01" taborder="1" text="작업완료 등록" onclick="fn_workCompletion" position2="absolute l:230 w:154 t:64 h:37" positiontype="position2" style="background:@gradation;border:1px solid transparent ;color:#f24a00ff;font:함초롬돋움,10,bold;"/>
+                  <Grid id="grid_workInstruction_presentCondition" taborder="1" binddataset="gds_workOrderInfo" useinputpanel="false" oncellclick="fn_workInstruction_presentCondition_oncellclick" onenterdown="fn_enter_completiedWork" position2="absolute l:25 w:1114 t:145 h:371" positiontype="position2" style="align:center middle;font:함초롬돋움,9,antialias;">
+                    <Formats>
+                      <Format id="default">
+                        <Columns>
+                          <Column size="40"/>
+                          <Column size="119"/>
+                          <Column size="117"/>
+                          <Column size="118"/>
+                          <Column size="138"/>
+                          <Column size="76"/>
+                          <Column size="88"/>
+                          <Column size="141"/>
+                          <Column size="57"/>
+                          <Column size="91"/>
+                          <Column size="109"/>
+                          <Column size="98"/>
+                          <Column size="61"/>
+                          <Column size="106"/>
+                        </Columns>
+                        <Rows>
+                          <Row size="24" band="head"/>
+                          <Row size="24"/>
+                        </Rows>
+                        <Band id="head" style="background:@gradation;">
+                          <Cell displaytype="normal" edittype="none"/>
+                          <Cell col="1" displaytype="normal" text="작업지시일련번호"/>
+                          <Cell col="2" displaytype="normal" text="소요량전개번호"/>
+                          <Cell col="3" displaytype="normal" text="주생산계획번호"/>
+                          <Cell col="4" displaytype="normal" text="소요량취합번호"/>
+                          <Cell col="5" displaytype="normal" text="품목분류"/>
+                          <Cell col="6" displaytype="normal" text="품목코드"/>
+                          <Cell col="7" displaytype="normal" text="품목명"/>
+                          <Cell col="8" displaytype="normal" text="단위"/>
+                          <Cell col="9" displaytype="normal" text="지시수량"/>
+                          <Cell col="10" displaytype="normal" text="생산공정명"/>
+                          <Cell col="11" displaytype="normal" text="작업장명"/>
+                          <Cell col="12" displaytype="normal" text="완료상태"/>
+                          <Cell col="13" text="작업완료된수량"/>
+                        </Band>
+                        <Band id="body" style="background:white;">
+                          <Cell displaytype="checkbox" edittype="checkbox" style="background:transparent;background2:transparent;" text="bind:CHECKED"/>
+                          <Cell col="1" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:WORK_ORDER_NO"/>
+                          <Cell col="2" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:MRP_NO"/>
+                          <Cell col="3" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:MPS_NO"/>
+                          <Cell col="4" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:MRP_GATHERING_NO"/>
+                          <Cell col="5" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:ITEM_CLASSIFICATION"/>
+                          <Cell col="6" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:ITEM_CODE"/>
+                          <Cell col="7" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:ITEM_NAME"/>
+                          <Cell col="8" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:UNIT_OF_MRP"/>
+                          <Cell col="9" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:REQUIRED_AMOUNT"/>
+                          <Cell col="10" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:PRODUCTION_PROCESS_NAME"/>
+                          <Cell col="11" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:WORK_STIE_NAME"/>
+                          <Cell col="12" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:COMPLETION_STATUS"/>
+                          <Cell col="13" displaytype="text" edittype="text" style="background:transparent;background2:transparent;" text="bind:ACTUAL_COMPLETION_AMOUNT"/>
+                        </Band>
+                      </Format>
+                    </Formats>
+                  </Grid>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="tabpage3" text="생산실적관리" style="anchor:default;background:white;">
+              <Layouts>
+                <Layout>
+                  <GroupBox id="GroupBox00" text="생산실적 조회" position2="absolute l:33 w:185 t:26 h:82" positiontype="position2" style="background:@gradation;border:2 solid lightsteelblue ;color:black;font:함초롬돋움,10,bold antialias;"/>
+                  <Button id="btn_searchProduction" taborder="1" text="생산실적 조회" onclick="fn_searchProduction_onclick" position2="absolute l:61 w:136 t:54 h:37" positiontype="position2" style="background:@gradation;border:1px solid transparent ;color:#f24a00ff;font:함초롬돋움,10,bold;"/>
+                  <Grid id="grid_productionPerformance" taborder="1" binddataset="gds_productionPerformance" useinputpanel="false" autofittype="col" position2="absolute l:33 w:1093 t:131 h:411" positiontype="position2" style="align:center middle;font:함초롬돋움,9,antialias;">
+                    <Formats>
+                      <Format id="default">
+                        <Columns>
+                          <Column size="86"/>
+                          <Column size="125"/>
+                          <Column size="115"/>
+                          <Column size="133"/>
+                          <Column size="67"/>
+                          <Column size="91"/>
+                          <Column size="119"/>
+                          <Column size="46"/>
+                          <Column size="83"/>
+                          <Column size="80"/>
+                          <Column size="67"/>
+                        </Columns>
+                        <Rows>
+                          <Row size="24" band="head"/>
+                          <Row size="24"/>
+                        </Rows>
+                        <Band id="head" style="background:@gradation;">
+                          <Cell displaytype="normal" text="생산완료날짜"/>
+                          <Cell col="1" displaytype="normal" text="작업지시일련번호"/>
+                          <Cell col="2" displaytype="normal" text="주생산계획번호"/>
+                          <Cell col="3" displaytype="normal" text="수주상세일련번호"/>
+                          <Cell col="4" displaytype="normal" text="품목구분"/>
+                          <Cell col="5" displaytype="normal" text="품목코드"/>
+                          <Cell col="6" displaytype="normal" text="품목명"/>
+                          <Cell col="7" displaytype="normal" text="단위"/>
+                          <Cell col="8" displaytype="normal" text="작업지시수량"/>
+                          <Cell col="9" displaytype="normal" text="실제제작수량"/>
+                          <Cell col="10" displaytype="normal" text="공정성공률"/>
+                        </Band>
+                        <Band id="body" style="background:white;cellbackground:white;cellbackground2:white;">
+                          <Cell displaytype="normal" style="background:transparent;background2:transparent;" text="bind:WORK_ORDER_COMPLETION_DATE"/>
+                          <Cell col="1" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:WORK_ORDER_NO"/>
+                          <Cell col="2" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:MPS_NO"/>
+                          <Cell col="3" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:CONTRACT_DETAIL_NO"/>
+                          <Cell col="4" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:ITEM_CLASSIFICATION"/>
+                          <Cell col="5" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:ITEM_CODE"/>
+                          <Cell col="6" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:ITEM_NAME"/>
+                          <Cell col="7" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:UNIT"/>
+                          <Cell col="8" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:WORK_ORDER_AMOUNT"/>
+                          <Cell col="9" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:ACTUAL_COMPLETION_AMOUNT"/>
+                          <Cell col="10" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:WORK_SUCCESS_RATE"/>
+                        </Band>
+                      </Format>
+                    </Formats>
+                  </Grid>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+          </Tabpages>
+        </Tab>
+      </Layout>
+    </Layouts>
+    <Script type="xscript4.0"><![CDATA[
+function WorkInstruction_onload(obj:Form, e:LoadEventInfo)
+{
+	gds_workOrderableMrpList.clearData();
+	gds_workOrderInfo.clearData();
+}
+
+
+function fn_searchWorkInstructionList(obj:Button,  e:ClickEventInfo)
+{
+	transaction(
+				"getWorkInstructionList",
+				"svcProduction::getWorkOrderableMrpList.do",
+				"",
+				"gds_workOrderableMrpList=gds_workOrderableMrpList",
+				"",
+				"fn_callback",
+				false
+				);
+}
+
+
+//모의작업지시
+function fn_simulatingWorkInstruction(obj:Button,  e:ClickEventInfo)
+{
+	// 작업지시 그리드에서 선택한 행 위치
+	var nRow=workInstruction.tab_workInstruction.grid_workInstruction.currentrow;
+	
+	/* show dialog */
+	// 유효성 검사 isChecked
+	var Checked= gds_workOrderableMrpList.getColumn(nRow,"CHECKED");
+	if(Checked == undefined){
+		alert("작업지시 필요목록 조회를 먼저 해주세요");
+	}else{
+		if(Checked != 1){
+			alert("체크해주세요");
+			return;
+		} else{
+			dialog(	"WISimulation",	// 생성될 ChildFrame의 이름
+					"Production::dialog_workInstruction_simulation.xfdl",	// 로딩한 폼의 URL
+					"WorkInstruction",	// ParentFrame
+					{"mrpNo":gds_workOrderableMrpList.getColumn(nRow,"MRP_NO")},// ChildFrame에 추가될 변수 리스트 {변수명:변수값, 변수명:변수값}
+					"",	// ChildFrame에 설정할 속성 리스트 a=b b='c' 
+					300,	// ChildFrame의 position 중 left 값
+					150	// ChildFrame의 position 중 top 값
+					);
+		}
+	}
+	// 체크 해제
+	gds_workOrderableMrpList.setColumn(nRow,"CHECKED","0");
+	
+	// ###################### 새로고침 수정해야함
+}
+
+
+
+function fn_workInstructionCell_on(obj:Grid, e:GridClickEventInfo)
+{
+		/*			체크박스 한 개만 선택하는 if		*/
+	if(e.col == obj.getBindCellIndex("body", "CHECKED")) {
+
+		for(var i = 0; i<obj.rowcount; i++) {
+			if(e.row == i) {
+				// blank
+			} else{
+				gds_workOrderableMrpList.setColumn(i,"CHECKED","0");
+			}
+		}
+	}
+}
+
+//------------------------------------------tabpage2---------------------------------------------------------
+
+//작업지시 현황 조회
+function fn_workInstruction_presentConditiononclick(obj:Button,  e:ClickEventInfo)
+{
+	
+	
+	
+	transaction(
+				"showWorkOrderInfoList",
+				"svcProduction::showWorkOrderInfoList.do",
+				"",
+				"gds_workOrderInfo=gds_workOrderInfo",
+				"",
+				"fn_callback",
+				false
+				);
+}
+
+var workOrderNo;
+
+//셀 체크박스 클릭
+function fn_workInstruction_presentCondition_oncellclick(obj:Grid, e:GridClickEventInfo)
+{
+
+	
+	var yn = gds_workOrderInfo.getColumn(e.row, 0);
+	trace("yn"+yn);
+	if(e.col==0){
+		if(yn=='0'){
+			gds_workOrderInfo.setColumn(e.row,0,'0');
+			workOrderNo=null;
+		}else{
+			gds_workOrderInfo.setColumn(e.row,0,'1');
+			workOrderNo=gds_workOrderInfo.getColumn(e.row, 1);
+		}
+	}
+	trace("workOrderNo"+workOrderNo);
+}
+
+
+//작업지시 현황 그리드 작업완료된수량 적기
+function fn_enter_completiedWork(obj:Grid, e:GridEditEventInfo)
+{
+	var nRow=workInstruction.tap_workInstruction_presentCondition.grid_workInstruction_presentCondition.currentrow;
+	trace("nRow"+nRow);
+	trace(obj.getCellText(0, 12));
+	trace(obj.getCellText(0, 13));
+}
+
+
+//생산실적 조회 버튼 
+function fn_searchProduction_onclick(obj:Button,  e:ClickEventInfo)
+{
+	transaction(
+				"getProductionPerformanceInfoList",
+				"svcProduction::getProductionPerformanceInfoList.do",
+				"",
+				"gds_productionPerformance=gds_productionPerformance",
+				"",
+				"fn_callback",
+				false
+				);
+}
+
+//그리드 문자 입력이 안되서 일단 4차로 등록
+function fn_workCompletion(obj:Button,  e:ClickEventInfo)
+{
+	
+}
+]]></Script>
+  </Form>
+</FDL>

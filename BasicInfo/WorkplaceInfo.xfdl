@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.4">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="CompanyInfo" classname="CompanyInfo" inheritanceid="" position="absolute 0 0 1250 700" titletext="New Form">
+    <Layouts>
+      <Layout>
+        <Grid id="Grid00" taborder="0" useinputpanel="false" position2="absolute l:20 w:1212 t:176 h:388" positiontype="position2" formats="&lt;Formats&gt;&#10;  &lt;Format id=&quot;default&quot;&gt;&#10;    &lt;Columns&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;      &lt;Col size=&quot;80&quot;/&gt;&#10;    &lt;/Columns&gt;&#10;    &lt;Rows&gt;&#10;      &lt;Row band=&quot;head&quot; size=&quot;24&quot;/&gt;&#10;      &lt;Row band=&quot;body&quot; size=&quot;24&quot;/&gt;&#10;    &lt;/Rows&gt;&#10;    &lt;Band id=&quot;head&quot;&gt;&#10;      &lt;Cell col=&quot;0&quot; disptype=&quot;normal&quot; text=&quot;WORKPLACE_CODE&quot;/&gt;&#10;      &lt;Cell col=&quot;1&quot; disptype=&quot;normal&quot; text=&quot;COMPANY_CODE&quot;/&gt;&#10;      &lt;Cell col=&quot;2&quot; disptype=&quot;normal&quot; text=&quot;WORKPLACE_NAME&quot;/&gt;&#10;      &lt;Cell col=&quot;3&quot; disptype=&quot;normal&quot; text=&quot;BUSINESS_LICENSE_NUMBER&quot;/&gt;&#10;      &lt;Cell col=&quot;4&quot; disptype=&quot;normal&quot; text=&quot;CORPORATION_LICENSE_NUMBER&quot;/&gt;&#10;      &lt;Cell col=&quot;5&quot; disptype=&quot;normal&quot; text=&quot;WORKPLACE_CEO_NAME&quot;/&gt;&#10;      &lt;Cell col=&quot;6&quot; disptype=&quot;normal&quot; text=&quot;WORKPLACE_BUSINESS_CONDITIONS&quot;/&gt;&#10;      &lt;Cell col=&quot;7&quot; disptype=&quot;normal&quot; text=&quot;WORKPLACE_BUSINESS_ITEMS&quot;/&gt;&#10;      &lt;Cell col=&quot;8&quot; disptype=&quot;normal&quot; text=&quot;WORKPLACE_ZIP_CODE&quot;/&gt;&#10;      &lt;Cell col=&quot;9&quot; disptype=&quot;normal&quot; text=&quot;WORKPLACE_BASIC_ADDRESS&quot;/&gt;&#10;      &lt;Cell col=&quot;10&quot; disptype=&quot;normal&quot; text=&quot;WORKPLACE_DETAIL_ADDRESS&quot;/&gt;&#10;      &lt;Cell col=&quot;11&quot; disptype=&quot;normal&quot; text=&quot;WORKPLACE_TEL_NUMBER&quot;/&gt;&#10;      &lt;Cell col=&quot;12&quot; disptype=&quot;normal&quot; text=&quot;WORKPLACE_FAX_NUMBER&quot;/&gt;&#10;      &lt;Cell col=&quot;13&quot; disptype=&quot;normal&quot; text=&quot;WORKPLACE_ESTABLISH_DATE&quot;/&gt;&#10;      &lt;Cell col=&quot;14&quot; disptype=&quot;normal&quot; text=&quot;WORKPLACE_OPEN_DATE&quot;/&gt;&#10;      &lt;Cell col=&quot;15&quot; disptype=&quot;normal&quot; text=&quot;WORKPLACE_CLOSE_DATE&quot;/&gt;&#10;      &lt;Cell col=&quot;16&quot; disptype=&quot;normal&quot; text=&quot;IS_MAIN_OFFICE&quot;/&gt;&#10;    &lt;/Band&gt;&#10;    &lt;Band id=&quot;body&quot;&gt;&#10;      &lt;Cell col=&quot;0&quot; disptype=&quot;normal&quot; text=&quot;bind:WORKPLACE_CODE&quot;/&gt;&#10;      &lt;Cell col=&quot;1&quot; disptype=&quot;normal&quot; text=&quot;bind:COMPANY_CODE&quot;/&gt;&#10;      &lt;Cell col=&quot;2&quot; disptype=&quot;normal&quot; text=&quot;bind:WORKPLACE_NAME&quot;/&gt;&#10;      &lt;Cell col=&quot;3&quot; disptype=&quot;normal&quot; text=&quot;bind:BUSINESS_LICENSE_NUMBER&quot;/&gt;&#10;      &lt;Cell col=&quot;4&quot; disptype=&quot;normal&quot; text=&quot;bind:CORPORATION_LICENSE_NUMBER&quot;/&gt;&#10;      &lt;Cell col=&quot;5&quot; disptype=&quot;normal&quot; text=&quot;bind:WORKPLACE_CEO_NAME&quot;/&gt;&#10;      &lt;Cell col=&quot;6&quot; disptype=&quot;normal&quot; text=&quot;bind:WORKPLACE_BUSINESS_CONDITIONS&quot;/&gt;&#10;      &lt;Cell col=&quot;7&quot; disptype=&quot;normal&quot; text=&quot;bind:WORKPLACE_BUSINESS_ITEMS&quot;/&gt;&#10;      &lt;Cell col=&quot;8&quot; disptype=&quot;normal&quot; text=&quot;bind:WORKPLACE_ZIP_CODE&quot;/&gt;&#10;      &lt;Cell col=&quot;9&quot; disptype=&quot;normal&quot; text=&quot;bind:WORKPLACE_BASIC_ADDRESS&quot;/&gt;&#10;      &lt;Cell col=&quot;10&quot; disptype=&quot;normal&quot; text=&quot;bind:WORKPLACE_DETAIL_ADDRESS&quot;/&gt;&#10;      &lt;Cell col=&quot;11&quot; disptype=&quot;normal&quot; text=&quot;bind:WORKPLACE_TEL_NUMBER&quot;/&gt;&#10;      &lt;Cell col=&quot;12&quot; disptype=&quot;normal&quot; text=&quot;bind:WORKPLACE_FAX_NUMBER&quot;/&gt;&#10;      &lt;Cell col=&quot;13&quot; disptype=&quot;normal&quot; text=&quot;bind:WORKPLACE_ESTABLISH_DATE&quot;/&gt;&#10;      &lt;Cell col=&quot;14&quot; disptype=&quot;normal&quot; text=&quot;bind:WORKPLACE_OPEN_DATE&quot;/&gt;&#10;      &lt;Cell col=&quot;15&quot; disptype=&quot;normal&quot; text=&quot;bind:WORKPLACE_CLOSE_DATE&quot;/&gt;&#10;      &lt;Cell col=&quot;16&quot; disptype=&quot;normal&quot; text=&quot;bind:IS_MAIN_OFFICE&quot;/&gt;&#10;    &lt;/Band&gt;&#10;  &lt;/Format&gt;&#10;&lt;/Formats&gt;&#10;" autofittype="none" style="font:함초롬돋움,9,antialias;" binddataset="gds_workplace">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="87"/>
+                <Column size="128"/>
+                <Column size="105"/>
+                <Column size="108"/>
+                <Column size="80"/>
+                <Column size="91"/>
+                <Column size="93"/>
+                <Column size="101"/>
+                <Column size="201"/>
+                <Column size="107"/>
+                <Column size="107"/>
+                <Column size="108"/>
+                <Column size="104"/>
+                <Column size="110"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="사업장코드"/>
+                <Cell col="1" text="사업장명"/>
+                <Cell col="2" text="사업자등록번호"/>
+                <Cell col="3" text="법인등록번호"/>
+                <Cell col="4" text="대표자명"/>
+                <Cell col="5" text="업태"/>
+                <Cell col="6" text="종목"/>
+                <Cell col="7" text="사업장우편번호"/>
+                <Cell col="8" text="사업장기본주소"/>
+                <Cell col="9" text="사업장세부주소"/>
+                <Cell col="10" text="사업장전화번호"/>
+                <Cell col="11" text="사업장팩스번호"/>
+                <Cell col="12" text="사업장 개업년월"/>
+                <Cell col="13" text="사업장 설립년월"/>
+                <Cell col="14" text="본점여부"/>
+              </Band>
+              <Band id="body">
+                <Cell style="align:center;background:transparent;background2:transparent;" text="bind:WORKPLACE_CODE"/>
+                <Cell col="1" style="align:center;background:transparent;background2:transparent;" text="bind:WORKPLACE_NAME"/>
+                <Cell col="2" style="align:center;background:transparent;background2:transparent;" text="bind:BUSINESS_LICENSE_NUMBER"/>
+                <Cell col="3" style="align:center;background:transparent;background2:transparent;" text="bind:CORPORATION_LICENSE_NUMBER"/>
+                <Cell col="4" style="align:center;background:transparent;background2:transparent;" text="bind:WORKPLACE_CEO_NAME"/>
+                <Cell col="5" style="align:center;background:transparent;background2:transparent;" text="bind:WORKPLACE_BUSINESS_CONDITIONS"/>
+                <Cell col="6" style="align:center;background:transparent;background2:transparent;" text="bind:WORKPLACE_BUSINESS_ITEMS"/>
+                <Cell col="7" style="align:center;background:transparent;background2:transparent;" text="bind:WORKPLACE_ZIP_CODE"/>
+                <Cell col="8" style="align:center;background:transparent;background2:transparent;" text="bind:WORKPLACE_BASIC_ADDRESS"/>
+                <Cell col="9" style="align:center;background:transparent;background2:transparent;" text="bind:WORKPLACE_DETAIL_ADDRESS"/>
+                <Cell col="10" style="align:center;background:transparent;background2:transparent;" text="bind:WORKPLACE_TEL_NUMBER"/>
+                <Cell col="11" style="align:center;background:transparent;background2:transparent;" text="bind:WORKPLACE_FAX_NUMBER"/>
+                <Cell col="12" style="align:center;background:transparent;background2:transparent;" text="bind:WORKPLACE_ESTABLISH_DATE"/>
+                <Cell col="13" style="align:center;background:transparent;background2:transparent;" text="bind:WORKPLACE_OPEN_DATE"/>
+                <Cell col="14" style="align:center;background:transparent;background2:transparent;" text="bind:IS_MAIN_OFFICE"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static00" text="사업장 정보" position2="absolute l:20 w:1212 t:123 h:53" positiontype="position2" style="background:@gradation;color:black;font:함초롬돋움,22,bold;" onclick="Static00_onclick"/>
+        <GroupBox id="GroupBox00" text="회사 정보 관리" position2="absolute l:22 w:362 t:31 h:81" positiontype="position2" style="titlealign:topleft;background:@gradation;border:2 solid lightsteelblue ;color:black;font:함초롬돋움,12, bold antialias;"/>
+        <Button id="Button00" taborder="1" text="변경된 사항 저장" position2="absolute l:29 w:209 t:60 h:43" positiontype="position2" style="border:1px solid transparent ;font:함초롬돋움,11,bold;"/>
+        <Button id="Button01" taborder="1" text="일괄저장" position2="absolute l:247 w:121 t:59 h:43" positiontype="position2" style="border:1px solid transparent ;font:함초롬돋움,11,bold;"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript4.0"><![CDATA[]]></Script>
+  </Form>
+</FDL>

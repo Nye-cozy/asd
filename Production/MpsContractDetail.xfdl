@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.4">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="MpsContractDetail" classname="MpsContractDetail" inheritanceid="" position="absolute 0 0 1076 527" titletext="New Form" onload="MpsContractDetail_onload">
+    <Layouts>
+      <Layout>
+        <Button id="btn_addNewMps" taborder="0" text="선택한 수주상세를 MPS에 등록" onclick="btn_addNewMps_onclick" position2="absolute l:771 w:199 t:46 h:34" positiontype="position2" style="background:@gradation;color:#f24a00ff;font:함초롬돋움,9,bold;"/>
+        <GroupBox id="GroupBox00" text="수주상세 검색조건" position="absolute 40 32 251 85" style="background:@gradation;border:2 solid lightsteelblue ;color:black;font:함초롬돋움,12, bold antialias;"/>
+        <Radio id="r_ctDetailDivision" taborder="1" columncount="0" rowcount="0" innerdataset="@ds_MPS_division" codecolumn="data" datacolumn="id" direction="vertical" position="absolute 54 44 282 85" style="color:#f24a00ff;font:함초롬돋움,12, bold antialias;" onitemclick="r_ctDetailDivision_onitemclick"/>
+        <GroupBox id="GroupBox01" text="수주상세 검색" position="absolute 269 27 752 88" style="background:@gradation;border:2 solid lightsteelblue ;color:black;font:함초롬돋움,12, bold antialias;"/>
+        <Calendar id="c_sDate" taborder="1" displaynulltext="시작일" position="absolute 282 46 444 81" style="background:@gradation;color:#f24a00ff;font:함초롬돋움,12, bold antialias;"/>
+        <Calendar id="c_eDate" taborder="1" displaynulltext="종료일" position="absolute 464 46 626 81" style="background:@gradation;color:#f24a00ff;font:함초롬돋움,12, bold antialias;"/>
+        <Button id="btn_search" taborder="1" text="검색" onclick="btn_search_onclick" position="absolute 640 46 740 81" style="background:@gradation;color:#f24a00ff;font:함초롬돋움,12, bold antialias;"/>
+        <Grid id="Grid00" taborder="1" binddataset="gds_contractDetailInMpsAvailable" autoenter="select" useinputpanel="false" oncellclick="Grid00_oncellclick" onheadclick="Grid00_onheadclick" position2="absolute l:23 w:1023 t:120 h:368" positiontype="position2" style="align:center middle;">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="40"/>
+                <Column size="147"/>
+                <Column size="72"/>
+                <Column size="98"/>
+                <Column size="80"/>
+                <Column size="84"/>
+                <Column size="80"/>
+                <Column size="111"/>
+                <Column size="106"/>
+                <Column size="98"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="141"/>
+                <Column size="51"/>
+                <Column size="78"/>
+                <Column size="0"/>
+              </Columns>
+              <Rows>
+                <Row size="35" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="checkbox"/>
+                <Cell col="1" displaytype="normal" style="font:돋움,11, antialias;" text="수주상세일련번호"/>
+                <Cell col="2" displaytype="normal" style="font:돋움,11, antialias;" text="수주유형"/>
+                <Cell col="3" displaytype="normal" style="font:돋움,11, antialias;" text="수주일자"/>
+                <Cell col="4" displaytype="normal" style="font:돋움,11, antialias;" text="견적수량"/>
+                <Cell col="5" displaytype="normal" style="font:돋움,10,antialias;" text="초기납품내역"/>
+                <Cell col="6" displaytype="normal" style="font:돋움,11, antialias;" text="제작수량"/>
+                <Cell col="7" displaytype="normal" style="font:돋움,11, antialias;" text="계획일자"/>
+                <Cell col="8" displaytype="normal" style="font:돋움,11, antialias;" text="출하예정일"/>
+                <Cell col="9" displaytype="normal" style="font:돋움,11, antialias;" text="납기일"/>
+                <Cell col="10" displaytype="normal" style="font:돋움,11, antialias;" text="거래처코드"/>
+                <Cell col="11" displaytype="normal" style="font:돋움,11, antialias;" text="품목코드"/>
+                <Cell col="12" displaytype="normal" style="font:돋움,11, antialias;" text="품목명"/>
+                <Cell col="13" displaytype="normal" style="font:돋움,11, antialias;" text="단위"/>
+                <Cell col="14" displaytype="normal" style="font:돋움,11, antialias;" text="비고"/>
+                <Cell col="15" text="계획구분"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="checkbox" edittype="none" text="bind:DESCRIPTION"/>
+                <Cell col="1" displaytype="normal" text="bind:CONTRACT_DETAIL_NO"/>
+                <Cell col="2" displaytype="normal" text="bind:CONTRACT_TYPE"/>
+                <Cell col="3" displaytype="normal" text="bind:CONTRACT_DATE"/>
+                <Cell col="4" displaytype="normal" text="bind:ESTIMATE_AMOUNT"/>
+                <Cell col="5" displaytype="normal" text="bind:STOCK_AMOUNT_USE"/>
+                <Cell col="6" displaytype="normal" text="bind:PRODUCTION_REQUIREMENT"/>
+                <Cell col="7" displaytype="date" edittype="date" text="bind:MPS_PLAN_DATE" calendardisplaynulltype="none"/>
+                <Cell col="8" displaytype="date" edittype="date" text="bind:SCHEDULED_END_DATE" calendardisplaynulltype="nulltext"/>
+                <Cell col="9" displaytype="normal" text="bind:DUE_DATE_OF_CONTRACT"/>
+                <Cell col="10" displaytype="normal" text="bind:CUSTOMER_CODE"/>
+                <Cell col="11" displaytype="normal" text="bind:ITEM_CODE"/>
+                <Cell col="12" displaytype="normal" text="bind:ITEM_NAME"/>
+                <Cell col="13" displaytype="normal" text="bind:UNIT_OF_CONTRACT"/>
+                <Cell col="14" displaytype="none" text="bind:DESCRIPTION"/>
+                <Cell col="15" text="bind:PLAN_CLASSIFICATION"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_MPS_division" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="id" type="STRING" size="256"/>
+          <Column id="data" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="id">수주일자</Col>
+            <Col id="data">contractDate</Col>
+          </Row>
+          <Row>
+            <Col id="id">납기일</Col>
+            <Col id="data">dueDateOfContract</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript4.0"><![CDATA[
+function MpsContractDetail_onload(obj:Form, e:LoadEventInfo)
+{
+	gds_contractDetailInMpsAvailable.clearData();
+	obj.titletext = "새 MPS등록";
+}
+
+
+//검색 버튼
+function btn_search_onclick(obj:Button,  e:ClickEventInfo)
+{
+	var searchCondition=r_ctDetailDivision.value;
+	var startDate=c_sDate.value;
+	var endDate=c_eDate.value;
+	
+	if(r_ctDetailDivision.value==null){
+		alert("수주상세 검색조건을 선택하시오");
+		return;
+	}else if(startDate==null || endDate==null){
+		alert("날짜를 선택하시오");
+		return;
+	}
+	transaction("searchMps"
+				,"svcProduction::searchContractDetailInMpsAvailable.do"
+				,""
+				,"gds_contractDetailInMpsAvailable=gds_contractDetailInMpsAvailable"
+				,"startDate="+startDate+
+				" endDate="+endDate+
+				" searchCondition="+searchCondition
+				,"fn_callBack"
+				,false
+				);
+		
+}
+//그리드 셀 이벤트 함수
+function Grid00_oncellclick(obj:Grid, e:GridClickEventInfo) //체크되면 yn=0 체크해제하면 yn=1
+{
+		var rowNO = gds_contractDetailInMpsAvailable.rowposition;
+	var yn = gds_contractDetailInMpsAvailable.getColumn(rowNO,"DESCRIPTION");
+
+	if(e.col==0){
+		if(yn==null || yn=="0"){
+			gds_contractDetailInMpsAvailable.setColumn(rowNO,"DESCRIPTION","1");
+		}else{
+			gds_contractDetailInMpsAvailable.setColumn(rowNO,"DESCRIPTION","0");
+		}
+
+	}
+		
+}
+
+
+
+function Grid00_onheadclick(obj:Grid, e:GridClickEventInfo)
+{
+	var size = gds_contractDetailInMpsAvailable.getRowCount();
+	var num = null;
+	var headCheck = obj.getCellProperty('Head',0,'text');
+	if(e.col==0){
+		if(headCheck=='0'|| headCheck==null){
+			num = '1';
+		}else{
+			num = '0';
+		}
+		for(var i=0; i<size; i++){
+			gds_contractDetailInMpsAvailable.setColumn(i,"DESCRIPTION",num);
+		}
+		obj.setCellProperty('Head',0,'text',num);
+	}
+}
+
+
+//수주상세를 mps에 등록
+function btn_addNewMps_onclick(obj:Button,  e:ClickEventInfo)
+{	
+	var dsRow        = gds_contractDetailInMpsAvailable.getRowCount();
+	var checkedRowId = gds_contractDetailInMpsAvailable.findRow( "DESCRIPTION", "1" );
+	
+	var confirmMsg   = "수주상세를 주생산계획에 등록합니다 \r\n 진행하시겠습니까?";
+	trace("checkedRowId"+checkedRowId);
+	
+	//수주체크여부 
+	if(checkedRowId== -1 ){
+		alert("수주를 선택하시오");
+		return;
+	}
+	
+	for(var i=0; i<dsRow;i++){
+		g_isAllGrChecked = gds_contractDetailInMpsAvailable.getColumn(i, "DESCRIPTION");
+		
+		if(g_isAllGrChecked==1){
+			gds_contractDetailInMpsAvailable.setColumn(i,"PLAN_CLASSIFICATION","수주상세");
+			
+			var mpsPlanDate      = gds_contractDetailInMpsAvailable.getColumn(i, "MPS_PLAN_DATE");	//계획일자
+			var scheduledEndDate = gds_contractDetailInMpsAvailable.getColumn(i, "SCHEDULED_END_DATE");	//출하예정일
+		
+			if(mpsPlanDate==null){
+				alert("계획일자를 작성하시오");
+				return;
+			}else if(scheduledEndDate==null){
+				alert("출하예정일을 작성하시오");
+				return;
+			}
+			
+			var strMpsPlanDate = '';
+			var strScheduledEndDate = '';
+			
+			//날짜 형식 바꿔주기 위해 20200922->2020-09-22
+			if(mpsPlanDate.indexOf("-")<0){
+			
+				strMpsPlanDate = strMpsPlanDate + mpsPlanDate.slice(0,4)+"-";
+				strMpsPlanDate = strMpsPlanDate + mpsPlanDate.slice(4,6)+"-";
+				strMpsPlanDate = strMpsPlanDate + mpsPlanDate.slice(6,8);
+				
+				gds_contractDetailInMpsAvailable.setColumn(i,"MPS_PLAN_DATE",strMpsPlanDate);
+				
+			}
+			if(strScheduledEndDate.indexOf("-")<0){
+				strScheduledEndDate = strScheduledEndDate + scheduledEndDate.slice(0,4)+"-";
+				strScheduledEndDate = strScheduledEndDate + scheduledEndDate.slice(4,6)+"-";
+				strScheduledEndDate = strScheduledEndDate + scheduledEndDate.slice(6,8);
+				
+				gds_contractDetailInMpsAvailable.setColumn(i,"SCHEDULED_END_DATE",strScheduledEndDate);
+				
+			}
+			trace("strMpsPlanDate  "+strMpsPlanDate);
+			trace("strScheduledEndDate  "+strScheduledEndDate);
+			
+			
+		
+			
+
+			
+		
+		}
+	
+	}//for문
+	if(confirm(confirmMsg)){
+				alert("transaction go");
+				//if문
+			transaction(
+			"addNewMps",
+			"svcProduction::convertContractDetailToMps.do",
+			"gds_contractDetailInMpsAvailable=gds_contractDetailInMpsAvailable",
+			"",
+			"",
+			"fn_callBack",
+			false
+			);
+			}
+	close("true");
+}
+]]></Script>
+  </Form>
+</FDL>

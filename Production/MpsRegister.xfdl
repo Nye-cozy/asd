@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.4">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="MpsRegister" classname="MpsRegister" inheritanceid="" position="absolute 0 0 1200 588" titletext="New Form" onload="MpsRegister_onload">
+    <Layouts>
+      <Layout>
+        <Grid id="grd_ctDetail" taborder="0" binddataset="gds_mps" useinputpanel="false" autofittype="col" oncellclick="fn_grd_cellclick" position2="absolute l:25 w:1153 t:125 h:415" positiontype="position2" style="background:white;border:1px solid lightsteelblue black;color:black;align:center middle;font:함초롬돋움,9,antialias;">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="126"/>
+                <Column size="73"/>
+                <Column size="145"/>
+                <Column size="79"/>
+                <Column size="130"/>
+                <Column size="38"/>
+                <Column size="113"/>
+                <Column size="69"/>
+                <Column size="104"/>
+                <Column size="102"/>
+                <Column size="72"/>
+                <Column size="32"/>
+              </Columns>
+              <Rows>
+                <Row size="35" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head" style="background:@gradation;cellcolor:black;">
+                <Cell displaytype="normal" style="font:돋움,11, antialias;" text="주생산계획번호"/>
+                <Cell col="1" displaytype="normal" style="font:돋움,11, antialias;" text="계획구분"/>
+                <Cell col="2" displaytype="normal" style="font:돋움,11, antialias;" text="일련번호(수주/판매)"/>
+                <Cell col="3" displaytype="normal" style="font:돋움,11, antialias;" text="품목코드"/>
+                <Cell col="4" displaytype="normal" style="font:돋움,11, antialias;" text="품목명"/>
+                <Cell col="5" displaytype="normal" style="font:돋움,11, antialias;" text="단위"/>
+                <Cell col="6" displaytype="normal" style="font:돋움,11, antialias;" text="계획일자"/>
+                <Cell col="7" displaytype="normal" style="font:돋움,11, antialias;" text="계획수량"/>
+                <Cell col="8" displaytype="normal" style="font:돋움,11, antialias;" text="납기일"/>
+                <Cell col="9" displaytype="normal" style="font:돋움,11, antialias;" text="예정마감일자"/>
+                <Cell col="10" displaytype="normal" style="font:돋움,8, antialias;" text="MRP적용상태"/>
+                <Cell col="11" displaytype="normal" style="font:돋움,11, antialias;" text="비고"/>
+              </Band>
+              <Band id="body" style="cellbackground:transparent;cellbackground2:transparent;">
+                <Cell displaytype="normal" text="bind:MPS_NO"/>
+                <Cell col="1" displaytype="normal" text="bind:MPS_PLAN_CLASSIFICATION"/>
+                <Cell col="2" displaytype="normal" text="bind:CONTRACT_DETAIL_NO"/>
+                <Cell col="3" displaytype="normal" text="bind:ITEM_CODE"/>
+                <Cell col="4" displaytype="normal" text="bind:ITEM_NAME"/>
+                <Cell col="5" displaytype="normal" text="bind:UNIT_OF_MPS"/>
+                <Cell col="6" displaytype="normal" text="bind:MPS_PLAN_DATE"/>
+                <Cell col="7" displaytype="normal" text="bind:MPS_PLAN_AMOUNT"/>
+                <Cell col="8" displaytype="normal" text="bind:DUE_DATE_OF_MPS"/>
+                <Cell col="9" displaytype="normal" text="bind:SCHEDULED_END_DATE"/>
+                <Cell col="10" displaytype="normal" text="bind:MRP_APPLY_STATUS"/>
+                <Cell col="11" displaytype="none" text="bind:DESCRIPTION"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <GroupBox id="GroupBox00" text="MPS 로 등록할 계획 구분" position2="absolute l:25 w:243 t:25 h:70" positiontype="position2" style="titlealign:topcenter;background:transparent;border:2 solid lightsteelblue ;color:black;font:함초롬돋움,12, bold antialias;"/>
+        <GroupBox id="GroupBox01" text="MPS 등록" position2="absolute l:341 w:180 t:25 h:70" positiontype="position2" style="titlealign:topcenter;background:transparent;border:2 solid lightsteelblue ;color:black;font:함초롬돋움,12, bold antialias;"/>
+        <GroupBox id="GroupBox02" text="MPS 검색(By 계획일자)" position2="absolute l:605 w:531 t:25 h:70" positiontype="position2" style="titlealign:topcenter;background:transparent;border:2 solid lightsteelblue ;color:black;font:함초롬돋움,12, bold antialias;"/>
+        <Radio id="r_mpsCdt" taborder="1" columncount="0" rowcount="0" innerdataset="@ds_MpsDivision" codecolumn="data" datacolumn="id" direction="vertical" position2="absolute l:40 w:245 t:48 h:37" positiontype="position2" style="color:#f24a00ff;font:함초롬돋움,12, bold antialias;"/>
+        <Button id="btn_addNewMPS" taborder="1" text="새로운MPS등록" onclick="btn_addNewMPS_onclick" position2="absolute l:361 w:143 t:48 h:32" positiontype="position2" style="background:@gradation;color:#f24a00ff;font:함초롬돋움,12, bold antialias;"/>
+        <Calendar id="c_sDate" taborder="1" displaynulltext="시작일" position2="absolute l:615 w:175 t:47 h:35" positiontype="position2" style="dayfont:Verdana,10,bold antialias;background:transparent;border:1px solid lightsteelblue ;color:#f24a00ff;font:함초롬돋움,12, bold antialias;"/>
+        <Calendar id="c_eDate" taborder="1" displaynulltext="종료일" position2="absolute l:807 w:175 t:47 h:35" positiontype="position2" style="background:transparent;border:1px solid lightsteelblue ;color:#f24a00ff;font:함초롬돋움,12, bold antialias;"/>
+        <Button id="btn_searchMps" taborder="1" text="MPS 조회" onclick="btn_searchMps_onclick" position2="absolute l:1008 w:118 t:47 h:35" positiontype="position2" style="background:@gradation;color:#f24a00ff;font:함초롬돋움,13, bold antialias;"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_MpsDivision" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="id" type="STRING" size="256"/>
+          <Column id="data" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="id">수주상세</Col>
+            <Col id="data">contractDetail</Col>
+          </Row>
+          <Row>
+            <Col id="id">판매계획</Col>
+            <Col id="data">salesPlan</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript4.0"><![CDATA[
+function MpsRegister_onload(obj:Form, e:LoadEventInfo)
+{
+	gds_mps.clearData();
+}
+
+//새로운 MPS등록
+function btn_addNewMPS_onclick(obj:Button,  e:ClickEventInfo)
+{
+	var title;
+	var url;
+	var mpsCondition=r_mpsCdt.value;
+	if(mpsCondition==null || mpsCondition==undefined){
+		alert("MPS 로 등록할 계획을 선택하세요");
+		return;
+	}
+	
+	if(mpsCondition=="contractDetail") {
+		title = "MPS_contractDetail"
+		url = "Production::MpsContractDetail.xfdl","Content_MPS";
+	}else{
+		title = "MPS_salesPlan"
+		url = "Production::MpsSalesPlan.xfdl","Content_MPS";
+	}
+	
+	dialog(
+		title,
+		url,
+		"Content_MPS",
+		{},
+		"showtitlebar=true showstatusbar=false",
+		200,
+		150
+	);
+}
+
+function btn_searchMps_onclick(obj:Button,  e:ClickEventInfo)
+{
+	var startDate=c_sDate.value;//시작일
+	var endDate=c_eDate.value;//종료일
+	
+	if(startDate==undefined ||endDate==undefined){
+		alert("계획일자를 선택하시오");
+		return;
+	}
+	transaction("searchMps"
+				,"svcProduction::searchMpsInfo.do"
+				,""
+				,"gds_mps=gds_mps"
+				,"includeMrpApply=includeMrpApply"+" startDate="+startDate+" endDate="+endDate
+				,"fn_callback"
+				,false);
+}
+]]></Script>
+  </Form>
+</FDL>

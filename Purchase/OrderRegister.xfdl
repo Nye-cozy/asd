@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.4">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="OrderRegister" classname="OrderRegister" inheritanceid="" position="absolute 0 0 1250 680" titletext="New Form" onload="OrderRegister_onload">
+    <Layouts>
+      <Layout>
+        <Tab id="Tab00" taborder="0" position2="absolute l:36 w:1122 t:36 h:572" positiontype="position2" tabindex="0" scrollbars="autoboth" style="border:2 solid lightsteelblue ;color:black;font:함초롬돋움,11, bold antialias;">
+          <Tabpages>
+            <Tabpage id="tabpage1" text="발주" style="anchor:default;background:transparent;">
+              <Layouts>
+                <Layout>
+                  <Grid id="Grid00" taborder="1" binddataset="gds_orderTemp" useinputpanel="false" selecttype="cell" autofittype="col" oncellclick="Tab00_tabpage1_Grid00_oncellclick" onheadclick="Tab00_tabpage1_Grid00_onheadclick" position2="absolute l:28 w:1042 t:110 h:380" positiontype="position2" style="background:white;border:1px solid lightsteelblue ;align:center middle;font:함초롬돋움,9,antialias;">
+                    <Formats>
+                      <Format id="default">
+                        <Columns>
+                          <Column size="40"/>
+                          <Column size="40"/>
+                          <Column size="132"/>
+                          <Column size="80"/>
+                          <Column size="135"/>
+                          <Column size="62"/>
+                          <Column size="97"/>
+                          <Column size="92"/>
+                          <Column size="120"/>
+                          <Column size="126"/>
+                        </Columns>
+                        <Rows>
+                          <Row size="35" band="head"/>
+                          <Row size="30"/>
+                        </Rows>
+                        <Band id="head" style="background:@gradation;">
+                          <Cell/>
+                          <Cell col="1" displaytype="checkbox" edittype="none"/>
+                          <Cell col="2" displaytype="normal" style="font:돋움,10, antialias;" text="소요량취합번호"/>
+                          <Cell col="3" displaytype="normal" style="font:돋움,10, antialias;" text="품목코드"/>
+                          <Cell col="4" displaytype="normal" style="font:돋움,10, antialias;" text="품목명"/>
+                          <Cell col="5" displaytype="normal" style="font:돋움,10, antialias;" text="단위"/>
+                          <Cell col="6" displaytype="normal" style="font:돋움,10, antialias;" text="필요수량"/>
+                          <Cell col="7" displaytype="normal" style="font:돋움,10, antialias;" text="현재고량"/>
+                          <Cell col="8" displaytype="normal" style="font:돋움,10, antialias;" text="발주기한"/>
+                          <Cell col="9" displaytype="normal" style="font:돋움,10, antialias;" text="입고기한"/>
+                        </Band>
+                        <Band id="body" style="cellbackground:white;cellbackground2:white;">
+                          <Cell style="background:transparent;background2:transparent;" text="expr:currow+1"/>
+                          <Cell col="1" displaytype="checkbox" edittype="none" style="background:transparent;background2:transparent;" text="bind:CHECKED"/>
+                          <Cell col="2" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:MRP_GATHERING_NO"/>
+                          <Cell col="3" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:ITEM_CODE"/>
+                          <Cell col="4" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:ITEM_NAME"/>
+                          <Cell col="5" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:UNIT_OF_MRP"/>
+                          <Cell col="6" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:REQUIRED_AMOUNT"/>
+                          <Cell col="7" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:STOCK_AMOUNT"/>
+                          <Cell col="8" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:ORDER_DATE"/>
+                          <Cell col="9" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:REQUIRED_DATE"/>
+                        </Band>
+                      </Format>
+                    </Formats>
+                  </Grid>
+                  <GroupBox id="GroupBox00" text="취합발주 / 발주필요품목검색 (By MRP_G)" position2="absolute l:28 w:677 t:10 h:84" positiontype="position2" style="background:@gradation;border:2 solid lightsteelblue ;color:black;font:함초롬돋움,14, bold antialias;"/>
+                  <Calendar id="Calendar00" taborder="1" displaynulltext="시작일" dateformat="yyyy-MM-dd" position2="absolute l:41 w:142 t:38 h:38" positiontype="position2" style="color:#f24a00ff;font:함초롬돋움,12, bold antialias;"/>
+                  <GroupBox id="GroupBox01" text="임의발주 품목검색/수량입력" position2="absolute l:716 w:361 t:10 h:84" positiontype="position2" style="background:@gradation;border:2 solid lightsteelblue ;color:black;font:함초롬돋움,14, bold antialias;"/>
+                  <Button id="Button03" taborder="1" text="임의 발주" onclick="Tab00_tabpage1_Button03_onclick" position2="absolute l:987 w:69 t:40 h:36" positiontype="position2" style="background:@gradation;border:1px solid transparent ;color:#f24a00ff;font:함초롬돋움,9,bold;"/>
+                  <Calendar id="Calendar01" taborder="1" displaynulltext="종료일" dateformat="yyyy-MM-dd" position2="absolute l:194 w:141 t:38 h:38" positiontype="position2" style="color:#f24a00ff;font:함초롬돋움,12, bold antialias;"/>
+                  <Button id="Button00" taborder="1" text="재고처리 / 발주필요 목록조회" onclick="Tab00_tabpage1_Button00_onclick" position2="absolute l:346 w:183 t:38 h:38" positiontype="position2" style="background:@gradation;border:1px solid transparent ;color:#f24a00ff;font:함초롬돋움,9,bold;"/>
+                  <Button id="Button01" taborder="1" text="모의재고처리 및 취합발주" onclick="Tab00_tabpage1_Button01_onclick" position2="absolute l:534 w:159 t:38 h:38" positiontype="position2" style="background:@gradation;border:1px solid transparent ;color:#f24a00ff;font:함초롬돋움,9,bold;"/>
+                  <Edit id="Edit00" taborder="1" displaynulltext="품목코드 검색" oneditclick="Tab00_tabpage1_Edit00_oneditclick" position2="absolute l:733 w:135 t:39 h:37" positiontype="position2" style="color:#f24a00ff;align:center middle;font:함초롬돋움,12, bold antialias;"/>
+                  <Edit id="Edit01" taborder="1" displaynulltext="수량" oneditclick="fn_itemAmount_oneditclick" position2="absolute l:877 w:99 t:39 h:37" positiontype="position2" style="color:#f24a00ff;align:center middle;font:함초롬돋움,12, bold antialias;"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="tabpage2" text="발주현황" style="anchor:default;background:transparent;">
+              <Layouts>
+                <Layout>
+                  <Grid id="Grid00" taborder="1" binddataset="gds_orderInfo" useinputpanel="false" autofittype="col" position2="absolute l:35 w:1031 t:118 h:397" positiontype="position2" style="border:1px solid lightsteelblue ;align:center middle;font:함초롬돋움,9,antialias;">
+                    <Formats>
+                      <Format id="default">
+                        <Columns>
+                          <Column size="40"/>
+                          <Column size="156"/>
+                          <Column size="93"/>
+                          <Column size="166"/>
+                          <Column size="96"/>
+                          <Column size="90"/>
+                          <Column size="127"/>
+                          <Column size="91"/>
+                        </Columns>
+                        <Rows>
+                          <Row size="35" band="head"/>
+                          <Row size="28"/>
+                        </Rows>
+                        <Band id="head" style="background:@gradation;">
+                          <Cell/>
+                          <Cell col="1" displaytype="normal" style="font:돋움,12, antialias;" text="발주번호"/>
+                          <Cell col="2" displaytype="normal" style="font:돋움,12, antialias;" text="발주날짜"/>
+                          <Cell col="3" displaytype="normal" style="font:돋움,12, antialias;" text="현재상태"/>
+                          <Cell col="4" displaytype="normal" style="font:돋움,12, antialias;" text="발주유형"/>
+                          <Cell col="5" displaytype="normal" style="font:돋움,12, antialias;" text="품목코드"/>
+                          <Cell col="6" displaytype="normal" style="font:돋움,12, antialias;" text="품목명"/>
+                          <Cell col="7" displaytype="normal" style="font:돋움,12, antialias;" text="발주수량"/>
+                        </Band>
+                        <Band id="body" style="border:1 solid lightsteelblue ;background:white;">
+                          <Cell style="background:transparent;background2:transparent;" text="expr:currow+1"/>
+                          <Cell col="1" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:ORDER_NO"/>
+                          <Cell col="2" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:ORDER_DATE"/>
+                          <Cell col="3" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:ORDER_INFO_STATUS"/>
+                          <Cell col="4" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:ORDER_SORT"/>
+                          <Cell col="5" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:ITEM_CODE"/>
+                          <Cell col="6" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:ITEM_NAME"/>
+                          <Cell col="7" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:ORDER_AMOUNT"/>
+                        </Band>
+                      </Format>
+                    </Formats>
+                  </Grid>
+                  <GroupBox id="GroupBox00" text="발주현황조회" position2="absolute l:34 w:543 t:12 h:75" positiontype="position2" style="background:@gradation;border:2 solid lightsteelblue ;color:black;font:함초롬돋움,15, bold antialias;"/>
+                  <Calendar id="Calendar00" taborder="1" displaynulltext="시작일" dateformat="yyyy-MM-dd" position2="absolute l:51 w:176 t:36 h:36" positiontype="position2" style="dayfont:돋움,13, bold antialias;background:@gradation;border:1px solid lightsteelblue ;color:#f24a00ff;font:함초롬돋움,12,bold antialias;"/>
+                  <Calendar id="Calendar01" taborder="1" displaynulltext="종료일" dateformat="yyyy-MM-dd" position2="absolute l:243 w:176 t:36 h:36" positiontype="position2" style="dayfont:돋움,13, bold antialias;background:@gradation;border:1px solid lightsteelblue ;color:#f24a00ff;font:함초롬돋움,12,bold antialias;"/>
+                  <Button id="Button00" taborder="1" text="발주현황조회" onclick="Tab00_tabpage2_Button00_onclick" position2="absolute l:433 w:133 t:36 h:35" positiontype="position2" style="background:@gradation;border:1px solid transparent ;color:#f24a00ff;font:함초롬돋움,13, bold antialias;"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+          </Tabpages>
+        </Tab>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_order" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="MRP_GATHERING_NO" type="STRING" size="256"/>
+          <Column id="ITEM_CODE" type="STRING" size="256"/>
+          <Column id="ITEM_NAME" type="STRING" size="256"/>
+          <Column id="UNIT_OF_MRP" type="STRING" size="256"/>
+          <Column id="REQUIRED_AMOUNT" type="STRING" size="256"/>
+          <Column id="STOCK_AMOUNT" type="STRING" size="256"/>
+          <Column id="ORDER_DATE" type="STRING" size="256"/>
+          <Column id="REQUIRED_DATE" type="STRING" size="256"/>
+          <Column id="CHECKED" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript4.0"><![CDATA[var startDate;
+var endDate;
+var price;
+
+
+// page onload; init;
+function OrderRegister_onload(obj:Form, e:LoadEventInfo)
+{
+	gds_orderTemp.clearData();
+	gds_codeDetail.clearData();
+	gds_item.clearData();
+}
+
+function Tab00_tabpage1_Button00_onclick(obj:Button,  e:ClickEventInfo)
+{
+
+	gds_orderTemp.filter("");
+	startDate=Tab00.tabpage1.Calendar00.text;
+	endDate=Tab00.tabpage1.Calendar01.text;
+	
+	if(startDate.trim()=="" || endDate.trim()==""){
+		alert("날짜를 선택해주세요!"); 
+		return;
+	}else{
+		transaction("search_order_list",
+					"svcPurchase::getOrderList.do",
+					"",
+					"gds_orderTemp=gds_orderTemp",
+					"startDate="+startDate+" endDate="+endDate,
+					"callback");
+	}
+}
+
+function Tab00_tabpage1_Grid00_onheadclick(obj:Grid, e:GridClickEventInfo)
+{
+		var size = gds_orderTemp.getRowCount();
+	var num = null;
+	var headCheck = obj.getCellProperty('Head',1,'text');
+	if(e.col==1){
+		if(headCheck=='0'||headCheck==null){
+			num = '1';
+		}else{
+			num = '0';
+		}
+		for(var i=0; i<size; i++){
+			gds_orderTemp.setColumn(i,"CHECKED",num);
+		}
+		obj.setCellProperty('Head',1,'text',num);
+	}
+}
+
+
+
+function Tab00_tabpage1_Grid00_oncellclick(obj:Grid, e:GridClickEventInfo)
+{
+	var yn = gds_orderTemp.getColumn(e.row, "CHECKED");
+	
+	// e.col == checked
+	if(e.col==1){
+		if(yn==null || yn=='0'){
+			gds_orderTemp.setColumn(e.row,"CHECKED",'1');
+		}else{
+			gds_orderTemp.setColumn(e.row,"CHECKED",'0');
+		}
+	}
+	
+	var gdsRowCount = gds_orderTemp.getRowCount();
+	if(gds_orderTemp.getCaseCount("CHECKED == '1'") == gdsRowCount){
+		obj.setCellProperty('Head',1,'text','1');
+	}else{
+		obj.setCellProperty('Head',1,'text','0');
+	}
+}
+
+function Tab00_tabpage1_Button01_onclick(obj:Button,  e:ClickEventInfo)
+{
+	ds_order.clearData();
+	var mrpNo=[];
+	gds_orderTemp.filter("CHECKED == '1'");
+	var copyNo = ds_order.copyData(gds_orderTemp, true);
+	
+	trace("		@ ds_order.rowcount: "+ds_order.rowcount);
+	for(var n=0; n<ds_order.rowcount; n++){
+	
+		mrpNo.push(ds_order.getColumn(n,"MRP_GATHERING_NO"));
+		
+	}
+	
+	if(ds_order.rowcount==0){
+	
+		alert("발주할 물품을 선택하지 않았습니다."); 
+		return;
+		
+	}else{
+		var order=dialog(
+			"orderSimulation",
+			"Purchase::OrderSimulation.xfdl",
+			"order",
+			{"mrpNo":mrpNo},
+			"showtitlebar=true showstatusbar=false",
+			350,
+			150
+		);
+		gds_orderTemp.filter("");
+		if(order){
+			transaction(
+				"search_order_list",
+				"svcPurchase::getOrderList.do",
+				"",
+				"gds_orderTemp=gds_orderTemp",
+				"startDate="+startDate+" endDate="+endDate,
+				"callback"
+			);
+		}
+	}
+}
+
+
+//발주 현황 조회 버튼
+function Tab00_tabpage2_Button00_onclick(obj:Button,  e:ClickEventInfo)
+{
+	var startDate=Tab00.tabpage2.Calendar00.value;
+	var endDate=Tab00.tabpage2.Calendar01.value;
+	
+	if(startDate==null || endDate==null){
+		alert("날짜를 입력해주세요~"); return;
+	}
+	else{
+		transaction(
+			"search_order_info_list",
+			"svcPurchase::showOrderInfo.do",
+			"",
+			"gds_orderInfo=gds_orderInfo",
+			"startDate="+startDate+" endDate="+endDate,
+			"callback"
+		);
+	}	
+}
+]]></Script>
+  </Form>
+</FDL>

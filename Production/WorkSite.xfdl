@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.4">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="WorkSite" classname="WorkSite" inheritanceid="" position="absolute 0 0 1250 670" titletext="New Form" onload="WorkSite_onload">
+    <Layouts>
+      <Layout>
+        <Tab id="Tab00" taborder="0" position2="absolute l:8 w:1229 t:12 h:588" positiontype="position2" tabindex="0" scrollbars="autoboth" style="background:white;color:black;font:함초롬돋움,10,bold antialias;">
+          <Tabpages>
+            <Tabpage id="tabpage1" text="작업장" style="anchor:default;background:white;">
+              <Layouts>
+                <Layout>
+                  <GroupBox id="GroupBox00" text="작업장조회" position2="absolute l:10 w:160 t:29 h:63" positiontype="position2" style="background:@gradation;border:2 solid lightsteelblue ;color:black;font:함초롬돋움,12, bold antialias;"/>
+                  <GroupBox id="GroupBox01" text="제품 작업장" position2="absolute l:195 w:405 t:29 h:63" positiontype="position2" style="background:@gradation;border:2 solid lightsteelblue ;color:black;font:함초롬돋움,12, bold antialias;"/>
+                  <Button id="Button00" taborder="1" text="작업장 조회" onclick="Tab00_tabpage1_Button00_onclick" position2="absolute l:34 w:111 t:50 h:30" positiontype="position2" style="background:@gradation;border:1px solid transparent ;color:#f24a00ff;font:함초롬돋움,11, bold antialias;"/>
+                  <Button id="Button01" taborder="1" text="원재료 검사" onclick="workSiteAction" position2="absolute l:210 w:111 t:50 h:30" positiontype="position2" style="background:@gradation;border:1px solid transparent ;color:#f24a00ff;font:함초롬돋움,11, bold antialias;"/>
+                  <Button id="Button02" taborder="1" text="제품 제작" onclick="workSiteAction" position2="absolute l:342 w:111 t:50 h:30" positiontype="position2" style="background:@gradation;border:1px solid transparent ;color:#f24a00ff;font:함초롬돋움,11, bold antialias;"/>
+                  <Button id="Button03" taborder="1" text="판매제품 검사" onclick="workSiteAction" position2="absolute l:474 w:111 t:50 h:30" positiontype="position2" style="background:@gradation;border:1px solid transparent ;color:#f24a00ff;font:함초롬돋움,11, bold antialias;"/>
+                  <Grid id="Grid00" taborder="1" binddataset="gds_workOrderInfo" useinputpanel="false" autofittype="col" oncellclick="Tab00_tabpage1_Grid00_oncellclick" position2="absolute l:8 w:1192 t:118 h:411" positiontype="position2" style="border:1px solid lightsteelblue ;align:center middle;font:함초롬돋움,9,antialias;">
+                    <Formats>
+                      <Format id="default">
+                        <Columns>
+                          <Column size="40"/>
+                          <Column size="131"/>
+                          <Column size="112"/>
+                          <Column size="112"/>
+                          <Column size="137"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="133"/>
+                          <Column size="52"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                        </Columns>
+                        <Rows>
+                          <Row size="35" band="head"/>
+                          <Row size="30"/>
+                        </Rows>
+                        <Band id="head" style="background:@gradation;">
+                          <Cell style="font:돋움,10, antialias;" text="선택"/>
+                          <Cell col="1" displaytype="normal" style="font:돋움,10, antialias;" text="작업지시일련번호"/>
+                          <Cell col="2" displaytype="normal" style="font:돋움,10, antialias;" text="소요량전개번호"/>
+                          <Cell col="3" displaytype="normal" style="font:돋움,10, antialias;" text="주생산계획번호"/>
+                          <Cell col="4" displaytype="normal" style="font:돋움,10, antialias;" text="소요량취합번호"/>
+                          <Cell col="5" displaytype="normal" style="font:돋움,10, antialias;" text="품목분류"/>
+                          <Cell col="6" displaytype="normal" style="font:돋움,10, antialias;" text="품목코드"/>
+                          <Cell col="7" displaytype="normal" style="font:돋움,10, antialias;" text="품목명"/>
+                          <Cell col="8" displaytype="normal" style="font:돋움,10, antialias;" text="단위"/>
+                          <Cell col="9" displaytype="normal" style="font:돋움,10, antialias;" text="생산공정명"/>
+                          <Cell col="10" displaytype="normal" style="font:돋움,10, antialias;" text="작업장명"/>
+                          <Cell col="11" displaytype="normal" style="font:돋움,10, antialias;" text="원재료검사"/>
+                          <Cell col="12" displaytype="normal" style="font:돋움,10, antialias;" text="제품제작"/>
+                          <Cell col="13" displaytype="normal" style="font:돋움,10, antialias;" text="제품검사"/>
+                        </Band>
+                        <Band id="body" style="border:1 solid lightsteelblue ;background:white;">
+                          <Cell displaytype="checkbox" edittype="none" style="background:transparent;background2:transparent;" text="bind:CHECKED"/>
+                          <Cell col="1" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:WORK_ORDER_NO"/>
+                          <Cell col="2" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:MRP_NO"/>
+                          <Cell col="3" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:MPS_NO"/>
+                          <Cell col="4" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:MRP_GATHERING_NO"/>
+                          <Cell col="5" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:ITEM_CLASSIFICATION"/>
+                          <Cell col="6" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:ITEM_CODE"/>
+                          <Cell col="7" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:ITEM_NAME"/>
+                          <Cell col="8" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:UNIT_OF_MRP"/>
+                          <Cell col="9" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:PRODUCTION_PROCESS_NAME"/>
+                          <Cell col="10" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:WORK_STIE_NAME"/>
+                          <Cell col="11" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:INSPECTION_STATUS"/>
+                          <Cell col="12" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:PRODUCTION_STATUS"/>
+                          <Cell col="13" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:COMPLETION_STATUS"/>
+                        </Band>
+                      </Format>
+                    </Formats>
+                  </Grid>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="tabpage2" text="작업장로그" style="anchor:default;background:white;">
+              <Layouts>
+                <Layout>
+                  <GroupBox id="GroupBox00" text="작업장 로그" position2="absolute l:24 w:305 t:17 h:63" positiontype="position2" style="background:@gradation;border:2 solid lightsteelblue ;color:black;font:돋움,12, bold antialias;"/>
+                  <Button id="Button00" taborder="1" text="작업장로그 조회" onclick="Tab00_tabpage2_Button00_onclick" position2="absolute l:184 w:132 t:38 h:30" positiontype="position2" style="background:@gradation;border:1px solid transparent ;color:#f24a00ff;font:돋움,12, bold antialias;"/>
+                  <Calendar id="Calendar00" taborder="1" dateformat="yyyy-MM-dd" position="absolute 36 38 175 68" style="background:@gradation;border:1px solid lightsteelblue ;color:#f24a00ff;"/>
+                  <Grid id="Grid00" taborder="1" binddataset="gds_workSiteLog" useinputpanel="false" autofittype="col" oncellclick="Tab00_tabpage1_Grid00_oncellclick" position2="absolute l:24 w:1146 t:94 h:438" positiontype="position2" style="align:center middle;">
+                    <Formats>
+                      <Format id="default">
+                        <Columns>
+                          <Column size="131"/>
+                          <Column size="88"/>
+                          <Column size="117"/>
+                          <Column size="84"/>
+                          <Column size="96"/>
+                          <Column size="359"/>
+                          <Column size="94"/>
+                          <Column size="155"/>
+                        </Columns>
+                        <Rows>
+                          <Row size="35" band="head"/>
+                          <Row size="30"/>
+                        </Rows>
+                        <Band id="head" style="background:@gradation;">
+                          <Cell displaytype="normal" style="font:돋움,10, antialias;" text="작업지시번호"/>
+                          <Cell col="1" style="font:돋움,10, antialias;" text="품목코드"/>
+                          <Cell col="2" style="font:돋움,10, antialias;" text="품목명"/>
+                          <Cell col="3" style="font:돋움,10, antialias;" text="생산공정코드"/>
+                          <Cell col="4" style="font:돋움,10, antialias;" text="생산공정명"/>
+                          <Cell col="5" style="font:돋움,10, antialias;" text="상황"/>
+                          <Cell col="6" style="font:돋움,10, antialias;" text="작업장명"/>
+                          <Cell col="7" style="font:돋움,10, antialias;" text="날짜"/>
+                        </Band>
+                        <Band id="body" style="border:1 solid lightsteelblue ;background:white;">
+                          <Cell displaytype="normal" style="background:transparent;background2:transparent;" text="bind:WORK_ORDER_NO"/>
+                          <Cell col="1" style="background:transparent;background2:transparent;" text="bind:ITEM_CODE"/>
+                          <Cell col="2" style="background:transparent;background2:transparent;" text="bind:ITEM_NAME"/>
+                          <Cell col="3" style="background:transparent;background2:transparent;" text="bind:PRODUCTION_PROCESS_CODE"/>
+                          <Cell col="4" style="background:transparent;background2:transparent;" text="bind:PRODUCTION_PROCESS_NAME"/>
+                          <Cell col="5" style="background:transparent;background2:transparent;" text="bind:REAESON"/>
+                          <Cell col="6" style="background:transparent;background2:transparent;" text="bind:WORK_SITE_NAME"/>
+                          <Cell col="7" style="background:transparent;background2:transparent;" text="bind:WORK_DATE"/>
+                        </Band>
+                      </Format>
+                    </Formats>
+                  </Grid>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+          </Tabpages>
+        </Tab>
+      </Layout>
+    </Layouts>
+    <Script type="xscript4.0"><![CDATA[
+function WorkSite_onload(obj:Form, e:LoadEventInfo)
+{
+	gds_workOrderInfo.clearData();
+	
+	/////////////////////////// 작업장명, 완료상태 조회 안됨. 수정해야한다
+	transaction(
+				"showWorkOrderInfoList",
+				"svcProduction::showWorkOrderInfoList.do",
+				"",
+				"gds_workOrderInfo=gds_workOrderInfo",
+				"",
+				"fn_callback",
+				false
+				);
+}
+
+//작업장 조회 버튼
+function Tab00_tabpage1_Button00_onclick(obj:Button,  e:ClickEventInfo)
+{
+	gds_workOrderInfo.clearData();
+	
+	transaction(
+				"showWorkOrderInfoList",
+				"svcProduction::showWorkOrderInfoList.do",
+				"",
+				"gds_workOrderInfo=gds_workOrderInfo",
+				"",
+				"fn_callback",
+				false
+				);
+}
+
+var workOrderNo;
+
+//그리드 셀 클릭
+function Tab00_tabpage1_Grid00_oncellclick(obj:Grid, e:GridClickEventInfo)
+{
+		
+	if(e.col==0){
+		var yn = gds_workOrderInfo.getColumn(e.row, 0);
+		if(yn=='1'){
+			gds_workOrderInfo.setColumn(e.row,0,'0');
+			workOrderNo=null;
+		}else{
+			gds_workOrderInfo.setColumn(e.row,0,'1');
+			workOrderNo=gds_workOrderInfo.getColumn(e.row, 1);
+		}
+	}
+	trace("workOrderNo"+workOrderNo);
+	
+}
+
+
+//원재료 검사
+function workSiteAction(obj:Button,  e:ClickEventInfo)
+{
+	var eRow = gds_workOrderInfo.findRow( "CHECKED", "1" );
+	var iStat = gds_workOrderInfo.getColumn(eRow,"INSPECTION_STATUS");
+	var pStat = gds_workOrderInfo.getColumn(eRow,"PRODUCTION_STATUS");
+	var cStat = gds_workOrderInfo.getColumn(eRow,"COMPLETION_STATUS");
+	var num = gds_workOrderInfo.getCaseCount("CHECKED == '1'");
+	
+	if(num==0){
+		alert("작업할 제품을 선택해주세요~"); 
+		return;
+	}else if(iStat == "Y" && pStat == "Y" && cStat == "Y"){
+		alert("모든 작업이 끝났습니다. \n 작업완료 등록을 해주세요"); 
+		return;
+	}else if(iStat == "Y" && pStat == "Y" &&  obj.text == "제품 제작"){
+		alert("제품 제작은 끝났습니다 \n 판매제품 검사로 넘어가세요"); 
+		return;
+	}else if(iStat == "Y" && obj.text == "원재료 검사"){ 
+		alert("원재료 검사는 끝났습니다 \n 제품제작으로 넘어가세요"); 
+		return;
+	}
+		
+	if(pStat != "Y" && obj.text == "판매제품 검사"){
+		alert("제품이 제작되지 않았습니다. \r 제품제작 을 해주세요."); 
+		return;
+	}else if(iStat != "Y" && obj.text != "원재료 검사"){ 
+		alert("원재료 검사가 시작되거나 끝나지 않았습니다."); 
+		return;
+	}
+	
+	var query;
+	if(obj.text == "제품 제작"){query = "Production";} 
+	else if(obj.text == "원재료 검사"){ query = "RawMaterials"}
+	else if(obj.text == "판매제품 검사"){ query = "SiteExamine";}
+	
+	var workSiteCourse = query;
+	var workOrderNo = gds_workOrderInfo.getColumn(eRow,"WORK_ORDER_NO");
+	var itemClassIfication = gds_workOrderInfo.getColumn(eRow,"ITEM_CLASSIFICATION");
+	var buttonName = obj.text;
+	
+	var a=dialog(
+		"mod_workplace",
+		"Production::WorkSiteSituation.xfdl",
+		"Content_workplace",
+		{"buttonName":buttonName, "workSiteCourse":query, "workOrderNo":workOrderNo, "itemClassIfication":itemClassIfication},
+		"showtitlebar=true showstatusbar=false",
+		350,
+		150
+	);
+	
+	if(a){
+		Tab00_tabpage1_Button00_onclick();
+		Tab00.tabpage1.Grid00.redraw();
+	}
+}
+
+
+
+//작업장 로그 조회
+function Tab00_tabpage2_Button00_onclick(obj:Button,  e:ClickEventInfo)
+{
+	var workSiteLogDate=Tab00.tabpage2.Calendar00.value;
+	
+	transaction(
+				"showWorkSiteLogList",
+				"svcProduction::workSiteLog.do",
+				"",
+				"gds_workSiteLog=gds_workSiteLog",
+				"workSiteLogDate="+workSiteLogDate,
+				"fn_callback",
+				false
+				);
+}
+]]></Script>
+  </Form>
+</FDL>

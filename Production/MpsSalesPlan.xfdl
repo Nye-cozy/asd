@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.4">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="MpsSalesPlan" classname="MpsSalesPlan" inheritanceid="" position="absolute 0 0 1024 481" titletext="판매" onload="MpsSalesPlan_onload">
+    <Layouts>
+      <Layout>
+        <Radio id="Radio00" taborder="0" columncount="0" rowcount="0" innerdataset="@ds_MPS_division" codecolumn="data" datacolumn="id" direction="vertical" position2="absolute l:41 w:263 t:39 h:36" positiontype="position2" style="color:#f24a00ff;font:함초롬돋움,10,bold;"/>
+        <Calendar id="Calendar00" taborder="1" position2="absolute l:298 w:174 t:39 h:35" positiontype="position2" style="color:#f24a00ff;font:함초롬돋움,9,bold antialias;"/>
+        <Calendar id="Calendar01" taborder="1" position2="absolute l:490 w:174 t:39 h:35" positiontype="position2" style="color:#f24a00ff;font:함초롬돋움,9,bold antialias;"/>
+        <Button id="Button00" taborder="1" text="검색" onclick="Button00_onclick" position2="absolute l:680 w:81 t:40 h:34" positiontype="position2" style="background:@gradation;border:1px solid transparent ;color:#f24a00ff;font:함초롬돋움,10,bold;"/>
+        <Button id="Button01" taborder="1" text="선택한 판매계획을 MPS에 등록" position2="absolute l:776 w:221 t:39 h:35" positiontype="position2" style="background:@gradation;border:1px solid transparent ;color:#f24a00ff;font:함초롬돋움,10,bold;"/>
+        <Grid id="Grid00" taborder="1" binddataset="gds_contractDetailInMpsAvailable" autoenter="select" useinputpanel="false" position2="absolute l:40 w:957 t:100 h:340" positiontype="position2" style="border:1px solid lightsteelblue ;align:center middle;font:함초롬돋움,9,antialias;">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="147"/>
+                <Column size="72"/>
+                <Column size="98"/>
+                <Column size="80"/>
+                <Column size="84"/>
+                <Column size="80"/>
+                <Column size="111"/>
+                <Column size="106"/>
+                <Column size="98"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="157"/>
+                <Column size="62"/>
+                <Column size="113"/>
+                <Column size="40"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head" style="background:#@gradation;">
+                <Cell displaytype="normal" text="수주상세일련번호"/>
+                <Cell col="1" displaytype="normal" text="수주유형"/>
+                <Cell col="2" displaytype="normal" text="수주일자"/>
+                <Cell col="3" displaytype="normal" text="견적수량"/>
+                <Cell col="4" displaytype="normal" text="초기납품내역"/>
+                <Cell col="5" displaytype="normal" text="제작수량"/>
+                <Cell col="6" displaytype="normal" text="계획일자"/>
+                <Cell col="7" displaytype="normal" text="출하예정일"/>
+                <Cell col="8" displaytype="normal" text="납기일"/>
+                <Cell col="9" displaytype="normal" text="거래처코드"/>
+                <Cell col="10" displaytype="normal" text="품목코드"/>
+                <Cell col="11" displaytype="normal" text="품목명"/>
+                <Cell col="12" displaytype="normal" text="단위"/>
+                <Cell col="13" displaytype="normal" text="비고"/>
+                <Cell col="14"/>
+              </Band>
+              <Band id="body" style="background:white;cellbackground:white;cellbackground2:white;">
+                <Cell displaytype="normal" text="bind:CONTRACT_DETAIL_NO"/>
+                <Cell col="1" displaytype="normal" text="bind:CONTRACT_TYPE"/>
+                <Cell col="2" displaytype="normal" text="bind:CONTRACT_DATE"/>
+                <Cell col="3" displaytype="normal" text="bind:ESTIMATE_AMOUNT"/>
+                <Cell col="4" displaytype="normal" text="bind:STOCK_AMOUNT_USE"/>
+                <Cell col="5" displaytype="normal" text="bind:PRODUCTION_REQUIREMENT"/>
+                <Cell col="6" displaytype="normal" edittype="date" text="bind:MPS_PLAN_DATE"/>
+                <Cell col="7" displaytype="normal" edittype="date" text="bind:SCHEDULED_END_DATE"/>
+                <Cell col="8" displaytype="normal" text="bind:DUE_DATE_OF_CONTRACT"/>
+                <Cell col="9" displaytype="normal" text="bind:CUSTOMER_CODE"/>
+                <Cell col="10" displaytype="normal" text="bind:ITEM_CODE"/>
+                <Cell col="11" displaytype="normal" text="bind:ITEM_NAME"/>
+                <Cell col="12" displaytype="normal" text="bind:UNIT_OF_CONTRACT"/>
+                <Cell col="13" displaytype="normal" text="bind:DESCRIPTION"/>
+                <Cell col="14"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_MPS_division" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="id" type="STRING" size="256"/>
+          <Column id="data" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="id">판매계획일</Col>
+            <Col id="data">salesPlanDate</Col>
+          </Row>
+          <Row>
+            <Col id="id">계획마감일</Col>
+            <Col id="data">dueDateOfSales</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript4.0"><![CDATA[
+function MpsSalesPlan_onload(obj:Form, e:LoadEventInfo)
+{
+	obj.titletext="이거 안쓰는 듯"
+	gds_contractDetailInMpsAvailable.clearData();
+}
+
+
+
+function Button00_onclick(obj:Button,  e:ClickEventInfo)
+{
+	
+}
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.4">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="Bom" classname="Bom" inheritanceid="" position="absolute 0 0 1250 650" titletext="New Form">
+    <Layouts>
+      <Layout>
+        <Tab id="Tab00" taborder="0" position2="absolute l:13 w:1099 t:15 h:592" positiontype="position2" onchanged="Tab00_onchanged" tabindex="0" scrollbars="autoboth" dropformat="UNICODETEXT" style="buttonbordertype:round 5 5  lefttop righttop;border:1px solid lightsteelblue ;color:black;font:함초롬돋움,14, bold antialias;">
+          <Tabpages>
+            <Tabpage id="tabpage1" text="BOM 정전개 / 역전개" style="anchor:default;background:white;">
+              <Layouts>
+                <Layout width="1081" height="793">
+                  <Combo id="combo_search_cdt" taborder="1" displaynulltext="BOM 검색조건" innerdataset="ds_BOM_search" codecolumn="data" datacolumn="id" onitemchanged="combo_onitemchanged" position="absolute 261 23 456 66" style="padding:1 1 1 1;border:1px solid lightsteelblue ;color:#f24a00ff;align:center middle;font:함초롬돋움,12, bold antialias;"/>
+                  <Edit id="edit_find_code" taborder="1" displaynulltext="품목코드 검색" oneditclick="edit_find_code" position2="absolute l:490 w:284 t:22 h:45" positiontype="position2" style="border:1px solid lightsteelblue ;color:#f24a00ff;padding:1 1 1 1;align:center middle;font:함초롬돋움,12, bold;"/>
+                  <Button id="btn_searchBOM" taborder="1" text="BOM 조회" onclick="Tab00_tabpage1_btn_searchBOM_onclick" position2="absolute l:835 w:135 t:22 h:45" positiontype="position2" style="background:@gradation;border:1px solid transparent ;color:#f24a00ff;padding:1 1 1 1;font:함초롬돋움,12, bold antialias;"/>
+                  <Grid id="Grid00" taborder="1" binddataset="gds_bomDeploy" useinputpanel="false" autofittype="col" position2="absolute l:19 w:1046 t:89 h:448" positiontype="position2" style="padding:1 1 1 1;border:1px solid lightsteelblue ;font:함초롬돋움,9,antialias;">
+                    <Formats>
+                      <Format id="default">
+                        <Columns>
+                          <Column size="92"/>
+                          <Column size="64"/>
+                          <Column size="95"/>
+                          <Column size="243"/>
+                          <Column size="159"/>
+                          <Column size="43"/>
+                          <Column size="63"/>
+                          <Column size="69"/>
+                          <Column size="67"/>
+                          <Column size="65"/>
+                          <Column size="80"/>
+                        </Columns>
+                        <Rows>
+                          <Row size="35" band="head"/>
+                          <Row size="35"/>
+                        </Rows>
+                        <Band id="head" style="background:@gradation;cellfont:Verdana,10, antialias;">
+                          <Cell text="BOM번호"/>
+                          <Cell col="1" text="BOM레벨"/>
+                          <Cell col="2" text="상위품목코드"/>
+                          <Cell col="3" text="품목코드"/>
+                          <Cell col="4" text="품목명"/>
+                          <Cell col="5" text="단위"/>
+                          <Cell col="6" text="정미수량"/>
+                          <Cell col="7" text="손실율"/>
+                          <Cell col="8" text="필요수량"/>
+                          <Cell col="9" text="리드타임"/>
+                          <Cell col="10" text="비고"/>
+                        </Band>
+                        <Band id="body" style="background:white;cellbackground:white;cellbackground2:white;">
+                          <Cell style="align:center middle;" text="bind:BOM_NO"/>
+                          <Cell col="1" style="align:center middle;" text="bind:BOM_LEVEL"/>
+                          <Cell col="2" style="align:center middle;" text="bind:PARENT_ITEM_CODE"/>
+                          <Cell col="3" displaytype="normal" edittype="none" text="bind:ITEM_CODE" wordwrap="none" expandshow="show" suppressalign="first"/>
+                          <Cell col="4" style="align:center middle;" text="bind:ITEM_NAME"/>
+                          <Cell col="5" style="align:center middle;" text="bind:UNIT_OF_STOCK"/>
+                          <Cell col="6" style="align:center middle;" text="bind:NET_AMOUNT"/>
+                          <Cell col="7" displaytype="number" edittype="normal" style="align:center middle;" text="bind:LOSS_RATE" mask="0.##"/>
+                          <Cell col="8" style="align:center middle;" text="bind:NECESSARY_AMOUNT"/>
+                          <Cell col="9" style="align:center middle;" text="bind:LEAD_TIME"/>
+                          <Cell col="10" style="align:center middle;" text="bind:DESCRIPTION"/>
+                        </Band>
+                      </Format>
+                    </Formats>
+                  </Grid>
+                  <Combo id="combo_item_cf" taborder="1" displaynulltext="품목분류" useinputpanel="false" innerdataset="@ds_BOM_group" codecolumn="data" datacolumn="id" onitemchanged="combo_onitemchanged" position="absolute 50 23 228 66" style="padding:1 1 1 1;border:1px solid lightsteelblue ;color:#f24a00ff;align:center middle;font:함초롬돋움,12, bold antialias;"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="tabpage2" text="BOM 등록/수정" style="anchor:default;background:white;">
+              <Layouts>
+                <Layout>
+                  <Edit id="edit_find_code" taborder="1" displaynulltext="품목코드 검색" oneditclick="edit_find_code" position2="absolute l:273 w:273 t:31 h:41" positiontype="position2" style="border:1px solid lightsteelblue ;color:#f24a00ff;align:center middle;font:돋움,15, bold antialias;"/>
+                  <Button id="btn_searchBOM2" taborder="1" text="BOM 조회" onclick="Tab00_tabpage2_btn_searchBOM2_onclick" position2="absolute l:562 w:132 t:26 h:47" positiontype="position2" style="background:@gradation;border:1px solid transparent ;color:#f24a00ff;font:돋움,14, bold antialias;"/>
+                  <Button id="btn_addRow" taborder="1" text="새로운항목추가" onclick="Tab00_tabpage2_btn_addRow_onclick" position2="absolute l:726 w:155 t:26 h:47" positiontype="position2" style="background:@gradation;border:1px solid transparent ;color:#f24a00ff;font:돋움,14,bold antialias;"/>
+                  <Button id="btn_batchAll" taborder="1" text="일괄저장" onclick="Tab00_tabpage2_btn_batchAll_onclick" position2="absolute l:914 w:132 t:26 h:47" positiontype="position2" style="background:@gradation;border:1px solid transparent ;color:#f24a00ff;font:돋움,14,bold antialias;"/>
+                  <Grid id="Grid00" taborder="1" binddataset="gds_bomInfo" useinputpanel="false" selecttype="cell" autofittype="col" oncellclick="Tab00_tabpage2_Grid00_oncellclick" onheadclick="Tab00_tabpage2_Grid00_onheadclick" ontextchanged="Tab00_tabpage2_Grid00_ontextchang" position2="absolute l:56 w:984 t:107 h:397" positiontype="position2" style="border:1px solid lightsteelblue ;font:Verdana,9,antialias;">
+                    <Formats>
+                      <Format id="default">
+                        <Columns>
+                          <Column size="52"/>
+                          <Column size="95"/>
+                          <Column size="101"/>
+                          <Column size="105"/>
+                          <Column size="210"/>
+                          <Column size="73"/>
+                          <Column size="158"/>
+                        </Columns>
+                        <Rows>
+                          <Row size="35" band="head"/>
+                          <Row size="35"/>
+                        </Rows>
+                        <Band id="head" style="background:@gradation;">
+                          <Cell displaytype="normal" style="font:돋움,10,antialias;" text="삭제"/>
+                          <Cell col="1" style="font:돋움,10,antialias;" text="출력순서 지정"/>
+                          <Cell col="2" style="font:돋움,10,antialias;" text="품목구분"/>
+                          <Cell col="3" style="font:돋움,10,antialias;" text="품목코드"/>
+                          <Cell col="4" style="font:돋움,10,antialias;" text="품목명"/>
+                          <Cell col="5" style="font:돋움,10,antialias;" text="정미수량"/>
+                          <Cell col="6" style="font:돋움,10,antialias;" text="비고"/>
+                        </Band>
+                        <Band id="body" style="background:white;cellbackground:white;cellbackground2:white;">
+                          <Cell displaytype="checkbox" text="bind:DESCRIPTION"/>
+                          <Cell col="1" displaytype="text" edittype="text" text="bind:NO"/>
+                          <Cell col="2" displaytype="text" edittype="readonly" text="bind:ITEM_CLASSIFICATION_NAME"/>
+                          <Cell col="3" displaytype="text" edittype="readonly" text="bind:ITEM_CODE"/>
+                          <Cell col="4" displaytype="text" edittype="readonly" text="bind:ITEM_NAME"/>
+                          <Cell col="5" displaytype="text" edittype="normal" text="bind:NET_AMOUNT"/>
+                          <Cell col="6" displaytype="none" edittype="normal" text="bind:DESCRIPTION"/>
+                        </Band>
+                      </Format>
+                    </Formats>
+                  </Grid>
+                  <Combo id="combo_item_cf" taborder="1" displaynulltext="품목분류" innerdataset="ds_BOM_register" codecolumn="data" datacolumn="id" onitemchanged="combo_onitemchanged" position="absolute 64 31 242 74" style="border:1px solid lightsteelblue ;color:#f24a00ff;align:center middle;font:돋움,15, bold antialias;"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+          </Tabpages>
+        </Tab>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_BOM_group" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="id" type="STRING" size="256"/>
+          <Column id="data" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="id">완제품</Col>
+            <Col id="data">IT-CI</Col>
+          </Row>
+          <Row>
+            <Col id="id">반제품</Col>
+            <Col id="data">IT-SI</Col>
+          </Row>
+          <Row>
+            <Col id="id">원재료</Col>
+            <Col id="data">IT-MA</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="Dataset01" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false"/>
+      <Dataset id="Dataset02" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false"/>
+      <Dataset id="Dataset03" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false"/>
+    </Objects>
+  </Form>
+</FDL>

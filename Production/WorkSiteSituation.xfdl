@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.4">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="WorkSiteSituation" classname="WorkSiteSituation" inheritanceid="" position="absolute 0 0 1250 450" titletext="New Form" onload="WorkSiteSituation_onload">
+    <Layouts>
+      <Layout>
+        <GroupBox id="GroupBox00" text="완료버튼" position2="absolute l:40 w:166 t:14 h:66" positiontype="position2" style="background:@gradation;border:2 solid lightsteelblue ;color:black;font:함초롬돋움,12, bold antialias;"/>
+        <Button id="Button00" taborder="1" text="검사 및 제작완료" onclick="Button00_onclick" position2="absolute l:60 w:125 t:38 h:28" positiontype="position2" style="background:@gradation;border:1px solid transparent ;color:#f24a00ff;font:함초롬돋움,10, bold antialias;"/>
+        <Grid id="Grid00" taborder="1" binddataset="gds_workSiteSimulation" useinputpanel="false" position2="absolute l:24 w:1178 t:99 h:309" positiontype="position2" style="border:1px solid lightsteelblue ;align:center middle;font:함초롬돋움,9,antialias;">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="126"/>
+                <Column size="135"/>
+                <Column size="125"/>
+                <Column size="89"/>
+                <Column size="89"/>
+                <Column size="91"/>
+                <Column size="140"/>
+                <Column size="85"/>
+                <Column size="91"/>
+                <Column size="122"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="35" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head" style="background:@gradation;">
+                <Cell displaytype="normal" style="font:돋움,10, antialias;" text="작업지시번호"/>
+                <Cell col="1" displaytype="normal" style="font:돋움,10, antialias;" text="소요량전개번호"/>
+                <Cell col="2" displaytype="normal" style="font:돋움,10, antialias;" text="주생산계획번호"/>
+                <Cell col="3" displaytype="normal" style="font:돋움,10, antialias;" text="작업장명"/>
+                <Cell col="4" displaytype="normal" style="font:돋움,10, antialias;" text="제작품목분류"/>
+                <Cell col="5" displaytype="normal" style="font:돋움,10, antialias;" text="제작품목코드"/>
+                <Cell col="6" displaytype="normal" style="font:돋움,10, antialias;" text="제작품목명"/>
+                <Cell col="7" displaytype="normal" style="font:돋움,10, antialias;" text="작업품목분류"/>
+                <Cell col="8" displaytype="normal" style="font:돋움,10, antialias;" text="작업품목코드"/>
+                <Cell col="9" displaytype="normal" style="font:돋움,10, antialias;" text="작업품목명"/>
+                <Cell col="10" displaytype="normal" style="font:돋움,10, antialias;" text="작업량"/>
+              </Band>
+              <Band id="body" style="background:white;cellbackground:white;cellbackground2:white;">
+                <Cell displaytype="normal" text="bind:WORK_ORDER_NO"/>
+                <Cell col="1" displaytype="normal" text="bind:MRP_NO"/>
+                <Cell col="2" displaytype="normal" text="bind:MPS_NO"/>
+                <Cell col="3" displaytype="normal" text="bind:WORK_SIETE_NAME"/>
+                <Cell col="4" displaytype="normal" text="bind:WD_ITEM"/>
+                <Cell col="5" displaytype="normal" text="bind:PARENT_ITEM_CODE"/>
+                <Cell col="6" displaytype="normal" text="bind:PARENT_ITEM_NAME"/>
+                <Cell col="7" displaytype="normal" text="bind:ITEM_CLASS_IFICATION"/>
+                <Cell col="8" displaytype="normal" text="bind:ITEM_CODE"/>
+                <Cell col="9" displaytype="normal" text="bind:ITEM_NAME"/>
+                <Cell col="10" displaytype="normal" text="bind:REQUIRED_AMOUNT"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Script type="xscript4.0"><![CDATA[
+function WorkSiteSituation_onload(obj:Form, e:LoadEventInfo)
+{	
+	trace("workSiteCourse"+workSiteCourse);
+	trace("workOrderNo"+workOrderNo);
+	trace("itemClassIfication"+itemClassIfication);
+	transaction("searchWorkSiteSituation", 
+				"svcProduction::showWorkSiteSituation.do", 
+				"", 
+				"gds_workSiteSimulation=gds_workSiteSimulation", 
+				"workSiteCourse='"+workSiteCourse+"' workOrderNo='"+workOrderNo+"' itemClassIfication='"+itemClassIfication+"'", 
+				"callback" );
+}
+
+function callback(trid , ErrorCode, ErrorMsg){
+
+}
+
+//검사 완료 버튼
+function Button00_onclick(obj:Button,  e:ClickEventInfo)
+{
+	var today = getToday();
+	var itemCodeList=[];
+	var workOrderNo=gds_workSiteSimulation.getColumn(0,"WORK_ORDER_NO");
+	var itemCode=gds_workSiteSimulation.getColumn(0,"PARENT_ITEM_CODE");
+	
+	for(var n=0; n<gds_workSiteSimulation.rowcount; n++){
+		itemCodeList.push(gds_workSiteSimulation.getColumn(n,"ITEM_CODE"));
+	}
+	
+	var itemCodeListstr="["+itemCodeList.toString()+"]";
+	var confirmMsg = "완료날짜 : "+today+"\n"+buttonName+" : "+gds_workSiteSimulation.rowcount+"가지"+
+					 "\n"+gds_workSiteSimulation.getColumn(0,"WD_ITEM")+" : "+
+					 gds_workSiteSimulation.getColumn(0,"PARENT_ITEM_NAME")+
+					 "를 제작하기 위해 \n 작업을 하시겠습니까?"
+	if ( confirm(confirmMsg) ){
+		transaction("batchWorkCompletion",
+					"svcProduction::workCompletion.do",
+					"",
+					"",
+					"itemCodeList="+itemCodeListstr+" workOrderNo="+workOrderNo+" itemCode="+itemCode,
+					"callback",
+					false);
+	}
+	close("true");
+}
+]]></Script>
+  </Form>
+</FDL>

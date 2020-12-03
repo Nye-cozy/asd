@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.4">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="StockWarehouse" classname="StockWarehouse" inheritanceid="" position="absolute 0 0 1024 500" titletext="New Form" onload="StockWarehouse_onload">
+    <Layouts>
+      <Layout>
+        <GroupBox id="GroupBox00" text="체크리스트 입고" position2="absolute l:28 w:276 t:22 h:71" positiontype="position2" style="background:@gradation;border:2 solid lightsteelblue ;color:black;font:함초롬돋움,12, bold antialias;"/>
+        <Button id="Button00" taborder="1" text="현재 체크된 발주품목 입고" onclick="Button00_onclick" position2="absolute l:45 w:239 t:47 h:31" positiontype="position2" style="background:@gradation;border:1px solid transparent ;color:#f24a00ff;font:함초롬돋움,12, bold antialias;"/>
+        <Grid id="Grid00" taborder="1" binddataset="gds_orderInfo" useinputpanel="false" autofittype="col" onheadclick="Grid00_onheadclick" position2="absolute l:27 w:967 t:112 h:353" positiontype="position2" style="border:1px solid lightsteelblue ;align:center middle;font:함초롬돋움,9,antialias;">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="40"/>
+                <Column size="175"/>
+                <Column size="110"/>
+                <Column size="111"/>
+                <Column size="101"/>
+                <Column size="80"/>
+                <Column size="145"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="35" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head" style="background:@gradation;">
+                <Cell displaytype="checkbox" edittype="checkbox"/>
+                <Cell col="1" displaytype="normal" style="font:돋움,12, antialias;" text="발주번호"/>
+                <Cell col="2" displaytype="normal" style="font:돋움,12, antialias;" text="발주날짜"/>
+                <Cell col="3" displaytype="normal" style="font:돋움,12, antialias;" text="상태"/>
+                <Cell col="4" displaytype="normal" style="font:돋움,12, antialias;" text="발주구분"/>
+                <Cell col="5" displaytype="normal" style="font:돋움,12, antialias;" text="품목코드"/>
+                <Cell col="6" displaytype="normal" style="font:돋움,12, antialias;" text="품목명"/>
+                <Cell col="7" displaytype="normal" style="font:돋움,12, antialias;" text="수량"/>
+              </Band>
+              <Band id="body" style="border:1 solid lightsteelblue ;background:white;">
+                <Cell displaytype="checkbox" edittype="checkbox" style="background:transparent;background2:transparent;" text="bind:CHECKED"/>
+                <Cell col="1" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:ORDER_NO"/>
+                <Cell col="2" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:ORDER_DATE"/>
+                <Cell col="3" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:ORDER_INFO_STATUS"/>
+                <Cell col="4" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:ORDER_SORT"/>
+                <Cell col="5" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:ITEM_CODE"/>
+                <Cell col="6" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:ITEM_NAME"/>
+                <Cell col="7" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:ORDER_AMOUNT"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Script type="xscript4.0"><![CDATA[
+function StockWarehouse_onload(obj:Form, e:LoadEventInfo)
+{
+	obj.titletext="입고리스트"
+	
+	
+	transaction("StockWareHouse",
+				"svcPurchase::searchOrderInfoListOnDelivery.do",
+				"",
+				"gds_orderInfo=gds_orderInfo",
+				"",
+				"callback");
+}
+
+function callback(trid , ErrorCode, ErrorMsg){
+
+}
+
+//전체 체크박스 
+function Grid00_onheadclick(obj:Grid, e:GridClickEventInfo)
+{
+	var size = gds_orderInfo.getRowCount();
+	var num = null;
+	var headCheck = obj.getCellProperty('Head',0,'text');
+	if(e.col==0){
+		if(headCheck=='0'||headCheck==null){
+			num = '1';
+		}else{
+			num = '0';
+		}
+		for(var i=0; i<size; i++){
+			gds_orderInfo.setColumn(i,"CHECKED",num);
+		}
+		obj.setCellProperty('Head',0,'text',num);
+	}
+}
+
+
+//입고 버튼
+function Button00_onclick(obj:Button,  e:ClickEventInfo)
+{
+	var orderNo=[];
+	for(var n=0; n<gds_orderInfo.rowcount; n++){
+		if(gds_orderInfo.getColumn(n,"CHECKED")=="1"){
+			orderNo.push(gds_orderInfo.getColumn(n,"ORDER_NO"));
+		}
+	}
+	var orderNoList="["+orderNo.toString()+"]";
+	
+	if(confirm("현재 체크된 발주 품목을 입고하시겠습니까?")){
+	transaction("stock_warehousing",
+				"svcPurchase::warehousing.do",
+				"",
+				"",
+				"orderNoList="+orderNoList,
+				"callback",false);
+	close("true");
+	}
+}
+]]></Script>
+  </Form>
+</FDL>

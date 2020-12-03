@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.4">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="StockInfo" classname="StockInfo" inheritanceid="" position="absolute 0 0 1250 680" titletext="New Form" onload="StockInfo_onload">
+    <Layouts>
+      <Layout>
+        <Tab id="Tab00" taborder="0" position2="absolute l:32 w:1131 t:28 h:588" positiontype="position2" tabindex="0" scrollbars="autoboth" style="background:transparent;color:black;font:함초롬돋움,13, bold antialias;">
+          <Tabpages>
+            <Tabpage id="tabpage1" text="재고" style="anchor:default;background:transparent;">
+              <Layouts>
+                <Layout>
+                  <Button id="Button00" taborder="1" text="입고" onclick="Tab00_tabpage1_Button00_onclick" position2="absolute l:970 w:125 t:14 h:36" positiontype="position2" style="background:@gradation;border:1px solid transparent ;color:#f24a00ff;font:함초롬돋움,12, bold antialias;"/>
+                  <Grid id="Grid00" taborder="1" binddataset="gds_stock" useinputpanel="false" autofittype="col" position2="absolute l:20 w:1075 t:63 h:406" positiontype="position2" style="background:white;border:1px solid lightsteelblue ;align:center middle;font:함초롬돋움,9,antialias;">
+                    <Formats>
+                      <Format id="default">
+                        <Columns>
+                          <Column size="93"/>
+                          <Column size="94"/>
+                          <Column size="158"/>
+                          <Column size="66"/>
+                          <Column size="94"/>
+                          <Column size="80"/>
+                          <Column size="119"/>
+                          <Column size="114"/>
+                          <Column size="114"/>
+                        </Columns>
+                        <Rows>
+                          <Row size="30" band="head"/>
+                          <Row size="24"/>
+                        </Rows>
+                        <Band id="head" style="background:@gradation;">
+                          <Cell displaytype="normal" style="font:돋움,12,antialias;" text="창고코드"/>
+                          <Cell col="1" displaytype="normal" style="font:돋움,12,antialias;" text="품목코드"/>
+                          <Cell col="2" displaytype="normal" style="font:돋움,12,antialias;" text="품목명"/>
+                          <Cell col="3" displaytype="normal" style="font:돋움,12,antialias;" text="단위"/>
+                          <Cell col="4" displaytype="normal" style="font:돋움,12,antialias;" text="안전재고량"/>
+                          <Cell col="5" displaytype="normal" style="font:돋움,12,antialias;" text="재고량"/>
+                          <Cell col="6" displaytype="normal" style="font:돋움,12,antialias;" text="입고예정재고량"/>
+                          <Cell col="7" displaytype="normal" style="font:돋움,12,antialias;" text="투입예정재고량"/>
+                          <Cell col="8" displaytype="normal" style="font:돋움,12,antialias;" text="납품예정재고량"/>
+                        </Band>
+                        <Band id="body" style="border:1 solid lightsteelblue ;background:white;">
+                          <Cell displaytype="normal" style="background:transparent;background2:transparent;" text="bind:WAREHOUSE_CODE"/>
+                          <Cell col="1" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:ITEM_CODE"/>
+                          <Cell col="2" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:ITEM_NAME"/>
+                          <Cell col="3" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:UNIT_OF_STOCK"/>
+                          <Cell col="4" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:SAFETY_ALLOWANCE_AMOUNT"/>
+                          <Cell col="5" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:STOCK_AMOUNT"/>
+                          <Cell col="6" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:ORDER_AMOUNT"/>
+                          <Cell col="7" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:INPUT_AMOUNT"/>
+                          <Cell col="8" displaytype="normal" style="background:transparent;background2:transparent;" text="bind:DELIVERY_AMOUNT"/>
+                        </Band>
+                      </Format>
+                    </Formats>
+                  </Grid>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="tabpage2" text="재고로그" style="anchor:default;background:transparent;">
+              <Layouts>
+                <Layout>
+                  <Calendar id="Calendar00" taborder="1" displaynulltext="시작일" dateformat="yyyy-MM-dd" position2="absolute l:22 w:173 t:20 h:45" positiontype="position2" style="background:@gradation;border:1px solid lightsteelblue ;color:#f24a00ff;font:함초롬돋움,12, bold antialias;"/>
+                  <Calendar id="Calendar01" taborder="1" displaynulltext="종료일" dateformat="yyyy-MM-dd" position2="absolute l:222 w:173 t:20 h:45" positiontype="position2" style="background:@gradation;border:1px solid lightsteelblue ;color:#f24a00ff;font:함초롬돋움,12, bold antialias;"/>
+                  <Button id="Button00" taborder="1" text="조회" onclick="Tab00_tabpage2_Button00_onclick" position2="absolute l:432 w:130 t:18 h:47" positiontype="position2" style="background:@gradation;border:1px solid transparent ;color:#f24a00ff;font:함초롬돋움,13, bold antialias;"/>
+                  <Grid id="Grid00" taborder="1" binddataset="gds_stockLog" useinputpanel="false" autofittype="col" position2="absolute l:21 w:1058 t:99 h:634" positiontype="position2" style="border:1px solid lightsteelblue ;font:함초롬돋움,10,antialias;">
+                    <Formats>
+                      <Format id="default">
+                        <Columns>
+                          <Column size="40"/>
+                          <Column size="160"/>
+                          <Column size="101"/>
+                          <Column size="127"/>
+                          <Column size="59"/>
+                          <Column size="100"/>
+                          <Column size="128"/>
+                          <Column size="230"/>
+                        </Columns>
+                        <Rows>
+                          <Row size="30" band="head"/>
+                          <Row size="35" band="head"/>
+                          <Row size="30"/>
+                        </Rows>
+                        <Band id="head" style="background:@gradation;">
+                          <Cell colspan="8" style="background:silver;font:돋움,11, antialias;" text="재고기록"/>
+                          <Cell row="1"/>
+                          <Cell row="1" col="1" style="font:돋움,10, antialias;" text="로그날짜"/>
+                          <Cell row="1" col="2" style="font:돋움,10, antialias;" text="품목코드"/>
+                          <Cell row="1" col="3" style="font:돋움,10, antialias;" text="품목명"/>
+                          <Cell row="1" col="4" style="font:돋움,10, antialias;" text="수량"/>
+                          <Cell row="1" col="5" style="font:돋움,10, antialias;" text="사유"/>
+                          <Cell row="1" col="6" style="font:돋움,10, antialias;" text="cause"/>
+                          <Cell row="1" col="7" style="font:돋움,10, antialias;" text="effect"/>
+                        </Band>
+                        <Band id="body" style="border:1 solid lightsteelblue ;background:white;">
+                          <Cell displaytype="text" style="background:transparent;background2:transparent;" expr="expr:currow + 1"/>
+                          <Cell col="1" displaytype="text" style="background:transparent;background2:transparent;" text="bind:LOG_DATE"/>
+                          <Cell col="2" displaytype="text" style="background:transparent;background2:transparent;" text="bind:ITEM_CODE"/>
+                          <Cell col="3" displaytype="text" style="background:transparent;background2:transparent;" text="bind:ITEM_NAME"/>
+                          <Cell col="4" displaytype="text" style="background:transparent;background2:transparent;" text="bind:AMOUNT"/>
+                          <Cell col="5" displaytype="text" style="background:transparent;background2:transparent;" text="bind:REASON"/>
+                          <Cell col="6" displaytype="text" style="background:transparent;background2:transparent;" text="bind:CAUSE"/>
+                          <Cell col="7" displaytype="text" style="background:transparent;background2:transparent;" text="bind:EFFECT"/>
+                        </Band>
+                      </Format>
+                    </Formats>
+                  </Grid>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+          </Tabpages>
+        </Tab>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_order_division" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="id" type="STRING" size="256"/>
+          <Column id="data" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="id">현재일자</Col>
+            <Col id="data">todayAsMrpDate</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript4.0"><![CDATA[var calendar =Tab00.tabpage1.Calendar00;
+
+function StockInfo_onload(obj:Form, e:LoadEventInfo)
+{
+	gds_stock.clearData();
+	gds_stockLog.clearData();
+	
+	transaction("searchStock_list",
+				"svcPurchase::searchStockList.do",
+				"",
+				"gds_stock=gds_stock",
+				"",
+				"callback");
+			
+}
+  
+
+function callback(trid , ErrorCode, ErrorMsg){
+
+}
+
+
+function Tab00_tabpage1_Radio00_onitemclick(obj:Radio, e:RadioMouseEventInfo)
+{
+	var today=getToday().substr(0,4)+getToday().substr(5,2)+getToday().substr(8);
+	
+	trace("today"+today);
+	calendar.value=today;
+
+	
+}
+
+//입고버튼
+function Tab00_tabpage1_Button00_onclick(obj:Button,  e:ClickEventInfo)
+{
+	
+	dialog(
+				"StockWareHouse",	// 생성될 ChildFrame의 이름
+				"Purchase::StockWarehouse.xfdl",	// 로딩한 폼의 URL
+				"StockInfo",	// ParentFrame
+				{},	// ChildFrame에 추가될 변수 리스트 {변수명:변수값, 변수명:변수값}
+				"",	// ChildFrame에 설정할 속성 리스트 a=b b='c' 
+				450,	// ChildFrame의 position 중 left 값
+				250	// ChildFrame의 position 중 top 값
+		);
+	
+}
+
+
+//재고로그 조회 버튼
+function Tab00_tabpage2_Button00_onclick(obj:Button,  e:ClickEventInfo)
+{
+	var startDate=Tab00.tabpage2.Calendar00.value;
+	var endDate=Tab00.tabpage2.Calendar01.value;
+	
+	transaction("searchStock_list",
+				"svcPurchase::searchStockLogList.do",
+				"",
+				"gds_stockLog=gds_stockLog",
+				"startDate="+startDate+" endDate="+endDate,
+				"callback");
+}
+]]></Script>
+  </Form>
+</FDL>
